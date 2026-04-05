@@ -46,9 +46,10 @@ body {
 /* Optional: Add a container background behind banner if needed */
 .banner-container {
   width: 100%;
+  max-width: 1920px
   background-color: #1a1a1a; /* Dark grey-black background */
   overflow: hidden;           /* Prevent overflow */
-  margin: 0;  /* flush top */
+  margin: 0 auto;  /* flush top */
 }
 
 .tagline {
