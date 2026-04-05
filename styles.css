@@ -24,13 +24,13 @@ body {
 
 .banner {
   width: 100%;
-  max-width: 1920px;
+  max-width: none;             /* removed 1920px; and changed to none; */
   height: auto;             /* maintain aspect ratio */
   max-height: 400px;        /* limit vertical size */
   display: block;
   margin: 0;
   box-shadow: 0 0 20px rgba(255,165,0,0.7); /* orange glow */
-  object-fit: contain;        /* ensures banner fills width nicely chaned cover to contain */
+  // object-fit: contain;        /* ensures banner fills width nicely chaned cover to contain */
 }
 
 /* Banner Styles - Full Width, Responsive, Proportional */
@@ -48,6 +48,7 @@ body {
   width: 100%;
   background-color: #1a1a1a; /* Dark grey-black background */
   overflow: hidden;           /* Prevent overflow */
+  margin: 0;  /* flush top */
 }
 
 .tagline {
