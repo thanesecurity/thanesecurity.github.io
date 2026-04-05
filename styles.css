@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+
+/* HERO SECTION */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 40px 20px;
+}
+
+.hero-center {
+  flex: 1 1 400px;
+  text-align: center;
+}
+
+.banner {
+  max-width: 600px;
+  width: 100%;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #f5f5f5;
+  margin-top: 0;
+}
+
+.hero-right {
+  flex: 1 1 350px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 40px;
+}
+
+#globe-container {
+  width: 350px;
+  height: 350px;
+  position: relative;
+  margin: 0 auto; //center it horizontally
+}
+
+/* SECTION TITLES */
+.section-title {
+  text-align: center;
+  margin-top: 60px;
+  color: #ff6a00;
+}
+
+/* TILE CONTAINERS */
+.tile-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 40px;
+}
+
+/* TILE STYLING */
+.tile {
+  background: #111;
+  border-radius: 10px;
+  padding: 30px;
+  width: 170px;
+  text-align: center;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 10px rgba(255,215,0,0.4),0 0 20px rgba(255,215,0,0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.tile h3 {
+  font-size: 2.5rem;
+  color: #ff6a00;
+}
+
+.tile p {
+  color: #f5f5f5;
+}
+
+.tile:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 15px rgba(255,215,0,0.9),0 0 30px rgba(255,215,0,0.7),0 0 50px rgba(255,215,0,0.6);
+}
+
+/* PRICING ANIMATION */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px rgba(255,215,0,0.3); }
+  50% { box-shadow: 0 0 25px rgba(255,215,0,0.7); }
+  100% { box-shadow: 0 0 10px rgba(255,215,0,0.3); }
+}
+
+.pricing { animation: glowPulse 3s infinite; }
+
+/* CTA */
+.cta {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #ff6a00;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.cta-button:hover {
+  background: #ffa94d;
+  transform: scale(1.05);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #888;
+}
