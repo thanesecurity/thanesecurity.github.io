@@ -20,15 +20,27 @@ body {
   text-align: center;
 }
 
-/* Banner Styles - Full Width, Responsive, Proportional */
+
 .banner {
-  width: 100%;             /* Fill the full width of the screen/container */
-  max-width: 1920px;       /* Optional: don’t let it get too huge on 4K screens */
-  height: auto;            /* Maintain aspect ratio */
-  display: block;          /* Make it a block element */
-  margin: 0;               /* Remove default centering/margins */
-  box-shadow: 0 0 20px rgba(255, 165, 0, 0.7); /* Optional orange glow */
+  width: 100%;
+  max-width: 1920px;
+  height: auto;             /* maintain aspect ratio */
+  max-height: 400px;        /* limit vertical size */
+  display: block;
+  margin: 0;
+  box-shadow: 0 0 20px rgba(255,165,0,0.7); /* orange glow */
+  object-fit: cover;        /* ensures banner fills width nicely */
 }
+
+/* Banner Styles - Full Width, Responsive, Proportional */
+/.banner {
+/  width: 100%;             /* Fill the full width of the screen/container */
+/  max-width: 1920px;       /* Optional: don’t let it get too huge on 4K screens */
+/  height: auto;            /* Maintain aspect ratio */
+/  display: block;          /* Make it a block element */
+/  margin: 0;               /* Remove default centering/margins */
+/  box-shadow: 0 0 20px rgba(255, 165, 0, 0.7); /* Optional orange glow */
+/}
 
 /* Optional: Add a container background behind banner if needed */
 .banner-container {
@@ -36,14 +48,6 @@ body {
   background-color: #1a1a1a; /* Dark grey-black background */
   overflow: hidden;           /* Prevent overflow */
 }
-
-
-/.banner {
-/max-width: 600px;
-/width: 100%;
-/display: block;
-/margin: 0 auto 20px auto;
-/}
 
 .tagline {
   font-size: 1.2rem;
