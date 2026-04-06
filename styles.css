@@ -157,3 +157,21 @@ footer {
   padding: 30px;
   color: #888;
 }
+
+@media (max-width: 480px) {
+  .tagline {
+    /* Lower the font size slightly for mobile */
+    font-size: 1.1rem !important; 
+    
+    /* Ensure the text has the full width of the screen to spread out */
+    width: 100% !important;
+    max-width: 100vw;
+    
+    /* Reduce side padding so the text can use the whole screen */
+    padding-left: 5px;
+    padding-right: 5px;
+    
+    /* Optional: tightens the space between letters slightly to fit */
+    letter-spacing: -0.5px; 
+  }
+}
