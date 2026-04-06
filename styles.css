@@ -120,13 +120,13 @@ body {
 }
 
 /* PRICING ANIMATION */
-/@keyframes glowPulse {
-/  0% { box-shadow: 0 0 10px rgba(255,215,0,0.3); }
-/  50% { box-shadow: 0 0 25px rgba(255,215,0,0.7); }
-/  100% { box-shadow: 0 0 10px rgba(255,215,0,0.3); }
-/}
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 10px rgba(255,215,0,0.3); }
+  50% { box-shadow: 0 0 25px rgba(255,215,0,0.7); }
+  100% { box-shadow: 0 0 10px rgba(255,215,0,0.3); }
+}
 
-/.pricing { animation: glowPulse 3s infinite; }
+.pricing { animation: glowPulse 3s infinite; }
 
 /* CTA */
 .cta {
