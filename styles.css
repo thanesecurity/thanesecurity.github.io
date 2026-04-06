@@ -34,13 +34,15 @@ body {
 }
 
 /* Optional: Add a container background behind banner if needed */
-/.banner-container {
-/  width: 100%;
- / max-width: 1920px
-  /background-color: #1a1a1a; /* Dark grey-black background */
-  /overflow: hidden;           /* Prevent overflow */
- / margin: 0 auto;  /* flush top */
-/}
+.banner-container {
+  width: 100%;
+  height: 100%;
+  max-width: 1920px
+  position: relative;
+  background-color: #1a1a1a; /* Dark grey-black background */
+  overflow: hidden;           /* Prevent overflow */
+  margin: 0 auto;  /* flush top */
+ }
 
 .tagline {
   font-size: 1.2rem;
