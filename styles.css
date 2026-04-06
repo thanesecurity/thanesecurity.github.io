@@ -1,5 +1,157 @@
 body {
   margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+
+/* HERO SECTION */
+.hero {
+  display: flex;
+  flex-direction: column; /* Changed to column to stop overlap */
+  align-items: center;
+  width: 100%; 
+  overflow: hidden;
+}
+
+.banner-container {
+  width: 100%;
+  max-width: 1920px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  box-shadow: 0 0 20px rgba(255,165,0,0.7);
+}
+
+.tagline {
+  font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+  color: #f5f5f5;
+  margin: 40px auto; /* Fixed the broken margin syntax */
+  display: block;
+  text-align: center;
+  width: 95%;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.hero-right {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -20px; /* Adjusted to stop it from cutting off tagline */
+}
+
+#globe-container {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* Style for the 4 static OSINT labels */
+.osint-label {
+  position: absolute;
+  z-index: 10;
+  color: #ff6a00;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
+  font-weight: bold;
+  background: rgba(15, 15, 15, 0.9);
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 165, 0, 0.5);
+  border-radius: 4px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
+}
+
+/* The Faint Connector Lines */
+.osint-label::after {
+  content: "";
+  position: absolute;
+  width: 80px; /* Longer lines */
+  height: 1px;
+  top: 50%;
+  pointer-events: none;
+}
+
+/* --- TOP LEFT --- */
+.label-1 { top: 15%; left: -15%; }
+.label-1::after {
+  right: -80px;
+  transform: rotate(15deg);
+  background: linear-gradient(to right, rgba(255, 106, 0, 0.6), transparent);
+}
+
+/* --- TOP RIGHT --- */
+.label-2 { top: 15%; right: -15%; }
+.label-2::after {
+  left: -80px;
+  transform: rotate(-15deg);
+  background: linear-gradient(to left, rgba(255, 106, 0, 0.6), transparent);
+}
+
+/* --- BOTTOM LEFT (Equator) --- */
+.label-3 { top: 50%; left: -25%; } /* Moved UP and OUT */
+.label-3::after {
+  right: -80px;
+  transform: rotate(0deg);
+  background: linear-gradient(to right, rgba(255, 106, 0, 0.6), transparent);
+}
+
+/* --- BOTTOM RIGHT (Equator) --- */
+.label-4 { top: 50%; right: -25%; } /* Moved UP and OUT */
+.label-4::after {
+  left: -80px;
+  transform: rotate(0deg);
+  background: linear-gradient(to left, rgba(255, 106, 0, 0.6), transparent);
+}
+
+/* REST OF YOUR STYLES (Tiles, CTA, etc.) */
+.section-title { text-align: center; margin-top: 60px; color: #ff6a00; }
+.tile-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; padding: 40px; }
+.tile {
+  background: #111;
+  border-radius: 10px;
+  padding: 30px;
+  width: 170px;
+  text-align: center;
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 10px rgba(255,215,0,0.4);
+}
+.tile h3 { font-size: 2.5rem; color: #ff6a00; }
+.cta-button {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #ff6a00;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+footer { text-align: center; padding: 30px; color: #888; }
+
+/* Responsive */
+@media (max-width: 480px) {
+  .tagline {
+    font-size: 1.1rem !important; 
+    width: 100% !important;
+    letter-spacing: -0.5px;
+  }
+  #globe-container { width: 300px; height: 300px; }
+  .label-1, .label-3 { left: 0; }
+  .label-2, .label-4 { right: 0; }
+}
+
+/*
+body {
+  margin: 0;
   padding: 0; /* added this */
   font-family: 'Segoe UI', sans-serif;
   background-color: #1a1a1a;
@@ -254,3 +406,4 @@ footer {
     letter-spacing: -0.5px; 
   }
 }
+*/
