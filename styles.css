@@ -69,11 +69,45 @@ body {
 }
 
 #globe-container {
-  width: 350px;
-  height: 350px;
+  width: 500px;
+  height: 500px;
   position: relative;
-  margin: 0 auto; //center it horizontally
+  margin: -80px auto; //center it horizontally
+  justify-content: center;
+  align-items: center;
 }
+
+/* Style for the 4 static OSINT labels */
+.osint-label {
+  position: absolute;
+  color: #ff6a00; /* Thane Orange */
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: rgba(26, 26, 26, 0.8);
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 165, 0, 0.3);
+  border-radius: 4px;
+  pointer-events: none; /* Allows mouse to pass through to the globe */
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
+}
+
+/* Position the 4 labels around the container */
+.label-1 { top: 20%; left: 0%; }
+.label-2 { top: 20%; right: 0%; }
+.label-3 { bottom: 25%; left: 0%; }
+.label-4 { bottom: 25%; right: 0%; }
+
+@media (max-width: 600px) {
+  #globe-container {
+    width: 350px;
+    height: 350px;
+    margin-top: -40px;
+  }
+  .osint-label { font-size: 0.7rem; padding: 5px; }
+}
+
 
 /* SECTION TITLES */
 .section-title {
