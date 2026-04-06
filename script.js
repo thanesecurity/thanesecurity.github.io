@@ -16,7 +16,7 @@ window.onload = function() {
   container.appendChild(renderer.domElement);
 
   // Wireframe globe (less dense, darker orange)
-  const globeGeometry = new THREE.SphereGeometry(1, 16, 16);
+  const globeGeometry = new THREE.SphereGeometry(1, 12, 12);
   const globeMaterial = new THREE.MeshBasicMaterial({
     color: 0xffa500,
     wireframe: true,
@@ -24,9 +24,9 @@ window.onload = function() {
     transparent: true
   });
   const globe = new THREE.Mesh(globeGeometry, globeMaterial);
-  globe.scale.set(1.8, 1.8, 1.8); // larger
-  globe.position.x = 0.2;          // move to the right
-  globe.position.y = -0.4           //move down slightly
+  globe.scale.set(1.9, 1.9, 1.9); // larger
+  globe.position.x = 0;          // move to the right
+  globe.position.y = 0           //move down slightly
   scene.add(globe);
 
   // Optional subtle yellow highlight
