@@ -11,9 +11,12 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
-  gap: 70px;
+  /align-items: flex-start;
+  align-items: center;
+  gap: 40px; /* changed from 70 to 40 */
   padding: 0; /* changed from 0 20px */
+  width: 100%; 
+  overflow: hidden;
 }
 
 .hero-center {
@@ -23,15 +26,16 @@ body {
 
 .banner {
   width: 100%;
-  max-width: none;             /* removed 1920px; and changed to none; */
+  /max-width: none;             /* removed 1920px; and changed to none; */
   height: auto;             /* maintain aspect ratio */
   /max-height: 500px;        /* limit vertical size */
-  max-height: none;
+  /max-height: none;
   display: block;
   margin: 0;
   box-shadow: 0 0 20px rgba(255,165,0,0.7); /* orange glow */
-  object-fit: contain;        /* ensures banner fills width nicely chaned cover to contain */
-  object-position: top;
+ / object-fit: contain;        /* ensures banner fills width nicely chaned cover to contain */
+  /object-position: top;
+  object-fit: update;
 }
 
 /* Optional: Add a container background behind banner if needed */
