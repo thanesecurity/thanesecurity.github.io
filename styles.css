@@ -72,7 +72,7 @@ body {
   width: 500px;
   height: 500px;
   position: relative;
-  margin: -140px auto; //center it horizontally
+  margin: -90px auto; //center it horizontally
   justify-content: center;
   align-items: center;
 }
@@ -83,7 +83,7 @@ body {
   z-index:10;
   color: #ff6a00; /* Thane Orange */
   font-family: 'Segoe UI', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
   background: rgba(26, 26, 26, 0.8);
   padding: 8px 12px;
@@ -98,7 +98,7 @@ body {
 .osint-label::after {
   content: "";
   position: absolute;
-  width: 50px; /* Length of the line */
+  width: 70px; /* Length of the line */
   height: 1px;
   top: 50%;
   pointer-events: none;
@@ -110,7 +110,7 @@ body {
 .label-2 { top: 15%; right: -5%; }
 .label-3 { bottom: 15%; left: -5%; }
 .label-4 { bottom: 15%; right: -5%; }
--- .
+-->
 
 /* --- TOP LEFT --- */
 .label-1 { top: 15%; left: -10%; }
