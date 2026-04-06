@@ -41,7 +41,7 @@ body {
   position: relative;
   background-color: #1a1a1a; /* Dark grey-black background */
   overflow: hidden;           /* Prevent overflow */
-  margin: 0 auto;  /* flush top */
+  margin: 0;  /* flush top */
  }
 
 .tagline {
