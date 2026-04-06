@@ -30,7 +30,7 @@ body {
   display: block;
   margin: 0;
   box-shadow: 0 0 20px rgba(255,165,0,0.7); /* orange glow */
-  // object-fit: contain;        /* ensures banner fills width nicely chaned cover to contain */
+  object-fit: contain;        /* ensures banner fills width nicely chaned cover to contain */
 }
 
 /* Banner Styles - Full Width, Responsive, Proportional */
