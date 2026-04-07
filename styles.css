@@ -1,58 +1,9 @@
-/* GLOBAL STYLES */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #1a1a1a;
-  color: #f5f5f5;
-}
-
-/* HERO SECTION */
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%; 
-  overflow: hidden;
-}
-
-.banner-container {
-  width: 100%;
-  max-width: 1920px;
-  position: relative;
-  margin: 0 auto;
-}
-
-.banner {
-  width: 100%;
-  height: auto;
-  display: block;
-  box-shadow: 0 0 20px rgba(255,165,0,0.7);
-}
-
-.tagline {
-  font-size: clamp(1.2rem, 3.5vw, 2.5rem);
-  color: #f5f5f5;
-  margin: 60px auto 40px auto; 
-  display: block;
-  text-align: center;
-  width: 95%;
-  line-height: 1.4;
-  font-weight: 500;
-}
-
-.hero-right {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: -20px;
-}
-
+/* GLOBE CONTAINER FIX */
 #globe-container {
   width: 500px;
   height: 500px;
   position: relative;
-  margin: 0 auto;
+  margin: -40px auto 0 auto; /* Reduced pull-up to stop tagline overlap */
 }
 
 /* OSINT LABELS - Fixed size and padding */
@@ -64,12 +15,12 @@ body {
   font-size: 0.85rem;
   font-weight: bold;
   background: rgba(15, 15, 15, 0.9);
-  padding: 6px 10px; /* Slimmer padding */
+  padding: 6px 12px;
   border: 1px solid rgba(255, 106, 0, 0.5);
   border-radius: 4px;
   pointer-events: none;
   white-space: nowrap;
-  width: fit-content; /* Stops the "Big Box" stretching */
+  width: fit-content !important; /* Forces the box to shrink to text size */
   box-shadow: 0 0 10px rgba(255, 106, 0, 0.2);
 }
 
@@ -77,338 +28,46 @@ body {
 .osint-label::after {
   content: "";
   position: absolute;
-  width: 60px; /* Length of the line */
+  width: 70px; /* Longer lines to reach the smaller globe */
   height: 1px;
   top: 50%;
   pointer-events: none;
 }
 
 /* --- TOP LEFT --- */
-.label-1 { top: 25%; left: -12%; }
+.label-1 { top: 20%; left: -12%; }
 .label-1::after {
-  right: -60px;
+  right: -70px;
   transform: rotate(15deg);
   background: linear-gradient(to right, rgba(255, 106, 0, 0.6), transparent);
 }
 
 /* --- TOP RIGHT --- */
-.label-2 { top: 25%; right: -12%; }
+.label-2 { top: 20%; right: -12%; }
 .label-2::after {
-  left: -60px;
+  left: -70px;
   transform: rotate(-15deg);
   background: linear-gradient(to left, rgba(255, 106, 0, 0.6), transparent);
 }
 
 /* --- BOTTOM LEFT (Equator) --- */
-.label-3 { top: 55%; left: -18%; } 
+.label-3 { 
+  top: 55% !important; 
+  left: -18% !important; 
+} 
 .label-3::after {
-  right: -60px;
+  right: -70px;
   transform: rotate(-5deg);
   background: linear-gradient(to right, rgba(255, 106, 0, 0.6), transparent);
 }
 
 /* --- BOTTOM RIGHT (Equator) --- */
-.label-4 { top: 55%; right: -18%; }
+.label-4 { 
+  top: 55% !important; 
+  right: -18% !important; 
+}
 .label-4::after {
-  left: -60px;
+  left: -70px;
   transform: rotate(5deg);
   background: linear-gradient(to left, rgba(255, 106, 0, 0.6), transparent);
 }
-
-/* SLADE INTELLIGENCE SECTION */
-.section-title { text-align: center; margin-top: 60px; color: #ff6a00; }
-.tile-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; padding: 40px; }
-.tile {
-  background: #111;
-  border-radius: 10px;
-  padding: 30px;
-  width: 170px;
-  text-align: center;
-  border: 2px solid rgba(255, 215, 0, 0.5);
-  box-shadow: 0 0 10px rgba(255,215,0,0.4);
-}
-.tile h3 { font-size: 2.5rem; color: #ff6a00; margin: 0; }
-
-/* FOOTER & CTA */
-.cta { text-align: center; padding: 60px 20px; }
-.cta-button {
-  display: inline-block;
-  padding: 12px 25px;
-  background: #ff6a00;
-  color: #000;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 5px;
-}
-footer { text-align: center; padding: 30px; color: #888; }
-
-/* MOBILE RESPONSIVE */
-@media (max-width: 768px) {
-  #globe-container { width: 300px; height: 300px; }
-  .label-1, .label-3 { left: 0; }
-  .label-2, .label-4 { right: 0; }
-  .osint-label::after { display: none; } /* Lines usually look messy on mobile */
-  .tagline {
-    font-size: 1.1rem !important;
-    width: 100% !important;
-  }
-}
-
-/*
-body {
-  margin: 0;
-  padding: 0; /* added this */
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #1a1a1a;
-  color: #f5f5f5;
-}
-
-/* HERO SECTION */
-.hero {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  /align-items: flex-start;
-  align-items: center;
-  gap: 40px; /* changed from 70 to 40 */
-  padding: 0; /* changed from 0 20px */
-  width: 100%; 
-  overflow: hidden;
-}
-
-.hero-center {
-  flex: 1 1 400px;
-  text-align: center;
-}
-
-.banner {
-  width: 100%;
-  /max-width: none;             /* removed 1920px; and changed to none; */
-  height: auto;             /* maintain aspect ratio */
-  /max-height: 500px;        /* limit vertical size */
-  /max-height: none;
-  display: block;
-  margin: 0;
-  box-shadow: 0 0 20px rgba(255,165,0,0.7); /* orange glow */
- / object-fit: contain;        /* ensures banner fills width nicely chaned cover to contain */
-  /object-position: top;
-  object-fit: update;
-}
-
-/* Optional: Add a container background behind banner if needed */
-.banner-container {
-  width: 100%;
- / height: 100%;
-  max-width: 1920px;
-  position: relative;
-  background-color: #1a1a1a; /* Dark grey-black background */
-  / overflow: hidden;           /* Prevent overflow */
-  margin: 0 auto;  /* flush top */
- }
-
-.tagline {
-  font-size: clamp(1.2rem, 3.5vw, 2.5rem); /* 1.2rem;*/
-  color: #f5f5f5;
-  margin-top: 40px auto 20px auto; /* 0; */
-  display: block;
-  text-align: center;
-  width: 95%;
-  line-height: 1.4;
-  font-weight: 500;
-}
-
-.hero-right {
-  flex: 1 1 350px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 40px;
-}
-
-#globe-container {
-  width: 500px;
-  height: 500px;
-  position: relative;
-  margin: -90px auto; //center it horizontally
-  justify-content: center;
-  align-items: center;
-}
-
-/* Style for the 4 static OSINT labels */
-.osint-label {
-  position: absolute;
-  z-index:10;
-  color: #ff6a00; /* Thane Orange */
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 0.85rem;
-  font-weight: bold;
-  background: rgba(26, 26, 26, 0.8);
-  padding: 8px 12px;
-  border: 1px solid rgba(255, 165, 0, 0.3);
-  border-radius: 4px;
-  pointer-events: none; /* Allows mouse to pass through to the globe */
-  white-space: nowrap;
-  box-shadow: 0 0 10px rgba(255, 165, 0, 0.2);
-}
-
-/* The Faint Connector Lines */
-.osint-label::after {
-  content: "";
-  position: absolute;
-  width: 70px; /* Length of the line */
-  height: 1px;
-  top: 50%;
-  pointer-events: none;
-}
-
-<!--
-/* Position the 4 labels around the container */
-.label-1 { top: 15%; left:-5%; }
-.label-2 { top: 15%; right: -5%; }
-.label-3 { bottom: 15%; left: -5%; }
-.label-4 { bottom: 15%; right: -5%; }
--->
-
-/* --- TOP LEFT --- */
-.label-1 { top: 15%; left: -10%; }
-.label-1::after {
-  right: -50px;
-  transform: rotate(15deg);
-  background: linear-gradient(to right, rgba(255, 106, 0, 0.6), transparent);
-}
-
-/* --- TOP RIGHT --- */
-.label-2 { top: 15%; right: -10%; }
-.label-2::after {
-  left: -50px;
-  transform: rotate(-15deg);
-  background: linear-gradient(to left, rgba(255, 106, 0, 0.6), transparent);
-}
-
-/* --- BOTTOM LEFT (Moved Up & Out) --- */
-.label-3 { bottom: 30%; left: -12%; }
-.label-3::after {
-  right: -50px;
-  transform: rotate(-15deg);
-  background: linear-gradient(to right, rgba(255, 106, 0, 0.6), transparent);
-}
-
-/* --- BOTTOM RIGHT (Moved Up & Out) --- */
-.label-4 { bottom: 30%; right: -12%; }
-.label-4::after {
-  left: -50px;
-  transform: rotate(15deg);
-  background: linear-gradient(to left, rgba(255, 106, 0, 0.6), transparent);
-}
-
-@media (max-width: 600px) {
-  #globe-container {
-    width: 350px;
-    height: 350px;
-    margin-top: -40px;
-  }
-  .osint-label { font-size: 0.7rem; padding: 5px; }
-}
-
-
-/* SECTION TITLES */
-.section-title {
-  text-align: center;
-  margin-top: 60px;
-  color: #ff6a00;
-}
-
-/* TILE CONTAINERS */
-.tile-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
-  padding: 40px;
-}
-
-/* TILE STYLING */
-.tile {
-  background: #111;
-  border-radius: 10px;
-  padding: 30px;
-  width: 170px;
-  text-align: center;
-  border: 2px solid rgba(255, 215, 0, 0.5);
-  box-shadow: 0 0 10px rgba(255,215,0,0.4),0 0 20px rgba(255,215,0,0.2);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-.tile h3 {
-  font-size: 2.5rem;
-  color: #ff6a00;
-}
-
-.tile p {
-  color: #f5f5f5;
-}
-
-.tile:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 0 15px rgba(255,215,0,0.9),0 0 30px rgba(255,215,0,0.7),0 0 50px rgba(255,215,0,0.6);
-}
-
-/* PRICING ANIMATION */
-@keyframes glowPulse {
-  0% { box-shadow: 0 0 10px rgba(255,215,0,0.3); }
-  50% { box-shadow: 0 0 25px rgba(255,215,0,0.7); }
-  100% { box-shadow: 0 0 10px rgba(255,215,0,0.3); }
-}
-
-.pricing { animation: glowPulse 3s infinite; }
-
-/* CTA */
-.cta {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.cta-button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: #ff6a00;
-  color: #000;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-.cta-button:hover {
-  background: #ffa94d;
-  transform: scale(1.05);
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  color: #888;
-}
-
-@media (max-width: 480px) {
-  .tagline {
-    /* Lower the font size slightly for mobile */
-    font-size: 1.1rem !important; 
-    
-    /* Ensure the text has the full width of the screen to spread out */
-    width: 100% !important;
-    max-width: 100vw;
-    
-    /* Reduce side padding so the text can use the whole screen */
-    padding-left: 5px;
-    padding-right: 5px;
-    
-    /* Optional: tightens the space between letters slightly to fit */
-    letter-spacing: -0.5px; 
-  }
-}
-*/
