@@ -13,36 +13,21 @@ body {
     overflow-x: hidden; width: 100%;
 }
 
-/* --- BANNER GLOW FIX --- */
+/* --- BANNER GLOW (SAVED) --- */
 .banner-container { 
-    width: 100%; 
-    position: relative; 
-    background: #000;
-    display: flex;
-    justify-content: center;
+    width: 100%; position: relative; background: #000;
+    display: flex; justify-content: center;
 }
-
-.banner { 
-    width: 100%; height: auto; display: block; z-index: 2; position: relative;
-}
-
-/* This creates a dedicated "Light" layer under the banner edge */
+.banner { width: 100%; height: auto; display: block; z-index: 2; position: relative; }
 .banner-container::after {
-    content: "";
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100%;
-    height: 40px;
+    content: ""; position: absolute; bottom: -10px; left: 0; width: 100%; height: 40px;
     background: radial-gradient(circle, var(--glow-amber) 0%, transparent 70%);
-    filter: blur(15px);
-    z-index: 1;
+    filter: blur(15px); z-index: 1;
 }
 
 .tagline { 
-    font-size: clamp(1.2rem, 5vw, 2.4rem); 
-    text-align: center; margin: 40px 10px 0 10px;
-    font-weight: 300; color: #fff; width: 100%;
+    font-size: clamp(1.2rem, 5vw, 2.4rem); text-align: center; 
+    margin: 40px 10px 0 10px; font-weight: 300; color: #fff; width: 100%;
 }
 
 /* --- GLOBE HUD --- */
@@ -60,27 +45,20 @@ body {
 .line { position: absolute; background: rgba(0, 255, 65, 0.4); height: 1px; top: 50%; }
 .dot { position: absolute; width: 7px; height: 7px; background: var(--terminal-green); border-radius: 50%; top: -3px; }
 
-/* Status Dots in Labels */
 .dot-red { color: var(--status-red); margin-right: 5px; }
 .dot-green { color: var(--terminal-green); margin-right: 5px; }
 
-/* RE-TETHERED POSITIONS & TIMING */
-/* Label 1 and 4 start early to ensure the globe isn't empty on load */
+/* Desktop Label Logic */
 .label-1 { transform: translate(-190%, -210%); animation-delay: -1s; } 
 .label-1 .line { width: 70px; right: -70px; transform: rotate(20deg); } .label-1 .dot { right: 0; }
-
 .label-2 { transform: translate(70%, -180%); animation-delay: 2s; }
 .label-2 .line { width: 60px; left: -60px; transform: rotate(-20deg); } .label-2 .dot { left: 0; }
-
 .label-3 { transform: translate(-220%, -10%); animation-delay: 5s; }
 .label-3 .line { width: 50px; right: -50px; } .label-3 .dot { right: 0; }
-
 .label-4 { transform: translate(110%, 40%); animation-delay: 0s; } 
 .label-4 .line { width: 105px; left: -105px; transform: rotate(-10deg); } .label-4 .dot { left: 0; }
-
 .label-5 { transform: translate(-175%, 170%); animation-delay: 8s; }
 .label-5 .line { width: 60px; right: -60px; transform: rotate(-25deg); } .label-5 .dot { right: 0; }
-
 .label-6 { transform: translate(80%, 210%); animation-delay: 10s; }
 .label-6 .line { width: 70px; left: -70px; transform: rotate(25deg); } .label-6 .dot { left: 0; }
 
@@ -118,39 +96,35 @@ body {
 .faq-section { background: #0d0d0f; padding: 40px 0 80px 0; display: flex; justify-content: center; }
 .faq-inner { width: 100%; max-width: 800px; text-align: center; }
 .faq-main-title { margin-bottom: 40px; }
-.faq-container { text-align: left; }
-.faq-item { margin-bottom: 30px; border-left: 3px solid var(--cyber-amber); padding-left: 25px; }
+.faq-item { margin-bottom: 30px; border-left: 3px solid var(--cyber-amber); padding-left: 25px; text-align: left; }
 .faq-question { color: var(--cyber-amber) !important; font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
 .faq-answer { color: #999; line-height: 1.7; font-size: 1rem; }
 
-footer { text-align: center; padding: 40px; color: #444; }
+/* --- FOOTER RESTORED --- */
+.footer-divider { width: 85%; height: 1px; background: #222; margin: 40px auto 0 auto; }
+footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
 
-/* --- MOBILE RESPONSIVE (CENTERING FIXES) --- */
+/* --- MOBILE RESPONSIVE (CLEAN HUD) --- */
 @media (max-width: 600px) {
-    body { overflow-x: hidden; width: 100vw; }
-    .hero-right { height: 400px; margin-top: -30px; width: 100%; }
+    body { width: 100vw; }
+    .hero-right { height: 380px; margin-top: -20px; width: 100%; }
     #globe-container { width: 220px; height: 220px; margin: 0 auto; }
 
-    /* Centering and clipping prevention for IP label */
-    .label-1 { transform: translate(-105%, -220%); } 
-    .label-2 { transform: translate(5%, -180%); } 
-    .label-3 { transform: translate(-115%, -10%); } 
-    .label-4 { transform: translate(15%, 35%); } 
-    .label-5 { transform: translate(-90%, 160%); } /* IP label shifted inward to prevent cut-off */
-    .label-6 { transform: translate(5%, 210%); } 
+    /* Fix: Only show 3 labels on mobile to prevent overlapping */
+    .label-2, .label-4, .label-6 { display: none !important; }
 
-    .line { width: 15px !important; }
-    .label-1 .line, .label-3 .line, .label-5 .line { right: -15px; }
-    .label-2 .line, .label-4 .line, .label-6 .line { left: -15px; }
+    /* Reposition remaining labels for maximum space */
+    .label-1 { transform: translate(-105%, -220%); } /* Top Left */
+    .label-3 { transform: translate(5%, -20%); }    /* Middle Right */
+    .label-5 { transform: translate(-105%, 170%); } /* Bottom Left */
 
-    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 90%; }
+    .line { width: 20px !important; }
+    .label-1 .line, .label-5 .line { right: -20px; }
+    .label-3 .line { left: -20px; } /* Swapped to face globe */
+
+    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 92%; }
     .tile:last-child { grid-column: span 2; }
     
-    .system-bar { 
-        flex-direction: column; 
-        align-items: center; 
-        padding: 20px 0;
-        text-align: center;
-    }
-    .system-item { justify-content: center; margin-bottom: 5px; }
+    .system-bar { flex-direction: column; align-items: center; padding: 20px 0; text-align: center; }
+    .system-item { justify-content: center; margin-bottom: 8px; width: 100%; }
 }
