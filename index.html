@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Thane Security | Intelligence Dashboard</title>
-    <link rel="stylesheet" href="style.css?v=11">
+    <title>Thane Security | OSINT Dashboard</title>
+    <link rel="stylesheet" href="style.css?v=12">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 </head>
@@ -21,9 +21,9 @@
             <div id="globe-container">
                 <div class="osint-label label-1"><div class="line"><div class="dot"></div></div><span class="status-red">●</span> PROFILES: 128</div>
                 <div class="osint-label label-2"><div class="line"><div class="dot"></div></div><span class="status-red">●</span> EMAILS: 54</div>
-                <div class="osint-label label-3"><div class="line"><div class="dot"></div></div><span class="status-green">●</span> DB LEAKS: 3</div>
+                <div class="osint-label label-3"><div class="line"><div class="dot"></div></div><span class="status-green">●</span> DB LEAKS: 0</div>
                 <div class="osint-label label-4"><div class="line"><div class="dot"></div></div><span class="status-red">●</span> WEAK PASSWORDS: 12</div>
-                <div class="osint-label label-5"><div class="line"><div class="dot"></div></div><span class="status-green">●</span> IP ADDRESS: MAPPED</div>
+                <div class="osint-label label-5"><div class="line"><div class="dot"></div></div><span class="status-green">●</span> IP ADDRESS: HIDDEN</div>
                 <div class="osint-label label-6"><div class="line"><div class="dot"></div></div><span class="status-red">●</span> LINKED ACCOUNTS: 23</div>
             </div>
         </div>
@@ -64,10 +64,19 @@
                     <div class="faq-question">How does SLADE Intelligence work?</div>
                     <div class="faq-answer">SLADE uses advanced OSINT techniques to mirror the reconnaissance methods used by real-world threat actors.</div>
                 </div>
+                <div class="faq-item">
+                    <div class="faq-question">What information do you need to start?</div>
+                    <div class="faq-answer">Usually, only a primary email or username. We find the rest using publicly available records and leak databases.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I remove my data from the web?</div>
+                    <div class="faq-answer">Our reports include an "Education" component (the E in SLADE) to guide you through the process of data deletion and opt-outs.</div>
+                </div>
             </div>
         </div>
     </section>
 
+    <div class="footer-divider"></div>
     <footer>&copy; 2026 Thane Security. All Rights Reserved.</footer>
 
 </body>
