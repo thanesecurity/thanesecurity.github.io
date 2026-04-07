@@ -198,23 +198,56 @@ footer {
     margin: 0 auto;
 }
 
-/* MOBILE CENTER-ANCHORED LABELS (NO DRIFT) */
+/* --- MOBILE VERTICAL HARD-FIX --- */
 @media (max-width: 600px) {
-    #globe-container { width: 320px; height: 320px; }
-    .hero-right { min-height: 380px; align-items: center; }
+    .tagline { 
+        margin: 20px 15px 5px 15px !important; 
+        font-size: 1.15rem !important; 
+    }
     
+    .hero-right {
+        min-height: 320px !important; /* Shorter to bring CTA up */
+        margin: 0 !important;
+    }
+
+    #globe-container {
+        width: 240px !important; /* Smaller globe gives labels more room */
+        height: 240px !important;
+    }
+
     .osint-label {
         left: 50% !important;
         top: 50% !important;
-        font-size: 0.72rem;
+        font-size: 0.62rem !important; /* Slightly smaller text for mobile */
+        padding: 3px 6px !important;
+        white-space: nowrap !important; /* PREVENTS BOXES FROM GROWING */
+        display: inline-block !important;
+        right: auto !important;
+        bottom: auto !important;
     }
 
-    .label-1 { transform: translate(-135%, -170%); } 
-    .label-2 { transform: translate(35%, -140%); }  
-    .label-3 { transform: translate(-145%, -20%); }  
-    .label-4 { transform: translate(45%, 30%); }    
-    .label-5 { transform: translate(-125%, 150%); } 
-    .label-6 { transform: translate(25%, 180%); }   
+    /* Precise offsets from the center of the 240px globe */
+    .label-1 { transform: translate(-120%, -170%) !important; } /* Top Left */
+    .label-2 { transform: translate(20%, -140%) !important; }  /* Top Right */
+    .label-3 { transform: translate(-130%, -20%) !important; }  /* Mid Left */
+    .label-4 { transform: translate(30%, 20%) !important; }    /* Mid Right */
+    .label-5 { transform: translate(-110%, 140%) !important; } /* Bottom Left */
+    .label-6 { transform: translate(10%, 170%) !important; }   /* Bottom Right */
 
-    .system-bar { flex-direction: column; align-items: center; gap: 12px; }
+    .cta-area { 
+        margin-top: 10px !important; 
+        margin-bottom: 30px !important; 
+    }
+
+    .cta-button {
+        padding: 12px 30px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Stack tiles properly on mobile */
+    .tile { 
+        width: 130px !important; 
+        padding: 15px 10px !important; 
+    }
+    .tile h3 { font-size: 1.8rem !important; }
 }
