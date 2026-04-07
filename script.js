@@ -13,9 +13,9 @@ window.onload = function() {
     const globe = new THREE.Mesh(
         new THREE.SphereGeometry(1, 10, 10), 
         new THREE.MeshBasicMaterial({ 
-            color: 0xc5a47e, /* Match our new Obsidian Gold */
+            color: 0xff9d00, /* Matching the new Vibrant Amber */
             wireframe: true, 
-            opacity: 0.3, 
+            opacity: 0.4, 
             transparent: true 
         })
     );
@@ -25,7 +25,7 @@ window.onload = function() {
 
     function animate() {
         requestAnimationFrame(animate);
-        globe.rotation.y += 0.0015;
+        globe.rotation.y += 0.0018;
         renderer.render(scene, camera);
     }
     animate();
