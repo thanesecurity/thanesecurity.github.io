@@ -10,13 +10,13 @@ window.onload = function() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    /* 5. FEWER WIRES (Segments reduced to 10) */
+    /* CLEANER GLOBE */
     const globe = new THREE.Mesh(
         new THREE.SphereGeometry(1, 10, 10), 
         new THREE.MeshBasicMaterial({ 
             color: 0xffa500, 
             wireframe: true, 
-            opacity: 0.5, /* Slightly more transparent to let labels pop */
+            opacity: 0.5, 
             transparent: true 
         })
     );
