@@ -1,4 +1,4 @@
-/* --- GLOBAL & MOBILE LOCK --- */
+/* --- GLOBAL LOCK --- */
 html, body {
     margin: 0;
     padding: 0;
@@ -6,7 +6,7 @@ html, body {
     overflow-x: hidden;
     background-color: #1a1a1a;
     color: #f5f5f5;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
 .hero {
@@ -16,35 +16,27 @@ html, body {
     align-items: center;
 }
 
-.banner-container {
-    width: 100%;
-    max-width: 1920px;
-}
-
 .banner {
     width: 100%;
     height: auto;
-    display: block;
     box-shadow: 0 8px 25px 2px rgba(255, 140, 0, 0.4);
 }
 
-/* 2. TAGLINE SIZE DECREASE */
 .tagline {
-    font-size: clamp(1.1rem, 2.8vw, 2.1rem); /* Slightly smaller than before */
+    font-size: clamp(1rem, 2.2vw, 1.7rem); 
     text-align: center;
-    margin: 40px auto;
+    margin: 30px auto;
     padding: 0 20px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
+    font-weight: 300;
 }
 
-/* --- GLOBE & LABELS --- */
+/* --- GLOBE & TERMINAL LABELS --- */
 .hero-right {
     width: 100%;
     display: flex;
     justify-content: center;
     position: relative;
-    min-height: 500px;
+    min-height: 550px;
 }
 
 #globe-container {
@@ -54,97 +46,118 @@ html, body {
     margin: 0 auto;
 }
 
-/* 4. LABELS & ANALYTIC LINES */
 .osint-label {
     position: absolute;
     z-index: 10;
-    color: #ff6a00;
-    background: rgba(10, 10, 10, 0.85);
+    /* 3. TERMINAL GREEN COLOR */
+    color: #00ff41; 
+    background: rgba(10, 10, 10, 0.9);
     padding: 6px 12px;
-    border: 1px solid rgba(255, 106, 0, 0.4);
-    border-radius: 2px;
-    font-size: 0.75rem; /* More "data" looking size */
-    font-weight: bold;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    /* 4. INCREASED FONT SIZE */
+    font-size: 0.9rem;
+    font-family: 'Courier New', monospace;
     white-space: nowrap;
-    letter-spacing: 1px;
-    font-family: 'Courier New', Courier, monospace; /* Tech/Analytic font */
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
 }
 
-/* THE LINES */
 .osint-label::after {
     content: "";
     position: absolute;
     height: 1px;
-    background: rgba(255, 106, 0, 0.4);
+    background: rgba(0, 255, 65, 0.4);
     top: 50%;
 }
 
-/* Label 1: Profiles (Top Left) */
-.label-1 { top: 15%; left: -10%; }
-.label-1::after { width: 50px; right: -50px; transform: rotate(15deg); }
+/* 1 & 2. DESKTOP PLACEMENT & LONGER LINES */
+.label-1 { top: 10%; left: -25%; } /* Profiles */
+.label-1::after { width: 120px; right: -120px; transform: rotate(20deg); }
 
-/* Label 2: Emails (Top Right) */
-.label-2 { top: 15%; right: -10%; }
-.label-2::after { width: 50px; left: -50px; transform: rotate(-15deg); }
+.label-2 { top: 10%; right: -25%; } /* Emails */
+.label-2::after { width: 120px; left: -120px; transform: rotate(-20deg); }
 
-/* Label 3: Passwords (Mid Left - Adjusted out of quadrant) */
-.label-3 { top: 55%; left: -18%; } 
-.label-3::after { width: 70px; right: -70px; transform: rotate(-5deg); }
+.label-3 { top: 60%; left: -30%; } /* Passwords - Moved further out */
+.label-3::after { width: 140px; right: -140px; transform: rotate(-10deg); }
 
-/* Label 4: Accounts (Mid Right - Adjusted out of quadrant) */
-.label-4 { top: 55%; right: -18%; }
-.label-4::after { width: 70px; left: -70px; transform: rotate(5deg); }
+.label-4 { top: 60%; right: -30%; } /* Accounts - Moved further out */
+.label-4::after { width: 140px; left: -140px; transform: rotate(10deg); }
 
-/* 1. CENTERED SLADE TEXT */
+/* 8. BUTTON STYLING */
+.cta-button {
+    margin: 20px 0 50px 0;
+    padding: 15px 35px;
+    background: transparent;
+    color: #ff6a00;
+    border: 2px solid #ff6a00;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #ff6a00;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 106, 0, 0.6);
+}
+
+/* 7. CENTERED WHITE TITLE */
 .section-title {
     text-align: center;
     width: 100%;
-    margin-top: 80px;
-    color: #ff6a00;
+    margin: 60px 0 40px 0;
+    color: #fff; /* Changed to White */
+    letter-spacing: 3px;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 1.4rem;
 }
 
-/* --- 5. SLADE TILES & AMBER GLOW --- */
+/* 5. SLADE TILES AMBER GLOW */
 .tile-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 40px 20px;
+    padding-bottom: 80px;
 }
 
 .tile {
     background: #111;
     border: 1px solid rgba(255, 106, 0, 0.2);
     border-radius: 8px;
-    padding: 25px;
+    padding: 20px;
     width: 150px;
     text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease; /* Smooth transition for the glow */
+    transition: all 0.4s ease;
 }
 
-/* The Amber Glow on Hover/Tap */
 .tile:hover, .tile:active {
-    border-color: rgba(255, 165, 0, 0.8);
-    box-shadow: 0 0 20px rgba(255, 140, 0, 0.5);
-    transform: translateY(-5px); /* Adds a little lift */
+    border-color: #ff6a00;
+    box-shadow: 0 0 25px rgba(255, 140, 0, 0.6);
+    transform: translateY(-8px);
 }
 
-.tile h3 { font-size: 2.5rem; color: #ff6a00; margin-bottom: 10px; }
+.tile h3 { font-size: 2.5rem; color: #ff6a00; margin: 0 0 10px 0; }
 
-/* --- 3. MOBILE FIXES --- */
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 0.8rem;
+    border-top: 1px solid #333;
+}
+
+/* 5. MOBILE VERTICAL FIXES */
 @media (max-width: 600px) {
-    #globe-container { width: 300px; height: 300px; }
-    .hero-right { min-height: 350px; }
+    #globe-container { width: 80vw; height: 80vw; max-width: 300px; }
+    .hero-right { min-height: 400px; }
 
-    /* Spread them out so they don't merge at the bottom */
-    .label-1 { top: 10% !important; left: 5% !important; }
-    .label-2 { top: 10% !important; right: 5% !important; }
-    
+    /* Pull labels apart so they don't touch or merge */
+    .label-1 { top: -5% !important; left: 5% !important; }
+    .label-2 { top: 15% !important; right: 5% !important; }
     .label-3 { top: 75% !important; left: 5% !important; } 
-    .label-4 { top: 75% !important; right: 5% !important; }
+    .label-4 { top: 95% !important; right: 5% !important; }
 
-    .osint-label::after { display: none; } /* Hide lines on mobile for space */
+    .osint-label::after { display: none; }
 }
