@@ -127,6 +127,6 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
     .tile h3 { font-size: 3rem; }
     .tile p { font-size: 0.95rem; margin-top: 8px; }
     
-    .system-bar { flex-direction: column !important; align-items: center !important; padding: 15px 0; width: 100vw; margin: -20px calc(-50vw + 50%) 0 calc(-50vw + 50%); gap: 8px; border-top: 1px solid rgba(0, 255, 65, 0.15); border-bottom: 1px solid rgba(0, 255, 65, 0.15); background: rgba(0, 0, 0, 0.3); overflow: hidden; }
+    .system-bar { flex-direction: column !important; align-items: center !important; padding: 15px 0; width: 100vw; margin: -20px calc(-50vw + 50%) 0 calc(-50vw + 50%); gap: 8px; border-top: 1px solid #2a2a2f; border-bottom: 1px solid #2a2a2f; background: rgba(0, 0, 0, 0.3); overflow: hidden; }
     .system-item { display: flex !important; flex-direction: row !important; justify-content: flex-start !important; width: 280px !important; margin: 0 auto !important; white-space: nowrap !important; }
 }
