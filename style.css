@@ -13,6 +13,7 @@ html, body {
     --cyber-gold: #ffb84d; 
     --terminal-green: #00ff41;
     --border-amber: rgba(255, 140, 0, 0.4);
+    --system-muted: #5e6473; /* Muted slate-blue for status bar */
 }
 
 .hero {
@@ -22,7 +23,6 @@ html, body {
     align-items: center;
 }
 
-/* 1. ORIGINAL AMBER GLOW RESTORED */
 .banner {
     width: 100%;
     height: auto;
@@ -64,7 +64,7 @@ html, body {
     white-space: nowrap;
 }
 
-/* COORDINATES ADJUSTED TO HUG GLOBE */
+/* DESKTOP LABEL POSITIONS */
 .label-1 { top: 12%; left: 5%; }
 .label-2 { top: 25%; right: 0%; }
 .label-3 { top: 40%; left: -5%; }
@@ -75,7 +75,7 @@ html, body {
 .status-red { color: #ff4d4d; margin-right: 5px; }
 .status-green { color: var(--terminal-green); margin-right: 5px; }
 
-/* 3. CTA AREA (MOVED UP) */
+/* 3. CTA AREA */
 .cta-area {
     text-align: center;
     margin: -10px 0 40px 0;
@@ -106,21 +106,21 @@ html, body {
     margin-bottom: 25px;
 }
 
-/* --- SYSTEM STATUS BAR --- */
+/* --- 2. MODIFIED SYSTEM STATUS BAR --- */
 .system-bar {
     width: 100%;
     background: #141417;
     display: flex;
     justify-content: space-around;
-    padding: 20px 0;
+    padding: 18px 0;
     border-top: 1px solid #222;
     border-bottom: 1px solid #222;
 }
 
 .system-item {
     font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
-    color: #666;
+    font-size: 0.85rem; /* Slightly larger */
+    color: var(--system-muted); /* New slate-blue shade */
     letter-spacing: 1px;
 }
 
@@ -132,10 +132,10 @@ html, body {
 
 @keyframes blink-animation { to { visibility: hidden; } }
 
-/* --- SECTION TITLES & SLADE TILES --- */
+/* --- 4. REDUCED SPACE BEFORE FAQ --- */
 .section-title {
     text-align: center;
-    margin: 80px 0 30px 0;
+    margin: 60px 0 30px 0;
     letter-spacing: 3px;
     text-transform: uppercase;
     font-size: 1.3rem;
@@ -146,53 +146,44 @@ html, body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    padding-bottom: 60px;
+    padding-bottom: 40px; /* Reduced from 60px */
 }
 
+/* --- 3. SLIGHTLY LARGER TILE TEXT --- */
 .tile {
     background: #16161a;
     border: 1px solid #2a2a2f;
     border-radius: 8px;
     padding: 25px;
-    width: 150px; 
+    width: 155px; 
     text-align: center;
     transition: 0.3s ease;
-    cursor: pointer;
 }
 
 .tile h3 { font-size: 2.5rem; color: var(--cyber-gold); margin: 0 0 5px 0; }
-.tile p { font-size: 0.85rem; color: #aaa; margin: 0; line-height: 1.4; }
+.tile p { 
+    font-size: 0.95rem; /* Larger font */
+    color: #aaa; 
+    margin: 0; 
+    line-height: 1.3; 
+}
 
-/* 4. TILE HOVER GLOW */
-.tile:hover, .tile:active {
+.tile:hover {
     border-color: var(--cyber-gold);
     box-shadow: 0 0 20px var(--border-amber);
     transform: translateY(-5px);
 }
 
 /* --- FAQ --- */
-.faq-section { background: #0f0f12; padding: 40px 0 80px 0; }
+.faq-section { 
+    background: #0f0f12; 
+    padding: 20px 0 80px 0; /* Reduced top padding to kill space after tiles */
+}
+
 .faq-container { max-width: 750px; margin: 0 auto; padding: 0 20px; }
 .faq-item { margin-bottom: 25px; border-left: 2px solid var(--cyber-gold); padding-left: 20px; }
 .faq-question { color: #fff; font-size: 1.1rem; font-weight: bold; margin-bottom: 5px; }
 .faq-answer { color: #888; font-size: 0.9rem; line-height: 1.6; }
-
-/* --- PRICING (FOR LATER) --- */
-.pricing-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-    flex-wrap: wrap;
-}
-.price-card {
-    background: #1a1a1f;
-    border: 1px solid #333;
-    padding: 30px;
-    text-align: center;
-    width: 200px;
-    border-radius: 8px;
-}
 
 footer {
     text-align: center;
@@ -204,9 +195,19 @@ footer {
     margin: 0 auto;
 }
 
-/* --- MOBILE --- */
+/* --- 1. MOBILE LABEL PUSH-OUT --- */
 @media (max-width: 600px) {
     #globe-container { width: 300px; height: 300px; }
     .hero-right { min-height: 320px; }
     .system-bar { flex-direction: column; align-items: center; gap: 10px; }
+    
+    /* Moved out and away from globe center */
+    .label-1 { top: -5%; left: -5%; }
+    .label-2 { top: 15%; right: -12%; }
+    .label-3 { top: 40%; left: -15%; }
+    .label-4 { top: 62%; right: -12%; }
+    .label-5 { bottom: 10%; left: -8%; }
+    .label-6 { bottom: -5%; right: -5%; }
+
+    .osint-label { font-size: 0.72rem; }
 }
