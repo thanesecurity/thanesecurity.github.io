@@ -4,36 +4,39 @@ window.onload = function() {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.z = 6;
+    camera.position.z = 5.5;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    const globe = new THREE.Mesh(
-        new THREE.SphereGeometry(1, 10, 10), 
-        new THREE.MeshBasicMaterial({ 
-            color: 0xff9d00, 
-            wireframe: true, 
-            opacity: 0.3, 
-            transparent: true 
-        })
-    );
+    // RESTORED WIREFRAME GLOBE
+    const geometry = new THREE.SphereGeometry(1, 14, 14); // Fewer segments make the wireframe look sharper
+    const material = new THREE.MeshBasicMaterial({ 
+        color: 0xff9d00, 
+        wireframe: true, 
+        transparent: true, 
+        opacity: 0.35 
+    });
     
-    globe.scale.set(1.8, 1.8, 1.8);
+    const globe = new THREE.Mesh(geometry, material);
+    globe.scale.set(1.9, 1.9, 1.9);
     scene.add(globe);
 
     function animate() {
         requestAnimationFrame(animate);
-        globe.rotation.y += 0.0012;
-        globe.rotation.x += 0.0004;
+        // Only rotating on the Y axis for a cleaner "spinning radar" look
+        globe.rotation.y += 0.002;
         renderer.render(scene, camera);
     }
     animate();
 
     window.addEventListener('resize', () => {
-        camera.aspect = container.clientWidth / container.clientHeight;
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
         camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
     });
 };
