@@ -123,6 +123,7 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
 
     .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 92%; }
     .tile:last-child { grid-column: span 2; }
+    .tile h3 { font-size: 4.5rem; }
     
 .system-bar { flex-direction: column; align-items: flex-start; padding: 20px 0; width: fit-content; margin: -20px auto 0 auto; gap: 8px; }
     .system-item { justify-content: flex-start; padding-left: 0; width: 100%; margin-bottom: 0; }
