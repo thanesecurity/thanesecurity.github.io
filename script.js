@@ -1,6 +1,60 @@
 window.onload = function() {
   const container = document.getElementById('globe-container');
   const scene = new THREE.Scene();
+  
+  // Set background to null to allow CSS transparency
+  scene.background = null;
+
+  const camera = new THREE.PerspectiveCamera(
+    50,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+  );
+  camera.position.z = 6;
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setClearColor(0x000000, 0); 
+  container.appendChild(renderer.domElement);
+
+  // Wireframe globe
+  const globeGeometry = new THREE.SphereGeometry(1, 12, 12);
+  const globeMaterial = new THREE.MeshBasicMaterial({
+    color: 0xffa500,
+    wireframe: true,
+    opacity: 0.7,
+    transparent: true
+  });
+  const globe = new THREE.Mesh(globeGeometry, globeMaterial);
+  
+  // SHRUNK: From 1.9 to 1.5 to clear the tagline
+  globe.scale.set(1.5, 1.5, 1.5); 
+  
+  globe.position.set(0, 0, 0); 
+  scene.add(globe);
+
+  // NOTE: All Sprite/Stats code has been removed to fix the "ghost" text
+
+  function animate() {
+    requestAnimationFrame(animate);
+    globe.rotation.y += 0.0025; 
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+  });
+};
+
+
+/* window.onload = function() {
+  const container = document.getElementById('globe-container');
+  const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x1a1a1a);
 
   const camera = new THREE.PerspectiveCamera(
@@ -16,7 +70,7 @@ window.onload = function() {
   container.appendChild(renderer.domElement);
 
   // Wireframe globe (less dense, darker orange)
-  const globeGeometry = new THREE.SphereGeometry(1, 12, 12);
+  const globeGeometry = new THREE.SphereGeometry(1, 10, 10);
   const globeMaterial = new THREE.MeshBasicMaterial({
     color: 0xffa500,
     wireframe: true,
@@ -79,4 +133,4 @@ window.onload = function() {
     camera.updateProjectionMatrix();
     renderer.setSize(container.clientWidth, container.clientHeight);
   });
-};
+}; */
