@@ -1,9 +1,8 @@
-/* --- GLOBAL BRANDING --- */
 :root {
     --cyber-amber: #ff9d00; 
     --terminal-green: #00ff41;
     --status-red: #ff3131;
-    --glow-shadow: rgba(255, 157, 0, 0.5);
+    --glow-soft: rgba(255, 157, 0, 0.35);
 }
 
 body {
@@ -12,20 +11,22 @@ body {
     overflow-x: hidden;
 }
 
-/* --- BANNER GLOW (AMBER YELLOW) --- */
+/* --- BANNER GLOW (BLENDED) --- */
 .banner { 
     width: 100%; height: auto; display: block;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 5px 30px var(--glow-shadow); 
+    /* Uses a larger blur radius (80px) to blend rather than look like a line */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 15px 80px var(--glow-soft); 
 }
 
+/* --- GAP REDUCTION --- */
 .tagline { 
     font-size: clamp(1.4rem, 5vw, 2.4rem); 
-    text-align: center; margin: 50px 20px; font-weight: 300; 
-    color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.2);
+    text-align: center; margin: 25px 20px 0 20px; /* Reduced bottom margin */
+    font-weight: 300; color: #fff;
 }
 
-/* --- GLOBE & HUD --- */
-.hero-right { width: 100%; display: flex; justify-content: center; align-items: center; height: 500px; position: relative; }
+/* --- GLOBE HUD --- */
+.hero-right { width: 100%; display: flex; justify-content: center; align-items: center; height: 480px; position: relative; }
 #globe-container { width: 400px; height: 400px; position: relative; }
 
 .osint-label {
@@ -33,111 +34,106 @@ body {
     padding: 8px 14px; border: 1px solid rgba(0, 255, 65, 0.4);
     font-family: 'Courier New', monospace; font-size: 0.9rem;
     white-space: nowrap; opacity: 0; top: 50%; left: 50%;
-    animation: scan-pulse 9s infinite ease-in-out;
+    /* Slowed down to 12s total duration for a calmer 2-at-a-time feel */
+    animation: scan-pulse 12s infinite ease-in-out;
 }
 
-.line { position: absolute; background: rgba(0, 255, 65, 0.5); height: 1px; top: 50%; }
+.line { position: absolute; background: rgba(0, 255, 65, 0.4); height: 1px; top: 50%; }
 .dot { position: absolute; width: 7px; height: 7px; background: var(--terminal-green); border-radius: 50%; box-shadow: 0 0 10px var(--terminal-green); top: -3px; }
 
-/* Desktop Distribution */
-.label-1 { --tx: -190%; --ty: -220%; animation-delay: 0s; }
-.label-1 .line { width: 70px; right: -70px; transform: rotate(25deg); } .label-1 .dot { right: 0; }
+/* Desktop Distribution - RE-TETHERED label-4 */
+.label-1 { --tx: -190%; --ty: -210%; animation-delay: 0s; }
+.label-1 .line { width: 70px; right: -70px; transform: rotate(20deg); } .label-1 .dot { right: 0; }
 
-.label-2 { --tx: 65%; --ty: -200%; animation-delay: 1.5s; }
-.label-2 .line { width: 60px; left: -60px; transform: rotate(-25deg); } .label-2 .dot { left: 0; }
+.label-2 { --tx: 70%; --ty: -180%; animation-delay: 2s; }
+.label-2 .line { width: 60px; left: -60px; transform: rotate(-20deg); } .label-2 .dot { left: 0; }
 
-.label-3 { --tx: -230%; --ty: -10%; animation-delay: 3s; }
+.label-3 { --tx: -230%; --ty: -10%; animation-delay: 4s; }
 .label-3 .line { width: 60px; right: -60px; transform: rotate(0deg); } .label-3 .dot { right: 0; }
 
-.label-4 { --tx: 115%; --ty: 40%; animation-delay: 4.5s; }
-.label-4 .line { width: 70px; left: -70px; transform: rotate(-5deg); } .label-4 .dot { left: 0; }
+/* Fix for Weak Passwords line reach */
+.label-4 { --tx: 110%; --ty: 40%; animation-delay: 6s; }
+.label-4 .line { width: 105px; left: -105px; transform: rotate(-10deg); } .label-4 .dot { left: 0; }
 
-.label-5 { --tx: -175%; --ty: 190%; animation-delay: 6s; }
-.label-5 .line { width: 60px; right: -60px; transform: rotate(-30deg); } .label-5 .dot { right: 0; }
+.label-5 { --tx: -175%; --ty: 170%; animation-delay: 8s; }
+.label-5 .line { width: 60px; right: -60px; transform: rotate(-25deg); } .label-5 .dot { right: 0; }
 
-.label-6 { --tx: 75%; --ty: 220%; animation-delay: 7.5s; }
-.label-6 .line { width: 70px; left: -70px; transform: rotate(30deg); } .label-6 .dot { left: 0; }
+.label-6 { --tx: 80%; --ty: 210%; animation-delay: 10s; }
+.label-6 .line { width: 70px; left: -70px; transform: rotate(25deg); } .label-6 .dot { left: 0; }
 
 @keyframes scan-pulse {
-    0%, 100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.95); }
-    15%, 85% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1); }
+    0%, 15%, 85%, 100% { opacity: 0; }
+    25%, 75% { opacity: 1; }
 }
 
 .status-red { color: var(--status-red); margin-right: 6px; }
 .status-green { color: var(--terminal-green); margin-right: 6px; }
 
-/* --- CTA ANIMATION --- */
-.cta-area { text-align: center; margin: 40px 0 80px 0; }
-.cta-button {
-    display: inline-block; padding: 18px 50px; background: var(--cyber-amber);
-    color: #000; text-decoration: none; font-weight: 800; border-radius: 4px;
-    box-shadow: 0 0 20px var(--glow-shadow); transition: 0.3s;
-    animation: cta-glow 3s infinite;
-}
-@keyframes cta-glow {
-    0%, 100% { box-shadow: 0 0 20px var(--glow-shadow); transform: scale(1); }
-    50% { box-shadow: 0 0 40px var(--cyber-amber); transform: scale(1.03); }
-}
-
-/* --- SYSTEM BAR --- */
+/* --- SYSTEM BAR (RE-POSITIONED) --- */
 .system-bar {
     width: 100%; background: #141417; display: flex; justify-content: space-around;
-    padding: 20px 0; border-top: 1px solid #222; border-bottom: 1px solid #222;
+    padding: 15px 0; border-top: 1px solid #222; border-bottom: 1px solid #222;
+    margin-top: -20px; /* Tightens gap under globe */
 }
-.system-item { font-family: 'Courier New', monospace; color: #888; font-size: 0.9rem; }
+.system-item { font-family: 'Courier New', monospace; color: #888; font-size: 0.85rem; }
 .blink { color: var(--terminal-green) !important; animation: blink-eye 1.5s infinite; margin-right: 5px; }
 @keyframes blink-eye { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* --- SLADE SECTION --- */
-.slade-section { padding: 80px 0; display: flex; flex-direction: column; align-items: center; }
+/* --- CTA (HOVER GLOW ONLY) --- */
+.cta-area { text-align: center; margin: 30px 0 50px 0; }
+.cta-button {
+    display: inline-block; padding: 18px 50px; background: var(--cyber-amber);
+    color: #000; text-decoration: none; font-weight: 800; border-radius: 4px;
+    box-shadow: 0 0 0px transparent; transition: 0.4s ease;
+}
+.cta-button:hover {
+    box-shadow: 0 0 30px var(--cyber-amber);
+    transform: translateY(-2px);
+}
+
+/* --- SLADE & FAQ (GAP REDUCTION) --- */
+.slade-section { padding: 40px 0; display: flex; flex-direction: column; align-items: center; }
 .section-title { 
-    color: #fff; font-size: 1.8rem; text-transform: uppercase; 
-    letter-spacing: 4px; margin-bottom: 40px; text-align: center;
+    color: #fff; font-size: 1.6rem; text-transform: uppercase; 
+    letter-spacing: 4px; margin-bottom: 30px;
 }
-.tile-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
+.tile-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+.tile { background: #121216; border: 1px solid #2a2a2f; border-radius: 8px; padding: 35px 20px; width: 150px; text-align: center; transition: 0.4s; }
+.tile h3 { font-size: 3.5rem; color: var(--cyber-amber) !important; margin: 0; }
+.tile p { font-size: 0.9rem; color: #aaa; margin-top: 10px; }
 
-.tile {
-    background: #121216; border: 1px solid #2a2a2f; border-radius: 8px;
-    padding: 40px 20px; width: 160px; text-align: center; transition: 0.4s;
-}
-.tile h3 { 
-    font-size: 4rem; color: var(--cyber-amber) !important; margin: 0; 
-    text-shadow: 0 0 15px var(--glow-shadow);
-}
-.tile p { font-size: 1rem; color: #aaa; margin-top: 15px; }
-.tile:hover { 
-    border-color: var(--cyber-amber); 
-    transform: translateY(-10px); 
-    box-shadow: 0 0 30px var(--glow-shadow); 
-}
+.faq-section { background: #0d0d0f; padding: 40px 0 80px 0; display: flex; justify-content: center; }
+.faq-inner { width: 100%; max-width: 800px; }
+.faq-item { margin-bottom: 30px; border-left: 3px solid var(--cyber-amber); padding-left: 25px; }
 
-/* --- FAQ --- */
-.faq-section { background: #0d0d0f; padding: 100px 0; display: flex; justify-content: center; }
-.faq-inner { width: 100%; max-width: 850px; }
-.faq-item { margin-bottom: 40px; border-left: 3px solid var(--cyber-amber); padding-left: 30px; }
-.faq-question { color: #fff; font-size: 1.3rem; font-weight: bold; margin-bottom: 12px; }
-.faq-answer { color: #999; line-height: 1.8; font-size: 1.05rem; }
+/* THEME FONT COLOR FOR QUESTIONS */
+.faq-question { color: var(--cyber-amber) !important; font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+.faq-answer { color: #999; line-height: 1.7; font-size: 1rem; }
 
-/* --- FOOTER --- */
-.footer-divider { width: 80%; height: 1px; background: #222; margin: 0 auto; }
-footer { text-align: center; padding: 60px; color: #555; }
+.footer-divider { width: 85%; height: 1px; background: #222; margin: 0 auto; }
+footer { text-align: center; padding: 40px; color: #444; }
 
-/* --- MOBILE FIXES --- */
+/* --- MOBILE RESPONSIVE HUD FIXES --- */
 @media (max-width: 600px) {
-    .tagline { margin: 30px 20px; font-size: 1.2rem; }
-    .hero-right { height: 420px; }
-    #globe-container { width: 260px; height: 260px; }
-    .osint-label { font-size: 0.7rem; }
+    .tagline { margin: 20px 20px 0 20px; font-size: 1.15rem; }
+    .hero-right { height: 350px; margin-top: -20px; } /* Closer to tagline */
+    #globe-container { width: 220px; height: 220px; }
     
+    .osint-label { font-size: 0.65rem; padding: 6px 10px; }
+    
+    /* Extreme Mobile Scattering to avoid line-crossing */
     .label-1 { --tx: -125%; --ty: -240%; }
     .label-2 { --tx: 25%; --ty: -220%; }
-    .label-3 { --tx: -135%; --ty: -20%; }
-    .label-4 { --tx: 35%; --ty: 30%; }
-    .label-5 { --tx: -125%; --ty: 190%; }
-    .label-6 { --tx: 25%; --ty: 210%; }
-    .line { width: 25px !important; }
+    .label-3 { --tx: -140%; --ty: -15%; }
+    .label-4 { --tx: 30%; --ty: 30%; }
+    .label-5 { --tx: -125%; --ty: 185%; }
+    .label-6 { --tx: 25%; --ty: 205%; }
 
-    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px; }
-    .tile { width: auto; }
+    .line { width: 25px !important; }
+    .label-4 .line { width: 45px !important; left: -45px !important; }
+
+    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; }
+    .tile { width: auto; padding: 20px 10px; }
     .tile:last-child { grid-column: span 2; }
+    .system-bar { flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; }
 }
