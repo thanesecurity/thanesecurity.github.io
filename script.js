@@ -10,13 +10,12 @@ window.onload = function() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    // VIBRANT AMBER GLOBE
     const globe = new THREE.Mesh(
         new THREE.SphereGeometry(1, 10, 10), 
         new THREE.MeshBasicMaterial({ 
             color: 0xff9d00, 
             wireframe: true, 
-            opacity: 0.35, 
+            opacity: 0.3, 
             transparent: true 
         })
     );
@@ -26,9 +25,8 @@ window.onload = function() {
 
     function animate() {
         requestAnimationFrame(animate);
-        // Slow, steady rotation for a tactical feel
-        globe.rotation.y += 0.0015;
-        globe.rotation.x += 0.0005;
+        globe.rotation.y += 0.0012;
+        globe.rotation.x += 0.0004;
         renderer.render(scene, camera);
     }
     animate();
