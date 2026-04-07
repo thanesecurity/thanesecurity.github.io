@@ -1,170 +1,154 @@
 /* --- GLOBAL --- */
 html, body {
     margin: 0; padding: 0; width: 100%; overflow-x: hidden;
-    background-color: #0d0d0f; color: #e0e0e0;
+    background-color: #08080a; color: #d1d1d1;
     font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
 :root {
-    --cyber-gold: #ff9d00 !important; 
-    --terminal-green: #00ff41 !important;
-    --glow-color: rgba(255, 157, 0, 0.45);
+    --osint-amber: #e68a00; /* Burnt tactical orange */
+    --terminal-green: #00ff41;
+    --status-red: #ff3333;
+    --glow-amber: rgba(230, 138, 0, 0.4);
+    --laser-green: rgba(0, 255, 65, 0.4);
 }
 
 /* --- BANNER --- */
-.banner { width: 100%; height: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 25px var(--glow-color); }
-.tagline { font-size: clamp(1.2rem, 4vw, 2.2rem); text-align: center; margin: 40px 20px 0 20px; font-weight: 300; }
+.banner { 
+    width: 100%; height: auto; 
+    box-shadow: 0 10px 50px rgba(0,0,0,0.9), 0 0 30px var(--glow-amber) !important; 
+}
+.tagline { font-size: clamp(1.2rem, 4vw, 2.2rem); text-align: center; margin: 50px 20px 0 20px; font-weight: 200; letter-spacing: 1px; }
 
-/* --- GLOBE HUD (SCATTERED) --- */
-.hero-right { width: 100%; display: flex; justify-content: center; align-items: center; height: 500px; position: relative; margin-top: -10px; }
+/* --- GLOBE HUD (SCATTERED & TACTICAL) --- */
+.hero-right { width: 100%; display: flex; justify-content: center; align-items: center; height: 500px; position: relative; }
 #globe-container { width: 400px; height: 400px; position: relative; }
 
 .osint-label {
     position: absolute;
     color: var(--terminal-green); 
-    background: rgba(10, 10, 12, 0.95);
+    background: rgba(10, 10, 12, 0.98);
     padding: 8px 14px;
-    border: 1px solid rgba(0, 255, 65, 0.6);
-    font-size: 0.9rem;
+    border: 1px solid var(--laser-green);
+    font-size: 0.85rem;
     font-family: 'Courier New', monospace;
     white-space: nowrap;
     opacity: 0;
     top: 50%; left: 50%;
     animation: scan-pulse 9s infinite ease-in-out;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
 }
 
-/* LEADER LINES */
+/* LASER LEADER LINES */
 .line {
     position: absolute;
-    background: rgba(0, 255, 65, 0.8);
-    height: 2px;
+    background: var(--laser-green);
+    height: 1px; /* Very thin for tactical feel */
     top: 50%;
 }
 
 .dot {
     position: absolute;
-    width: 8px; height: 8px;
+    width: 6px; height: 6px;
     background: var(--terminal-green);
     border-radius: 50%;
-    box-shadow: 0 0 12px var(--terminal-green);
-    top: -3px;
+    box-shadow: 0 0 10px var(--terminal-green);
+    top: -2.5px;
 }
 
-/* --- SCATTERED POSITIONING --- */
-/* Top Left Outer */
-.label-1 { --tx: -190%; --ty: -240%; animation-delay: 0s; }
+/* STATUS COLORS */
+.status-red { color: var(--status-red) !important; margin-right: 6px; text-shadow: 0 0 5px var(--status-red); }
+.status-green { color: var(--terminal-green) !important; margin-right: 6px; text-shadow: 0 0 5px var(--terminal-green); }
+
+/* --- SCATTERED HUD POSITIONING --- */
+.label-1 { --tx: -180%; --ty: -230%; animation-delay: 0s; }
 .label-1 .line { width: 80px; right: -80px; transform: rotate(35deg); }
 .label-1 .dot { right: 0; }
 
-/* Top Right Inner */
-.label-2 { --tx: 40%; --ty: -210%; animation-delay: 1.5s; }
+.label-2 { --tx: 50%; --ty: -200%; animation-delay: 1.5s; }
 .label-2 .line { width: 50px; left: -50px; transform: rotate(-30deg); }
 .label-2 .dot { left: 0; }
 
-/* Middle Left Wide */
-.label-3 { --tx: -240%; --ty: -30%; animation-delay: 3s; }
+.label-3 { --tx: -230%; --ty: -20%; animation-delay: 3s; }
 .label-3 .line { width: 60px; right: -60px; transform: rotate(5deg); }
 .label-3 .dot { right: 0; }
 
-/* Middle Right Deep */
-.label-4 { --tx: 130%; --ty: 80%; animation-delay: 4.5s; }
-.label-4 .line { width: 90px; left: -90px; transform: rotate(-10deg); }
+/* Fixed "Weak Passwords" Position */
+.label-4 { --tx: 100%; --ty: 50%; animation-delay: 4.5s; }
+.label-4 .line { width: 70px; left: -70px; transform: rotate(-5deg); }
 .label-4 .dot { left: 0; }
 
-/* Bottom Left Mid */
-.label-5 { --tx: -150%; --ty: 210%; animation-delay: 6s; }
-.label-5 .line { width: 50px; right: -50px; transform: rotate(-40deg); }
+.label-5 { --tx: -160%; --ty: 190%; animation-delay: 6s; }
+.label-5 .line { width: 60px; right: -60px; transform: rotate(-40deg); }
 .label-5 .dot { right: 0; }
 
-/* Bottom Right Outer */
-.label-6 { --tx: 90%; --ty: 230%; animation-delay: 7.5s; }
+.label-6 { --tx: 70%; --ty: 220%; animation-delay: 7.5s; }
 .label-6 .line { width: 80px; left: -80px; transform: rotate(35deg); }
 .label-6 .dot { left: 0; }
 
 @keyframes scan-pulse {
-    0%, 100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.95); }
+    0%, 100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.98); }
     15%, 85% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1); }
 }
 
 /* --- SYSTEM BAR --- */
 .system-bar {
-    width: 100%;
-    background: #141417;
-    display: flex;
-    justify-content: space-around;
-    padding: 20px 0;
-    border-top: 1px solid #222;
-    margin-bottom: 40px;
+    width: 100%; background: #111114; display: flex; justify-content: space-around;
+    padding: 20px 0; border-top: 1px solid #222; border-bottom: 1px solid #222;
+    margin-bottom: 50px;
 }
-.system-item { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #7a828e; }
+.system-item { font-family: 'Courier New', monospace; font-size: 0.8rem; color: #666; letter-spacing: 1px; }
 .blink { color: var(--terminal-green) !important; animation: blink-key 1.5s infinite; margin-right: 5px; }
-@keyframes blink-key { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* --- SLADE TILES (FIXED ALIGNMENT) --- */
+/* --- SLADE TILES (CENTERED & GLOWING) --- */
 .slade-section { width: 100%; display: flex; flex-direction: column; align-items: center; }
-.tile-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 100%;
-    max-width: 1000px;
-    padding: 0 20px 60px 20px;
-}
+.tile-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding-bottom: 80px; }
 .tile {
-    background: #121216;
-    border: 1px solid #2a2a2f;
-    border-radius: 8px;
-    padding: 30px 20px;
-    width: 140px; 
-    text-align: center;
+    background: #111114; border: 1px solid #222; border-radius: 4px;
+    padding: 35px 20px; width: 140px; text-align: center;
+    box-shadow: 0 0 0px transparent; transition: 0.4s ease;
 }
-.tile h3 { 
-    font-size: 3rem; 
-    color: var(--cyber-gold) !important; 
-    margin: 0; 
-    text-shadow: 0 0 10px var(--glow-color); 
-}
-.tile p { font-size: 0.9rem; color: #aaa; margin-top: 10px; line-height: 1.3; }
+.tile h3 { font-size: 3.5rem; color: var(--osint-amber) !important; margin: 0; text-shadow: 0 0 15px var(--glow-amber); }
+.tile p { font-size: 0.85rem; color: #888; margin-top: 10px; }
+.tile:hover { border-color: var(--osint-amber); box-shadow: 0 0 25px var(--glow-amber); transform: translateY(-5px); }
 
-/* --- FAQ --- */
-.faq-section { width: 100%; display: flex; justify-content: center; padding: 60px 0; }
-.faq-inner { width: 100%; max-width: 800px; }
-.faq-item { margin-bottom: 30px; border-left: 3px solid var(--cyber-gold); padding-left: 25px; }
+/* --- FAQ & FOOTER --- */
+.faq-section { width: 100%; display: flex; justify-content: center; padding: 60px 0 100px 0; }
+.faq-inner { width: 100%; max-width: 800px; text-align: center; }
+.faq-container { text-align: left; padding: 0 20px; }
+.faq-item { margin-bottom: 40px; border-left: 2px solid var(--osint-amber); padding-left: 25px; }
+.faq-question { color: #fff; font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; }
+.faq-answer { color: #888; line-height: 1.7; }
 
-/* --- BUTTON --- */
-.cta-area { text-align: center; margin-top: -20px; margin-bottom: 50px; }
+.footer-divider { width: 80%; height: 1px; background: #222; margin: 0 auto; }
+footer { text-align: center; padding: 50px 0; color: #444; font-size: 0.85rem; letter-spacing: 1px; width: 100%; }
+
+/* --- CTA --- */
+.cta-area { text-align: center; margin-top: -20px; margin-bottom: 60px; }
 .cta-button {
-    display: inline-block; padding: 16px 45px; background: var(--cyber-gold) !important;
-    color: #000 !important; text-decoration: none; font-weight: 800; border-radius: 4px;
-    box-shadow: 0 0 20px var(--glow-color);
+    display: inline-block; padding: 18px 50px; background: var(--osint-amber) !important;
+    color: #000 !important; text-decoration: none; font-weight: 800; border-radius: 2px;
+    box-shadow: 0 0 25px var(--glow-amber); transition: 0.3s; letter-spacing: 1px;
 }
+.cta-button:hover { box-shadow: 0 0 45px var(--osint-amber); transform: scale(1.05); }
 
 /* --- MOBILE --- */
 @media (max-width: 600px) {
     .hero-right { height: 450px; }
-    #globe-container { width: 250px; height: 250px; }
-    .osint-label { font-size: 0.7rem; padding: 6px 10px; }
-    
-    /* Pushing dots away from text in mobile */
-    .label-1 { --tx: -125%; --ty: -250%; }
-    .label-1 .line { width: 30px; right: -30px; }
-
-    .label-2 { --tx: 20%; --ty: -230%; }
-    .label-2 .line { width: 30px; left: -30px; }
-
-    .label-3 { --tx: -135%; --ty: -10%; }
-    .label-3 .line { width: 30px; right: -30px; }
-
-    .label-4 { --tx: 35%; --ty: 20%; }
-    .label-4 .line { width: 30px; left: -30px; }
-
-    .label-5 { --tx: -125%; --ty: 190%; }
-    .label-5 .line { width: 30px; right: -30px; }
-
-    .label-6 { --tx: 20%; --ty: 220%; }
-    .label-6 .line { width: 30px; left: -30px; }
-
+    #globe-container { width: 260px; height: 260px; }
+    .osint-label { font-size: 0.65rem; padding: 6px 10px; }
+    .line { width: 30px !important; }
+    .label-1 { --tx: -125%; --ty: -240%; }
+    .label-1 .line { right: -30px; }
+    .label-2 { --tx: 20%; --ty: -220%; }
+    .label-2 .line { left: -30px; }
+    .label-3 { --tx: -130%; --ty: -10%; }
+    .label-3 .line { right: -30px; }
+    .label-4 { --tx: 30%; --ty: 10%; }
+    .label-4 .line { left: -30px; }
+    .label-5 { --tx: -120%; --ty: 190%; }
+    .label-5 .line { right: -30px; }
+    .label-6 { --tx: 15%; --ty: 210%; }
+    .label-6 .line { left: -30px; }
     .tile { width: 130px; }
-    .system-bar { flex-direction: column; align-items: center; gap: 10px; }
 }
