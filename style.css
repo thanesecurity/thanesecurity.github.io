@@ -10,11 +10,11 @@ html, body {
 }
 
 :root {
-    /* PROFESSIONAL OBSIDIAN GOLD - Desaturated and sophisticated */
-    --cyber-gold: #c5a47e; 
+    /* VIVID AMBER - Professional but High-Energy */
+    --cyber-gold: #ff9d00; 
     --terminal-green: #00ff41;
-    --border-amber: rgba(197, 164, 126, 0.25);
-    --system-muted: #5e6473;
+    --glow-color: rgba(255, 157, 0, 0.4);
+    --system-muted: #7a828e;
 }
 
 .hero {
@@ -24,11 +24,12 @@ html, body {
     align-items: center;
 }
 
+/* BANNER GLOW RESTORED */
 .banner {
     width: 100%;
     height: auto;
     display: block;
-    box-shadow: 0 8px 25px 2px rgba(0, 0, 0, 0.6), 0 0 15px var(--border-amber);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 5px 20px var(--glow-color);
 }
 
 .tagline {
@@ -38,7 +39,7 @@ html, body {
     font-weight: 300;
 }
 
-/* --- GLOBE & REPOSITIONED TIGHT LABELS --- */
+/* GLOBE & LABELS */
 .hero-right {
     width: 100%;
     display: flex;
@@ -60,25 +61,26 @@ html, body {
     position: absolute;
     z-index: 10;
     color: var(--terminal-green); 
-    background: rgba(10, 10, 12, 0.92);
+    background: rgba(10, 10, 12, 0.95);
     padding: 4px 10px;
-    border: 1px solid rgba(0, 255, 65, 0.15);
+    border: 1px solid rgba(0, 255, 65, 0.3);
     font-size: 0.85rem;
     font-family: 'Courier New', monospace;
     white-space: nowrap;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
 }
 
-/* WEBVIEW POSITIONS */
-.label-1 { top: 15%; left: 2%; }
-.label-2 { top: 28%; right: -2%; }
-.label-3 { top: 45%; left: -8%; }
-.label-4 { top: 55%; right: -5%; }
-.label-5 { bottom: 20%; left: 5%; }
-.label-6 { bottom: 10%; right: 8%; }
+/* DESKTOP POSITIONS */
+.label-1 { top: 12%; left: 5%; }
+.label-2 { top: 25%; right: 0%; }
+.label-3 { top: 42%; left: -5%; }
+.label-4 { top: 52%; right: -2%; }
+.label-5 { bottom: 22%; left: 8%; }
+.label-6 { bottom: 12%; right: 10%; }
 
 .status-red { color: #ff4d4d; margin-right: 5px; }
 
-/* REFINED BUTTON COLOR */
+/* CTA BUTTON - VIBRANT & GLOWY */
 .cta-area {
     text-align: center;
     margin: 0px 0 40px 0;
@@ -87,26 +89,27 @@ html, body {
 
 .cta-button {
     display: inline-block;
-    padding: 15px 42px;
+    padding: 16px 45px;
     background: var(--cyber-gold);
-    color: #1a1a1a; /* Dark charcoal text for contrast */
+    color: #000;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 1.5px;
-    border-radius: 2px;
-    transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-radius: 4px;
+    box-shadow: 0 0 15px var(--glow-color);
+    transition: 0.3s ease;
 }
 
 .cta-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0 25px var(--glow-color);
     filter: brightness(1.1);
-    box-shadow: 0 0 30px var(--border-amber);
-    transform: translateY(-2px);
 }
 
 .section-divider {
-    width: 100px;
+    width: 120px;
     height: 1px;
-    background: linear-gradient(to right, transparent, #333, transparent);
+    background: linear-gradient(to right, transparent, #444, transparent);
     margin-bottom: 25px;
 }
 
@@ -135,14 +138,13 @@ html, body {
 
 @keyframes blink-animation { to { visibility: hidden; } }
 
-/* SECTION TITLES */
+/* SLADE TILES - GLOW ADDED */
 .section-title {
     text-align: center;
     margin: 80px 0 30px 0;
     letter-spacing: 4px;
     text-transform: uppercase;
-    font-size: 1.2rem;
-    color: #fff;
+    font-size: 1.3rem;
 }
 
 .tile-container {
@@ -153,64 +155,66 @@ html, body {
     padding-bottom: 50px;
 }
 
-/* REFINED TILES */
 .tile {
     background: #121216;
-    border: 1px solid #222;
-    border-radius: 4px;
+    border: 1px solid #2a2a2f;
+    border-radius: 8px;
     padding: 30px 20px;
     width: 160px; 
     text-align: center;
-    transition: 0.3s ease;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.tile h3 { font-size: 2.8rem; color: var(--cyber-gold); margin: 0 0 8px 0; font-weight: 300; }
-.tile p { font-size: 0.9rem; color: #888; margin: 0; line-height: 1.4; }
+.tile h3 { 
+    font-size: 3rem; 
+    color: var(--cyber-gold); 
+    margin: 0 0 5px 0; 
+    text-shadow: 0 0 10px var(--glow-color); /* Glow on letters */
+}
+
+.tile p { font-size: 0.95rem; color: #aaa; margin: 0; line-height: 1.4; }
 
 .tile:hover {
     border-color: var(--cyber-gold);
-    background: #16161c;
-    transform: translateY(-5px);
+    box-shadow: 0 0 20px var(--glow-color); /* Glow on tile */
+    transform: translateY(-8px);
+    background: #1a1a20;
 }
 
 /* FAQ */
 .faq-section { background: #0d0d0f; padding: 40px 0 100px 0; }
 .faq-container { max-width: 750px; margin: 0 auto; padding: 0 20px; }
-.faq-item { margin-bottom: 30px; border-left: 1px solid var(--cyber-gold); padding-left: 25px; }
-.faq-question { color: #fff; font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
-.faq-answer { color: #777; font-size: 0.95rem; line-height: 1.6; }
+.faq-item { margin-bottom: 30px; border-left: 2px solid var(--cyber-gold); padding-left: 25px; }
+.faq-question { color: #fff; font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; }
+.faq-answer { color: #888; font-size: 0.95rem; line-height: 1.6; }
 
 footer {
     text-align: center;
     padding: 60px 0;
     color: #444;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     border-top: 1px solid #222;
     width: 80%;
     margin: 0 auto;
 }
 
-/* --- MOBILE LABEL PRECISION --- */
+/* MOBILE CENTER-ANCHORED LABELS (NO DRIFT) */
 @media (max-width: 600px) {
     #globe-container { width: 320px; height: 320px; }
     .hero-right { min-height: 380px; align-items: center; }
     
-    /* Center-anchored positioning for mobile */
-    /* This keeps them relative to the globe, not the screen edges */
     .osint-label {
         left: 50% !important;
         top: 50% !important;
         font-size: 0.72rem;
-        padding: 3px 8px;
     }
 
-    .label-1 { transform: translate(-140%, -180%); } /* Top Left */
-    .label-2 { transform: translate(30%, -140%); }  /* Top Right */
-    .label-3 { transform: translate(-155%, -30%); }  /* Mid Left */
-    .label-4 { transform: translate(45%, 20%); }    /* Mid Right */
-    .label-5 { transform: translate(-130%, 150%); } /* Bottom Left */
-    .label-6 { transform: translate(20%, 190%); }   /* Bottom Right */
+    .label-1 { transform: translate(-135%, -170%); } 
+    .label-2 { transform: translate(35%, -140%); }  
+    .label-3 { transform: translate(-145%, -20%); }  
+    .label-4 { transform: translate(45%, 30%); }    
+    .label-5 { transform: translate(-125%, 150%); } 
+    .label-6 { transform: translate(25%, 180%); }   
 
-    .system-bar { flex-direction: column; align-items: center; gap: 12px; padding: 30px 0; }
-    .tagline { margin-bottom: 0; }
+    .system-bar { flex-direction: column; align-items: center; gap: 12px; }
 }
