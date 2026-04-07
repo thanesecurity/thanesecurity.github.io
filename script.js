@@ -20,7 +20,7 @@ window.onload = function() {
         })
     );
     
-    globe.scale.set(1.9, 1.9, 1.9);
+    globe.scale.set(1.8, 1.8, 1.8);
     scene.add(globe);
 
     function animate() {
