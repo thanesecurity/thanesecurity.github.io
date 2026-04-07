@@ -12,19 +12,27 @@ html, body {
 }
 
 .banner { width: 100%; height: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 25px var(--glow-color); }
-.tagline { font-size: clamp(1.1rem, 4vw, 2.2rem); text-align: center; margin: 40px 20px 0 20px; font-weight: 300; }
+.tagline { font-size: clamp(1.2rem, 4vw, 2.2rem); text-align: center; margin: 40px 20px 0 20px; font-weight: 300; }
 
-/* --- GLOBE & HUD --- */
-.hero-right { width: 100%; display: flex; justify-content: center; align-items: center; min-height: 520px; position: relative; margin-top: -30px; }
-#globe-container { width: 400px; height: 400px; position: relative; display: flex; justify-content: center; align-items: center; }
+/* --- GLOBE & HUD (GAP FIX) --- */
+.hero-right { 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 480px; /* Locked height to prevent gaps */
+    position: relative; 
+    margin-top: -20px; 
+}
+#globe-container { width: 400px; height: 400px; position: relative; }
 
 .osint-label {
     position: absolute;
     color: var(--terminal-green); 
-    background: rgba(10, 10, 12, 0.92);
-    padding: 6px 12px;
-    border: 1px solid rgba(0, 255, 65, 0.3);
-    font-size: 0.75rem;
+    background: rgba(10, 10, 12, 0.95);
+    padding: 8px 14px; /* Increased size */
+    border: 1px solid rgba(0, 255, 65, 0.5);
+    font-size: 0.9rem; /* Bigger labels */
     font-family: 'Courier New', monospace;
     white-space: nowrap;
     opacity: 0;
@@ -32,97 +40,75 @@ html, body {
     animation: scan-pulse 9s infinite ease-in-out;
 }
 
-/* LEADER LINES & DOTS */
+/* LEADER LINES (Darkened & Thickened) */
 .line {
     position: absolute;
-    background: linear-gradient(to right, rgba(0, 255, 65, 0.5), transparent);
-    height: 1px; width: 70px; top: 50%; pointer-events: none;
+    background: rgba(0, 255, 65, 0.7); /* Solid, darker green */
+    height: 1.5px; /* Thicker line */
+    width: 60px; top: 50%; pointer-events: none;
 }
 
 .dot {
     position: absolute;
-    width: 6px; height: 6px;
+    width: 8px; height: 8px;
     background: var(--terminal-green);
     border-radius: 50%;
-    box-shadow: 0 0 10px var(--terminal-green);
-    top: -2.5px; /* Centers dot on line */
-    animation: dot-pulse 2s infinite;
+    box-shadow: 0 0 12px var(--terminal-green);
+    top: -3.5px;
 }
 
-@keyframes dot-pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.5); opacity: 0.5; }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-/* LEFT LABELS (Lines point right, dots on right end) */
+/* ALIGNMENT LOGIC */
 .label-1, .label-3, .label-5 { }
-.label-1 .line, .label-3 .line, .label-5 .line { right: -70px; }
+.label-1 .line, .label-3 .line, .label-5 .line { right: -60px; }
 .label-1 .dot, .label-3 .dot, .label-5 .dot { right: 0; }
 
-/* RIGHT LABELS (Lines point left, dots on left end) */
 .label-2, .label-4, .label-6 { }
-.label-2 .line, .label-4 .line, .label-6 .line { 
-    left: -70px; 
-    background: linear-gradient(to left, rgba(0, 255, 65, 0.5), transparent); 
-}
+.label-2 .line, .label-4 .line, .label-6 .line { left: -60px; }
 .label-2 .dot, .label-4 .dot, .label-6 .dot { left: 0; }
 
-/* POSITIONING */
-.label-1 { --tx: -180%; --ty: -230%; animation-delay: 0s; }
-.label-1 .line { transform: rotate(20deg); }
-
-.label-2 { --tx: 70%; --ty: -210%; animation-delay: 1.5s; }
-.label-2 .line { transform: rotate(-20deg); }
-
-.label-3 { --tx: -220%; --ty: -10%; animation-delay: 3s; }
-.label-3 .line { transform: rotate(0deg); }
-
-.label-4 { --tx: 110%; --ty: 30%; animation-delay: 4.5s; }
-.label-4 .line { transform: rotate(0deg); }
-
-.label-5 { --tx: -180%; --ty: 190%; animation-delay: 6s; }
-.label-5 .line { transform: rotate(-20deg); }
-
-.label-6 { --tx: 70%; --ty: 210%; animation-delay: 7.5s; }
-.label-6 .line { transform: rotate(20deg); }
+/* SPACING */
+.label-1 { --tx: -175%; --ty: -210%; animation-delay: 0s; }
+.label-2 { --tx: 65%; --ty: -200%; animation-delay: 1.5s; }
+.label-3 { --tx: -210%; --ty: -10%; animation-delay: 3s; }
+.label-4 { --tx: 100%; --ty: 20%; animation-delay: 4.5s; }
+.label-5 { --tx: -175%; --ty: 170%; animation-delay: 6s; }
+.label-6 { --tx: 65%; --ty: 190%; animation-delay: 7.5s; }
 
 @keyframes scan-pulse {
     0%, 100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.95); }
     15%, 85% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1); }
 }
 
-/* BUTTON & TILES (Same as before) */
-.cta-area { text-align: center; margin-bottom: 50px; }
+/* --- CTA AREA (GAP FIX) --- */
+.cta-area { text-align: center; margin-top: -30px; margin-bottom: 50px; }
 .cta-button {
     display: inline-block; padding: 16px 45px; background: var(--cyber-gold); color: #000;
     text-decoration: none; font-weight: 800; letter-spacing: 1.5px; border-radius: 4px;
-    box-shadow: 0 0 20px var(--glow-color); transition: 0.3s;
+    box-shadow: 0 0 20px var(--glow-color);
 }
-.system-bar { width: 100%; background: #141417; display: flex; justify-content: space-around; padding: 20px 0; border-top: 1px solid #222; }
-.system-item { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #7a828e; }
-.blink { color: var(--terminal-green); animation: blink 1.5s infinite; margin-right: 5px; }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-.section-title { text-align: center; margin: 80px 0 30px 0; letter-spacing: 4px; text-transform: uppercase; font-size: 1.2rem; }
-.tile-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 0 20px 60px 20px; }
-.tile { background: #121216; border: 1px solid #2a2a2f; border-radius: 8px; padding: 30px 20px; width: 150px; text-align: center; }
-.tile h3 { font-size: 3rem; color: var(--cyber-gold); margin: 0; text-shadow: 0 0 10px var(--glow-color); }
-.tile p { font-size: 0.9rem; color: #aaa; margin-top: 10px; }
+.system-bar { width: 100%; background: #141417; display: flex; justify-content: space-around; padding: 20px 0; border-top: 1px solid #222; }
+
+/* --- FAQ CENTERING FIX --- */
+.faq-section { width: 100%; display: flex; justify-content: center; background: #0d0d0f; padding: 60px 0; }
+.faq-inner { width: 100%; max-width: 800px; margin: 0 auto; text-align: center; }
+.faq-container { text-align: left; padding: 0 20px; }
+.faq-item { margin-bottom: 30px; border-left: 3px solid var(--cyber-gold); padding-left: 25px; }
+.faq-question { color: #fff; font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+.faq-answer { color: #aaa; line-height: 1.6; }
 
 footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid #222; width: 80%; margin: 0 auto; }
 
 /* --- MOBILE --- */
 @media (max-width: 600px) {
-    .hero-right { min-height: 480px; margin-top: -10px; }
-    #globe-container { width: 250px; height: 250px; }
+    .hero-right { height: 420px; margin-top: 0; }
+    #globe-container { width: 260px; height: 260px; }
+    .osint-label { font-size: 0.7rem; padding: 6px 10px; }
     .line { width: 35px !important; }
-    .label-1 { --tx: -125%; --ty: -240%; }
-    .label-2 { --tx: 15%; --ty: -230%; }
+    .label-1 { --tx: -120%; --ty: -230%; }
+    .label-2 { --tx: 20%; --ty: -220%; }
     .label-3 { --tx: -130%; --ty: -20%; }
     .label-4 { --tx: 30%; --ty: 10%; }
-    .label-5 { --tx: -120%; --ty: 200%; }
-    .label-6 { --tx: 15%; --ty: 210%; }
-    .label-1 .line, .label-3 .line, .label-5 .line { right: -35px; }
-    .label-2 .line, .label-4 .line, .label-6 .line { left: -35px; }
+    .label-5 { --tx: -120%; --ty: 190%; }
+    .label-6 { --tx: 20%; --ty: 200%; }
 }
