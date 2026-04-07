@@ -11,11 +11,19 @@ window.onload = function() {
     renderer.setClearColor(0x000000, 0); 
     container.appendChild(renderer.domElement);
 
+    // Globe Geometry
     const globe = new THREE.Mesh(
-        new THREE.SphereGeometry(1, 12, 12),
-        new THREE.MeshBasicMaterial({ color: 0xffa500, wireframe: true, opacity: 0.6, transparent: true })
+        new THREE.SphereGeometry(1, 15, 15),
+        new THREE.MeshBasicMaterial({ 
+            color: 0xffa500, 
+            wireframe: true, 
+            opacity: 0.6, 
+            transparent: true 
+        })
     );
-    globe.scale.set(1.5, 1.5, 1.5); 
+    
+    // Scale set to 1.8 to look proportional without blocking text
+    globe.scale.set(1.8, 1.8, 1.8); 
     scene.add(globe);
 
     function animate() {
@@ -24,4 +32,10 @@ window.onload = function() {
         renderer.render(scene, camera);
     }
     animate();
+
+    window.addEventListener('resize', () => {
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+    });
 };
