@@ -11,56 +11,53 @@ body {
     overflow-x: hidden;
 }
 
-/* --- BANNER GLOW (BLENDED) --- */
+/* --- BANNER --- */
 .banner { 
     width: 100%; height: auto; display: block;
-    /* Uses a larger blur radius (80px) to blend rather than look like a line */
     box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 15px 80px var(--glow-soft); 
 }
 
-/* --- GAP REDUCTION --- */
 .tagline { 
     font-size: clamp(1.4rem, 5vw, 2.4rem); 
-    text-align: center; margin: 25px 20px 0 20px; /* Reduced bottom margin */
+    text-align: center; margin: 25px 20px 0 20px;
     font-weight: 300; color: #fff;
 }
 
-/* --- GLOBE HUD --- */
-.hero-right { width: 100%; display: flex; justify-content: center; align-items: center; height: 480px; position: relative; }
+/* --- GLOBE HUD FIX (RE-ANCHORING) --- */
+.hero-right { width: 100%; display: flex; justify-content: center; align-items: center; height: 500px; position: relative; }
 #globe-container { width: 400px; height: 400px; position: relative; }
 
 .osint-label {
     position: absolute; color: var(--terminal-green); background: rgba(10, 10, 12, 0.95);
     padding: 8px 14px; border: 1px solid rgba(0, 255, 65, 0.4);
-    font-family: 'Courier New', monospace; font-size: 0.9rem;
+    font-family: 'Courier New', monospace; font-size: 0.85rem;
     white-space: nowrap; opacity: 0; top: 50%; left: 50%;
-    /* Slowed down to 12s total duration for a calmer 2-at-a-time feel */
     animation: scan-pulse 12s infinite ease-in-out;
 }
 
-.line { position: absolute; background: rgba(0, 255, 65, 0.4); height: 1px; top: 50%; }
+.line { position: absolute; background: rgba(0, 255, 65, 0.4); height: 1px; top: 50%; pointer-events: none; }
 .dot { position: absolute; width: 7px; height: 7px; background: var(--terminal-green); border-radius: 50%; box-shadow: 0 0 10px var(--terminal-green); top: -3px; }
 
-/* Desktop Distribution - RE-TETHERED label-4 */
-.label-1 { --tx: -190%; --ty: -210%; animation-delay: 0s; }
+/* Fixed Coordinates to prevent overlaps */
+.label-1 { transform: translate(-190%, -210%); animation-delay: 0s; }
 .label-1 .line { width: 70px; right: -70px; transform: rotate(20deg); } .label-1 .dot { right: 0; }
 
-.label-2 { --tx: 70%; --ty: -180%; animation-delay: 2s; }
+.label-2 { transform: translate(70%, -180%); animation-delay: 2s; }
 .label-2 .line { width: 60px; left: -60px; transform: rotate(-20deg); } .label-2 .dot { left: 0; }
 
-.label-3 { --tx: -230%; --ty: -10%; animation-delay: 4s; }
+.label-3 { transform: translate(-230%, -10%); animation-delay: 4s; }
 .label-3 .line { width: 60px; right: -60px; transform: rotate(0deg); } .label-3 .dot { right: 0; }
 
-/* Fix for Weak Passwords line reach */
-.label-4 { --tx: 110%; --ty: 40%; animation-delay: 6s; }
+.label-4 { transform: translate(110%, 40%); animation-delay: 6s; }
 .label-4 .line { width: 105px; left: -105px; transform: rotate(-10deg); } .label-4 .dot { left: 0; }
 
-.label-5 { --tx: -175%; --ty: 170%; animation-delay: 8s; }
+.label-5 { transform: translate(-175%, 170%); animation-delay: 8s; }
 .label-5 .line { width: 60px; right: -60px; transform: rotate(-25deg); } .label-5 .dot { right: 0; }
 
-.label-6 { --tx: 80%; --ty: 210%; animation-delay: 10s; }
+.label-6 { transform: translate(80%, 210%); animation-delay: 10s; }
 .label-6 .line { width: 70px; left: -70px; transform: rotate(25deg); } .label-6 .dot { left: 0; }
 
+/* We removed translate from keyframes to stop the "snapping to center" bug */
 @keyframes scan-pulse {
     0%, 15%, 85%, 100% { opacity: 0; }
     25%, 75% { opacity: 1; }
@@ -69,71 +66,72 @@ body {
 .status-red { color: var(--status-red); margin-right: 6px; }
 .status-green { color: var(--terminal-green); margin-right: 6px; }
 
-/* --- SYSTEM BAR (RE-POSITIONED) --- */
+/* --- SYSTEM BAR --- */
 .system-bar {
     width: 100%; background: #141417; display: flex; justify-content: space-around;
-    padding: 15px 0; border-top: 1px solid #222; border-bottom: 1px solid #222;
-    margin-top: -20px; /* Tightens gap under globe */
+    padding: 15px 0; border-top: 1px solid #222; border-bottom: 1px solid #222; margin-top: -20px;
 }
-.system-item { font-family: 'Courier New', monospace; color: #888; font-size: 0.85rem; }
-.blink { color: var(--terminal-green) !important; animation: blink-eye 1.5s infinite; margin-right: 5px; }
+.system-item { font-family: 'Courier New', monospace; color: #888; font-size: 0.85rem; display: flex; align-items: center; }
+.blink { color: var(--terminal-green) !important; animation: blink-eye 1.5s infinite; margin-right: 8px; }
 @keyframes blink-eye { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* --- CTA (HOVER GLOW ONLY) --- */
+/* --- CTA --- */
 .cta-area { text-align: center; margin: 30px 0 50px 0; }
 .cta-button {
     display: inline-block; padding: 18px 50px; background: var(--cyber-amber);
-    color: #000; text-decoration: none; font-weight: 800; border-radius: 4px;
-    box-shadow: 0 0 0px transparent; transition: 0.4s ease;
+    color: #000; text-decoration: none; font-weight: 800; border-radius: 4px; transition: 0.4s ease;
 }
-.cta-button:hover {
-    box-shadow: 0 0 30px var(--cyber-amber);
-    transform: translateY(-2px);
-}
+.cta-button:hover { box-shadow: 0 0 30px var(--cyber-amber); transform: translateY(-2px); }
 
-/* --- SLADE & FAQ (GAP REDUCTION) --- */
+/* --- SLADE SECTION (LOCKED ROW) --- */
 .slade-section { padding: 40px 0; display: flex; flex-direction: column; align-items: center; }
-.section-title { 
-    color: #fff; font-size: 1.6rem; text-transform: uppercase; 
-    letter-spacing: 4px; margin-bottom: 30px;
+.tile-container { 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: nowrap; /* Forces row on desktop */
+    gap: 20px; 
+    width: 95%;
+    max-width: 1100px;
 }
-.tile-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
-.tile { background: #121216; border: 1px solid #2a2a2f; border-radius: 8px; padding: 35px 20px; width: 150px; text-align: center; transition: 0.4s; }
+.tile { background: #121216; border: 1px solid #2a2a2f; border-radius: 8px; padding: 35px 15px; flex: 1; min-width: 140px; text-align: center; transition: 0.4s; }
 .tile h3 { font-size: 3.5rem; color: var(--cyber-amber) !important; margin: 0; }
-.tile p { font-size: 0.9rem; color: #aaa; margin-top: 10px; }
+.tile p { font-size: 0.85rem; color: #aaa; margin-top: 10px; }
 
+/* --- FAQ CENTERED --- */
 .faq-section { background: #0d0d0f; padding: 40px 0 80px 0; display: flex; justify-content: center; }
-.faq-inner { width: 100%; max-width: 800px; }
+.faq-inner { width: 100%; max-width: 800px; text-align: center; }
+.faq-main-title { text-align: center; width: 100%; display: block; }
+.faq-container { text-align: left; }
 .faq-item { margin-bottom: 30px; border-left: 3px solid var(--cyber-amber); padding-left: 25px; }
-
-/* THEME FONT COLOR FOR QUESTIONS */
 .faq-question { color: var(--cyber-amber) !important; font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
 .faq-answer { color: #999; line-height: 1.7; font-size: 1rem; }
 
+/* --- FOOTER --- */
 .footer-divider { width: 85%; height: 1px; background: #222; margin: 0 auto; }
 footer { text-align: center; padding: 40px; color: #444; }
 
-/* --- MOBILE RESPONSIVE HUD FIXES --- */
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 900px) {
+    .tile-container { flex-wrap: wrap; justify-content: center; }
+    .tile { flex: none; width: 140px; }
+}
+
 @media (max-width: 600px) {
-    .tagline { margin: 20px 20px 0 20px; font-size: 1.15rem; }
-    .hero-right { height: 350px; margin-top: -20px; } /* Closer to tagline */
+    .hero-right { height: 350px; margin-top: -20px; }
     #globe-container { width: 220px; height: 220px; }
     
-    .osint-label { font-size: 0.65rem; padding: 6px 10px; }
-    
-    /* Extreme Mobile Scattering to avoid line-crossing */
-    .label-1 { --tx: -125%; --ty: -240%; }
-    .label-2 { --tx: 25%; --ty: -220%; }
-    .label-3 { --tx: -140%; --ty: -15%; }
-    .label-4 { --tx: 30%; --ty: 30%; }
-    .label-5 { --tx: -125%; --ty: 185%; }
-    .label-6 { --tx: 25%; --ty: 205%; }
+    .label-1 { transform: translate(-125%, -240%); }
+    .label-2 { transform: translate(25%, -220%); }
+    .label-3 { transform: translate(-140%, -15%); }
+    .label-4 { transform: translate(30%, 30%); }
+    .label-5 { transform: translate(-125%, 185%); }
+    .label-6 { transform: translate(25%, 205%); }
 
     .line { width: 25px !important; }
     .label-4 .line { width: 45px !important; left: -45px !important; }
 
-    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; }
-    .tile { width: auto; padding: 20px 10px; }
+    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; flex-wrap: wrap; }
+    .tile { width: auto; min-width: 0; padding: 20px 10px; }
     .tile:last-child { grid-column: span 2; }
     .system-bar { flex-direction: column; align-items: center; gap: 8px; padding: 20px 0; }
 }
