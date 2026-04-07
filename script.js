@@ -7,16 +7,16 @@ window.onload = function() {
     camera.position.z = 5.5;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
     const geometry = new THREE.SphereGeometry(1, 15, 15);
     const material = new THREE.MeshBasicMaterial({ 
-        color: 0xe68a00, // Matching the Carbon Amber variable
+        color: 0xe68a00, 
         wireframe: true, 
         transparent: true, 
-        opacity: 0.25 
+        opacity: 0.2 
     });
     
     const globe = new THREE.Mesh(geometry, material);
