@@ -1,12 +1,19 @@
-/* --- CORE STYLES --- */
+/* --- GLOBAL LOCK --- */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
     overflow-x: hidden;
-    background-color: #1a1a1a;
-    color: #f5f5f5;
-    font-family: 'Segoe UI', sans-serif;
+    background-color: #0d0d0f; /* Professional Deep Navy/Black */
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* PROFESSIONAL COLOR PALETTE */
+:root {
+    --cyber-gold: #ffb84d; /* More premium amber/gold */
+    --terminal-green: #00ff41;
+    --soft-white: #e0e0e0;
 }
 
 .hero {
@@ -19,30 +26,18 @@ html, body {
 .banner {
     width: 100%;
     height: auto;
-    box-shadow: 0 8px 25px 2px rgba(255, 140, 0, 0.3);
-}
-
-/* TAGLINE & TITLE CONSISTENCY (Soft Off-White) */
-.tagline, .section-title {
-    color: #e0e0e0;
-    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 5px 15px rgba(255, 184, 77, 0.2);
 }
 
 .tagline {
-    font-size: clamp(1.3rem, 3.5vw, 2.4rem);
-    margin: 50px auto;
-    padding: 0 20px;
+    font-size: clamp(1.4rem, 4vw, 2.6rem);
+    margin: 60px auto 30px auto;
+    text-align: center;
     font-weight: 300;
+    color: var(--soft-white);
 }
 
-.section-title {
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    margin: 100px 0 40px 0;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-}
-
-/* --- GLOBE & TERMINAL LABELS --- */
+/* --- GLOBE & REPOSITIONED TIGHT LABELS --- */
 .hero-right {
     width: 100%;
     display: flex;
@@ -55,78 +50,88 @@ html, body {
     width: 500px;
     height: 500px;
     position: relative;
-    margin: 0 auto;
 }
 
 .osint-label {
     position: absolute;
     z-index: 10;
-    color: #00ff41; 
-    background: rgba(10, 10, 10, 0.9);
-    padding: 10px 16px;
-    border: 1px solid rgba(0, 255, 65, 0.3);
-    font-size: 1rem; /* Larger font for readability */
+    color: var(--terminal-green); 
+    background: rgba(10, 10, 12, 0.95);
+    padding: 4px 10px; /* Reduced padding */
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    font-size: 0.95rem; /* Readable but compact */
     font-family: 'Courier New', monospace;
     white-space: nowrap;
 }
 
-.status-red { color: #ff3e3e; margin-right: 6px; }
-.status-green { color: #00ff41; margin-right: 6px; }
+/* TIGHT ORBIT REPOSITIONING */
+.label-1 { top: 12%; left: 5%; }      /* Profiles */
+.label-2 { top: 28%; right: 0%; }     /* Emails - Moved down */
+.label-3 { top: 44%; left: -5%; }     /* DB Leaks - MOVED UP */
+.label-4 { top: 52%; right: -2%; }    /* Weak Passwords - MOVED UP */
+.label-5 { bottom: 25%; left: 8%; }   /* IP Address - MOVED UP */
+.label-6 { bottom: 14%; right: 10%; } /* Linked Accounts - MOVED UP */
 
-/* DESKTOP PLACEMENT (Hugging the Globe) */
-.label-1 { top: 5%; left: 0%; }        /* Profiles */
-.label-2 { top: 25%; right: -5%; }     /* Emails - Adjusted down */
-.label-3 { top: 45%; left: -12%; }     /* DB Leaks */
-.label-4 { top: 55%; right: -8%; }     /* Weak Passwords */
-.label-5 { bottom: 18%; left: 2%; }    /* IP Address - Moved Up */
-.label-6 { bottom: 8%; right: 5%; }    /* Linked Accounts - Moved Up/In */
+.status-red { color: #ff4d4d; margin-right: 5px; }
+.status-green { color: var(--terminal-green); margin-right: 5px; }
 
-/* --- CTA BUTTON --- */
+/* --- CTA AREA (The Home for the Button) --- */
+.cta-area {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 60px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 30px 0 80px 0;
+    backdrop-filter: blur(10px);
+}
+
 .cta-button {
-    margin: 40px 0;
-    padding: 18px 45px;
-    background: transparent;
-    color: #ff6a00;
-    border: 2px solid #ff6a00;
+    display: inline-block;
+    margin-top: 15px;
+    padding: 16px 45px;
+    background: var(--cyber-gold);
+    color: #000;
     text-decoration: none;
     font-weight: bold;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     border-radius: 4px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .cta-button:hover {
-    background: #ff6a00;
-    color: #000;
-    box-shadow: 0 0 20px rgba(255, 106, 0, 0.5);
+    transform: scale(1.03);
+    box-shadow: 0 0 25px rgba(255, 184, 77, 0.4);
 }
 
-/* --- FAQ SECTION --- */
-.faq-container {
-    max-width: 900px;
-    margin: 0 auto 100px auto;
-    padding: 0 20px;
+/* --- STATS BAR --- */
+.stats-bar {
+    width: 100%;
+    background: #141417;
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
 }
 
-.faq-item {
-    border-bottom: 1px solid #333;
-    padding: 25px 0;
+.stat-item {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #888;
 }
 
-.faq-question {
-    color: #ff6a00;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+.stat-item strong { color: var(--cyber-gold); display: block; font-size: 2rem; margin-bottom: 5px; }
+
+/* --- SECTION TITLES & SLADE TILES --- */
+.section-title {
+    text-align: center;
+    margin: 100px 0 50px 0;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--soft-white);
 }
 
-.faq-answer {
-    color: #aaa;
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-/* --- SLADE TILES (Enlarged) --- */
 .tile-container {
     display: flex;
     justify-content: center;
@@ -136,48 +141,42 @@ html, body {
 }
 
 .tile {
-    background: #111;
-    border: 1px solid rgba(255, 106, 0, 0.2);
+    background: #16161a;
+    border: 1px solid #2a2a2f;
     border-radius: 12px;
-    padding: 35px;
-    width: 200px; /* Bigger tiles */
+    padding: 40px;
+    width: 220px; /* Larger boxes */
     text-align: center;
-    transition: 0.4s;
+    transition: 0.3s ease;
 }
 
-.tile:hover {
-    border-color: #ff6a00;
-    box-shadow: 0 0 30px rgba(255, 140, 0, 0.5);
-    transform: translateY(-10px);
-}
+.tile h3 { font-size: 3.5rem; color: var(--cyber-gold); margin: 0 0 10px 0; }
+.tile p { font-size: 1.1rem; color: #aaa; }
+.tile:hover { border-color: var(--cyber-gold); transform: translateY(-8px); }
 
-.tile h3 { font-size: 3.5rem; color: #ff6a00; margin: 0 0 15px 0; }
-.tile p { font-size: 1.1rem; color: #ccc; margin: 0; }
+/* --- FAQ SECTION --- */
+.faq-section { background: #0f0f12; padding: 80px 0; }
+.faq-container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+.faq-item { margin-bottom: 40px; border-left: 3px solid var(--cyber-gold); padding-left: 25px; }
+.faq-question { color: #fff; font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+.faq-answer { color: #888; line-height: 1.7; font-size: 1rem; }
 
 /* --- FOOTER --- */
 footer {
     text-align: center;
-    padding: 60px 0;
-    color: #777;
+    padding: 80px 0;
+    color: #555;
     font-size: 1rem;
-    border-top: 1px solid #333; /* The restored line */
-    width: 80%;
+    border-top: 1px solid #222;
+    width: 85%;
     margin: 0 auto;
 }
 
-/* --- MOBILE STYLES --- */
+/* --- MOBILE --- */
 @media (max-width: 600px) {
     #globe-container { width: 300px; height: 300px; }
-    .hero-right { min-height: 400px; }
-    .osint-label { font-size: 0.7rem; padding: 6px 10px; }
-    
-    .label-1 { top: -5%; left: 0%; }
-    .label-2 { top: 15%; right: -5%; }
-    .label-3 { top: 40%; left: -8%; }
-    .label-4 { top: 60%; right: -8%; }
-    .label-5 { bottom: 15%; left: -2%; }
-    .label-6 { bottom: 0%; right: 0%; }
-
-    .tile { width: 140px; padding: 20px; }
-    .tile h3 { font-size: 2.5rem; }
+    .hero-right { min-height: 350px; }
+    .stats-bar { flex-direction: column; gap: 40px; padding: 40px 0; }
+    .osint-label { font-size: 0.75rem; padding: 3px 6px; }
+    .cta-area { width: 80%; padding: 30px 20px; }
 }
