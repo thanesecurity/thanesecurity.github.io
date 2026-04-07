@@ -74,11 +74,11 @@ body {
 .label-2 { top: 20%; right: -10%; }
 .label-2::after { left: -60px; transform: rotate(-15deg); }
 
-.label-3 { top: 55%; left: -18%; }
-.label-3::after { right: -60px; transform: rotate(-5deg); }
+.label-3 { top: 68%; left: -22%; }
+.label-3::after { right: -85px; transform: rotate(-20deg); }
 
-.label-4 { top: 55%; right: -18%; }
-.label-4::after { left: -60px; transform: rotate(5deg); }
+.label-4 { top: 68%; right: -22%; }
+.label-4::after { left: -85px; transform: rotate(20deg); }
 
 /* --- SLADE TILES --- */
 .section-title {
