@@ -10,23 +10,22 @@ window.onload = function() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    /* CLEANER GLOBE */
     const globe = new THREE.Mesh(
         new THREE.SphereGeometry(1, 10, 10), 
         new THREE.MeshBasicMaterial({ 
-            color: 0xffa500, 
+            color: 0xc5a47e, /* Match our new Obsidian Gold */
             wireframe: true, 
-            opacity: 0.5, 
+            opacity: 0.3, 
             transparent: true 
         })
     );
     
-    globe.scale.set(1.8, 1.8, 1.8);
+    globe.scale.set(1.9, 1.9, 1.9);
     scene.add(globe);
 
     function animate() {
         requestAnimationFrame(animate);
-        globe.rotation.y += 0.002;
+        globe.rotation.y += 0.0015;
         renderer.render(scene, camera);
     }
     animate();
