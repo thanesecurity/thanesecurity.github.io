@@ -14,13 +14,22 @@ body {
     width: 100%;
 }
 
-.banner-container { width: 100%; max-width: 1920px; }
-.banner { width: 100%; height: auto; display: block; box-shadow: 0 0 20px rgba(255, 106, 0, 0.4); }
+.banner-container {
+    width: 100%;
+    max-width: 1920px;
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 0 20px rgba(255, 106, 0, 0.5);
+}
 
 .tagline {
     font-size: clamp(1.2rem, 3.5vw, 2.5rem);
     text-align: center;
-    margin: 60px auto 20px auto;
+    margin: 40px auto;
     width: 90%;
 }
 
@@ -36,48 +45,51 @@ body {
     position: absolute;
     z-index: 10;
     color: #ff6a00;
-    background: rgba(20, 20, 20, 0.9);
-    padding: 6px 12px;
+    background: rgba(15, 15, 15, 0.9);
+    padding: 8px 12px;
     border: 1px solid rgba(255, 106, 0, 0.5);
     border-radius: 4px;
     font-size: 0.85rem;
     font-weight: bold;
     white-space: nowrap;
-    width: fit-content; /* Fixes the big box */
+    width: fit-content;
 }
 
-/* Lines */
+/* Connector Lines */
 .osint-label::after {
     content: "";
     position: absolute;
-    width: 50px;
+    width: 60px;
     height: 1px;
     top: 50%;
-    background: rgba(255, 106, 0, 0.3);
+    background: rgba(255, 106, 0, 0.4);
 }
 
-/* Positioning */
-.label-1 { top: 20%; left: -5%; }
-.label-1::after { right: -50px; transform: rotate(10deg); }
+/* Positioning - Adjusted to stay outside globe equator */
+.label-1 { top: 20%; left: -10%; }
+.label-1::after { right: -60px; transform: rotate(15deg); }
 
-.label-2 { top: 20%; right: -5%; }
-.label-2::after { left: -50px; transform: rotate(-10deg); }
+.label-2 { top: 20%; right: -10%; }
+.label-2::after { left: -60px; transform: rotate(-15deg); }
 
-.label-3 { top: 50%; left: -12%; } /* Moved up to equator */
-.label-3::after { right: -50px; transform: rotate(0deg); }
+.label-3 { top: 50%; left: -15%; }
+.label-3::after { right: -60px; transform: rotate(0deg); }
 
-.label-4 { top: 50%; right: -12%; } /* Moved up to equator */
-.label-4::after { left: -50px; transform: rotate(0deg); }
+.label-4 { top: 50%; right: -15%; }
+.label-4::after { left: -60px; transform: rotate(0deg); }
 
-/* TILES */
+/* SLADE TILES */
 .section-title { text-align: center; margin-top: 80px; color: #ff6a00; }
 .tile-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 40px; }
 .tile {
     background: #111;
-    border: 1px solid rgba(255, 106, 0, 0.3);
-    border-radius: 8px;
-    padding: 20px;
-    width: 150px;
+    border: 2px solid rgba(255, 106, 0, 0.3);
+    border-radius: 10px;
+    padding: 25px;
+    width: 160px;
     text-align: center;
+    transition: 0.3s;
 }
-.tile h3 { font-size: 2.5rem; color: #ff6a00; margin: 0; }
+.tile h3 { font-size: 2.5rem; color: #ff6a00; margin: 0 0 10px 0; }
+
+footer { text-align: center; padding: 40px; color: #888; border-top: 1px solid #333; }
