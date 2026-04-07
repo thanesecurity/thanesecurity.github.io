@@ -4,78 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Thane Security | OSINT Dashboard</title>
-    <link rel="stylesheet" href="style.css?v=18">
+    <link rel="stylesheet" href="style.css?v=19">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
 </head>
 <body>
+    ```
 
-    <section class="hero">
-        <div class="banner-container">
-            <img src="banner.png" alt="Thane Security" class="banner">
-        </div>
-        
-        <h1 class="tagline">Know Your Digital Footprint. Manage Your Personal Risk.</h1>
+---
 
-        <div class="hero-right">
-            <div id="globe-container">
-                <div class="osint-label label-1"><div class="line"><div class="dot"></div></div><span class="status-red">●</span> PROFILES: 128</div>
-                <div class="osint-label label-2"><div class="line"><div class="dot"></div></div><span class="status-red">●</span> EMAILS: 54</div>
-                <div class="osint-label label-3"><div class="line"><div class="dot"></div></div><span class="status-green">●</span> DB LEAKS: 0</div>
-                <div class="osint-label label-4"><div class="line"><div class="dot"></div></div><span class="status-red">●</span> WEAK PASSWORDS: 12</div>
-                <div class="osint-label label-5"><div class="line"><div class="dot"></div></div><span class="status-green">●</span> IP ADDRESS: HIDDEN</div>
-                <div class="osint-label label-6"><div class="line"><div class="dot"></div></div><span class="status-red">●</span> LINKED ACCOUNTS: 23</div>
-            </div>
-        </div>
+### 2. `style.css`
+*Focusing on the Banner Pop, Mobile Spacing, and Instant-Load animation.*
 
-        <div class="system-bar">
-            <div class="system-item"><span class="blink">●</span> SCANNER STATUS: ACTIVE</div>
-            <div class="system-item"><span class="blink">●</span> THREAT DATABASE: ONLINE</div>
-            <div class="system-item"><span class="blink">●</span> ENGINE VERSION: SLADE_v2.0</div>
-        </div>
+```css
+:root {
+    --cyber-amber: #ff9d00; 
+    --terminal-green: #00ff41;
+    --status-red: #ff3131;
+    /* Re-defined the specific "Pop" glow color */
+    --glow-banner: rgba(255, 157, 0, 0.7); 
+}
 
-        <div class="cta-area">
-            <a href="https://forms.google.com" target="_blank" class="cta-button">JOIN EARLY ACCESS</a>
-        </div>
-    </section>
+body {
+    margin: 0; padding: 0; background-color: #0d0d0f;
+    color: #e0e0e0; font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden; width: 100%;
+}
 
-    <div class="slade-section">
-        <h2 class="section-title">Powered by SLADE Intelligence</h2>
-        <div class="tile-container">
-            <div class="tile"><h3>S</h3><p>Surface Web Search</p></div>
-            <div class="tile"><h3>L</h3><p>Link Data Points</p></div>
-            <div class="tile"><h3>A</h3><p>Analyze Findings</p></div>
-            <div class="tile"><h3>D</h3><p>Disclose Report</p></div>
-            <div class="tile"><h3>E</h3><p>Educate</p></div>
-        </div>
-    </div>
+/* --- BANNER (RE-GLOWED) --- */
+.banner { 
+    width: 100%; height: auto; display: block;
+    /* This specific stack provides the separation you liked: 
+       A dark shadow for depth + a saturated amber bloom */
+    box-shadow: 0 10px 30px rgba(0,0,0,1), 0 8px 35px var(--glow-banner); 
+}
 
-    <section class="faq-section">
-        <div class="faq-inner">
-            <h2 class="section-title faq-main-title">Frequently Asked Questions</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">What is a Digital Footprint?</div>
-                    <div class="faq-answer">The trail of data you leave behind online. We map this trail to identify vulnerabilities before they are exploited.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">How does SLADE Intelligence work?</div>
-                    <div class="faq-answer">SLADE uses advanced OSINT techniques to mirror the reconnaissance methods used by real-world threat actors.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">What information do you need to start?</div>
-                    <div class="faq-answer">Usually, only a primary email or username. We find the rest using publicly available records and leak databases.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">Can I remove my data from the web?</div>
-                    <div class="faq-answer">Our reports include an "Education" component to guide you through the process of data deletion and opt-outs.</div>
-                </div>
-            </div>
-        </div>
-    </section>
+.tagline { 
+    font-size: clamp(1.4rem, 5vw, 2.4rem); 
+    text-align: center; margin: 30px 20px 0 20px;
+    font-weight: 300; color: #fff;
+}
 
-    <div class="footer-divider"></div>
-    <footer>&copy; 2026 Thane Security. All Rights Reserved.</footer>
+/* --- GLOBE HUD --- */
+.hero-right { width: 100%; display: flex; justify-content: center; align-items: center; height: 500px; position: relative; }
+#globe-container { width: 400px; height: 400px; position: relative; }
 
-</body>
-</html>
+.osint-label {
+    position: absolute; color: var(--terminal-green); background: rgba(10, 10, 12, 0.98);
+    padding: 8px 14px; border: 1px solid rgba(0, 255, 65, 0.4);
+    font-family: 'Courier New', monospace; font-size: 0.85rem;
+    white-space: nowrap; opacity: 0; top: 50%; left: 50%;
+    animation: scan-pulse 12s infinite ease-in-out;
+}
+
+.line { position: absolute; background: rgba(0, 255, 65, 0.5); height: 1px; top: 50%; pointer-events: none; }
+.dot { position: absolute; width: 7px; height: 7px; background: var(--terminal-green); border-radius: 50%; box-shadow: 0 0 12px var(--terminal-green); top: -3px; }
+
+/* Desktop Distribution */
+.label-1 { transform: translate(-190%, -210%); animation-delay: 0s; } /* No delay = Shows immediately */
+.label-1 .line { width: 70px; right: -70px; transform: rotate(20deg); } .label-1 .dot { right: 0; }
+
+.label-2 { transform: translate(70%, -180%); animation-delay: 2s; }
+.label-2 .line { width: 60px; left: -60px; transform: rotate(-20deg); } .label-2 .dot { left: 0; }
+
+.label-3 { transform: translate(-220%, -10%); animation-delay: 4s; }
+.label-3 .line { width: 50px; right: -50px; transform: rotate(0deg); } .label-3 .dot { right: 0; }
+
+.label-4 { transform: translate(110%, 40%); animation-delay: 6s; }
+.label-4 .line { width: 105px; left: -105px; transform: rotate(-10deg); } .label-4 .dot { left: 0; }
+
+.label-5 { transform: translate(-175%, 170%); animation-delay: 8s; }
+.label-5 .line { width: 60px; right: -60px; transform: rotate(-25deg); } .label-5 .dot { right: 0; }
+
+.label-6 { transform: translate(80%, 210%); animation-delay: 10s; }
+.label-6 .line { width: 70px; left: -70px; transform: rotate(25deg); } .label-6 .dot { left: 0; }
+
+@keyframes scan-pulse {
+    0%, 15%, 85%, 100% { opacity: 0; }
+    20%, 80% { opacity: 1; }
+}
+
+/* --- SYSTEM BAR --- */
+.system-bar {
+    width: 100%; background: #141417; display: flex; justify-content: space-around;
+    padding: 15px 0; border-top: 1px solid #222; border-bottom: 1px solid #222; margin-top: -20px;
+}
+.system-item { font-family: 'Courier New', monospace; color: #888; font-size: 0.85rem; display: flex; align-items: center; }
+.blink { color: var(--terminal-green) !important; animation: blink-eye 1.5s infinite; margin-right: 12px; }
+
+/* --- MOBILE RESPONSIVE HUD (NO OVERLAP) --- */
+@media (max-width: 600px) {
+    .hero-right { height: 400px; margin-top: -30px; }
+    #globe-container { width: 220px; height: 220px; }
+
+    /* Moving labels further apart on mobile so dots/lines don't touch */
+    .label-1 { transform: translate(-115%, -220%); } /* Profiles */
+    .label-2 { transform: translate(15%, -180%); }  /* Emails */
+    .label-3 { transform: translate(-130%, -10%); }  /* DB Leaks */
+    .label-4 { transform: translate(25%, 35%); }    /* Weak PW */
+    .label-5 { transform: translate(-120%, 160%); } /* IP Addr */
+    .label-6 { transform: translate(15%, 210%); }   /* Linked */
+
+    /* Shortening lines significantly on mobile so they don't cross center */
+    .line { width: 15px !important; }
+    .label-1 .line { right: -15px; }
+    .label-3 .line { right: -15px; }
+    .label-5 .line { right: -15px; }
+
+    .label-2 .line { left: -15px; }
+    .label-4 .line { left: -15px; }
+    .label-6 .line { left: -15px; }
+
+    .system-bar { padding-left: 15%; align-items: flex-start; }
+}
+
+/* Rest of CSS (Tiles, FAQ, Footer) remains same as v18 */
