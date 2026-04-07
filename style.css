@@ -1,9 +1,9 @@
-/* --- GLOBAL FIXES --- */
+/* --- GLOBAL RESET & MOBILE LOCK --- */
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden; /* Stops the horizontal sliding/pinching */
+    overflow-x: hidden; /* Stops the horizontal "pinch/slide" issue */
     background-color: #1a1a1a;
     color: #f5f5f5;
     font-family: 'Segoe UI', sans-serif;
@@ -25,30 +25,30 @@ html, body {
     width: 100%;
     height: auto;
     display: block;
-    /* Your preferred Golden-Amber glow */
-    box-shadow: 0 8px 25px 2px rgba(255, 140, 0, 0.4);
+    box-shadow: 0 8px 25px 2px rgba(255, 140, 0, 0.4); /* Your Amber Glow */
 }
 
 .tagline {
     font-size: clamp(1.2rem, 3.5vw, 2.5rem);
     text-align: center;
     margin: 40px auto;
-    padding: 0 15px;
+    padding: 0 20px;
 }
 
-/* --- THE GLOBE AREA --- */
+/* --- GLOBE & LABELS --- */
 .hero-right {
     width: 100%;
     display: flex;
     justify-content: center;
     position: relative;
-    height: 500px; /* Forces space for the globe to appear */
+    min-height: 450px;
 }
 
 #globe-container {
     width: 500px;
     height: 500px;
     position: relative;
+    margin: 0 auto;
 }
 
 .osint-label {
@@ -64,11 +64,11 @@ html, body {
     white-space: nowrap;
 }
 
-/* DESKTOP LABEL POSITIONS */
-.label-1 { top: 15%; left: -15%; } /* Profiles */
-.label-2 { top: 15%; right: -15%; } /* Emails */
-.label-3 { top: 70%; left: -20%; } /* Passwords - Pushed down and out */
-.label-4 { top: 70%; right: -20%; } /* Accounts - Pushed down and out */
+/* Desktop Label Positions */
+.label-1 { top: 15%; left: -10%; }
+.label-2 { top: 15%; right: -10%; }
+.label-3 { top: 70%; left: -15%; } /* Pushed down/out to avoid globe */
+.label-4 { top: 70%; right: -15%; } /* Pushed down/out to avoid globe */
 
 /* --- SLADE TILES --- */
 .tile-container {
@@ -84,22 +84,29 @@ html, body {
     border: 1px solid rgba(255, 106, 0, 0.3);
     border-radius: 8px;
     padding: 25px;
-    width: 160px;
+    width: 150px;
     text-align: center;
 }
 
 .tile h3 { font-size: 2.5rem; color: #ff6a00; margin-bottom: 10px; }
 
-/* --- MOBILE SPECIFIC FIXES --- */
+/* --- MOBILE SPECIFIC --- */
 @media (max-width: 600px) {
-    .hero-right { height: 350px; }
-    #globe-container { width: 300px; height: 300px; }
+    #globe-container {
+        width: 100vw;
+        height: 100vw;
+        max-width: 320px;
+        max-height: 320px;
+    }
     
-    /* On mobile, we keep labels inside the screen edges */
-    .label-1 { top: 10%; left: 2%; }
-    .label-2 { top: 10%; right: 2%; }
-    .label-3 { top: 80%; left: 2%; }
-    .label-4 { top: 80%; right: 2%; }
-    
-    .osint-label { font-size: 0.7rem; padding: 5px 8px; }
+    .osint-label {
+        font-size: 0.7rem;
+        padding: 5px 8px;
+    }
+
+    /* Keep labels inside screen edges on mobile */
+    .label-1 { top: 10% !important; left: 5% !important; }
+    .label-2 { top: 10% !important; right: 5% !important; }
+    .label-3 { top: 85% !important; left: 5% !important; }
+    .label-4 { top: 85% !important; right: 5% !important; }
 }
