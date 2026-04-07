@@ -1,18 +1,19 @@
-/* --- RESET & BASIC STYLES --- */
-body {
+/* --- GLOBAL FIXES --- */
+html, body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', sans-serif;
+    width: 100%;
+    overflow-x: hidden; /* Stops the horizontal sliding/pinching */
     background-color: #1a1a1a;
     color: #f5f5f5;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* --- BANNER & HERO --- */
 .hero {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
 }
 
 .banner-container {
@@ -24,127 +25,81 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    box-shadow: 0 5px 25px 2px rgba(255, 140, 0, 0.4);
+    /* Your preferred Golden-Amber glow */
+    box-shadow: 0 8px 25px 2px rgba(255, 140, 0, 0.4);
 }
 
 .tagline {
     font-size: clamp(1.2rem, 3.5vw, 2.5rem);
     text-align: center;
-    margin: 60px auto 20px auto;
-    width: 90%;
-    line-height: 1.4;
+    margin: 40px auto;
+    padding: 0 15px;
 }
 
-/* --- GLOBE & LABELS --- */
-#globe-container {
-    width: 100%;           /* Changed from 500px to 100% */
-    max-width: 500px;      /* Stops it from getting too huge on desktop */
-    aspect-ratio: 1 / 1;   /* Keeps it a perfect square */
-    position: relative;
-    margin: 0 auto;        /* Centers it horizontally */
+/* --- THE GLOBE AREA --- */
+.hero-right {
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    position: relative;
+    height: 500px; /* Forces space for the globe to appear */
+}
+
+#globe-container {
+    width: 500px;
+    height: 500px;
+    position: relative;
 }
 
 .osint-label {
     position: absolute;
     z-index: 10;
     color: #ff6a00;
-    background: rgba(15, 15, 15, 0.95);
-    padding: 8px 14px;
+    background: rgba(15, 15, 15, 0.9);
+    padding: 8px 12px;
     border: 1px solid rgba(255, 106, 0, 0.5);
     border-radius: 4px;
     font-size: 0.85rem;
     font-weight: bold;
     white-space: nowrap;
-    width: fit-content; /* THIS FIXES THE GIANT BOX */
 }
 
-/* Lines pointing to globe */
-.osint-label::after {
-    content: "";
-    position: absolute;
-    width: 60px;
-    height: 1px;
-    top: 50%;
-    background: rgba(255, 106, 0, 0.4);
-}
-
-/* Label Positions */
-.label-1 { top: 20%; left: -10%; }
-.label-1::after { right: -60px; transform: rotate(15deg); }
-
-.label-2 { top: 20%; right: -10%; }
-.label-2::after { left: -60px; transform: rotate(-15deg); }
-
-.label-3 { top: 68%; left: -22%; }
-.label-3::after { right: -85px; transform: rotate(-20deg); }
-
-.label-4 { top: 68%; right: -22%; }
-.label-4::after { left: -85px; transform: rotate(20deg); }
+/* DESKTOP LABEL POSITIONS */
+.label-1 { top: 15%; left: -15%; } /* Profiles */
+.label-2 { top: 15%; right: -15%; } /* Emails */
+.label-3 { top: 70%; left: -20%; } /* Passwords - Pushed down and out */
+.label-4 { top: 70%; right: -20%; } /* Accounts - Pushed down and out */
 
 /* --- SLADE TILES --- */
-.section-title {
-    text-align: center;
-    margin-top: 80px;
-    color: #ff6a00;
-}
-
 .tile-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 40px;
+    padding: 40px 20px;
 }
 
 .tile {
     background: #111;
     border: 1px solid rgba(255, 106, 0, 0.3);
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 25px;
     width: 160px;
     text-align: center;
 }
 
-.tile h3 {
-    font-size: 2.5rem;
-    color: #ff6a00;
-    margin: 0 0 10px 0;
-}
+.tile h3 { font-size: 2.5rem; color: #ff6a00; margin-bottom: 10px; }
 
-/* --- THE MOBILE FIX (Add/Replace this at the bottom) --- */
+/* --- MOBILE SPECIFIC FIXES --- */
 @media (max-width: 600px) {
-    .tagline {
-        font-size: 1.4rem; /* Makes tagline fit better on small screens */
-        margin: 30px auto;
-    }
-
-    #globe-container {
-        max-width: 320px; /* Shrinks the globe area for phones */
-    }
-
-    /* Pull labels closer to the globe so they don't cut off */
-    .label-1 { left: 2% !important; top: 15% !important; }
-    .label-2 { right: 2% !important; top: 15% !important; }
+    .hero-right { height: 350px; }
+    #globe-container { width: 300px; height: 300px; }
     
-    .label-3 { 
-        left: 2% !important; 
-        top: 75% !important; 
-    }
-    .label-4 { 
-        right: 2% !important; 
-        top: 75% !important; 
-    }
-
-    /* Hide the connector lines on mobile to keep it clean */
-    .osint-label::after {
-        display: none !important;
-    }
-
-    .osint-label {
-        font-size: 0.7rem; /* Smaller text for small screens */
-        padding: 5px 8px;
-    }
+    /* On mobile, we keep labels inside the screen edges */
+    .label-1 { top: 10%; left: 2%; }
+    .label-2 { top: 10%; right: 2%; }
+    .label-3 { top: 80%; left: 2%; }
+    .label-4 { top: 80%; right: 2%; }
+    
+    .osint-label { font-size: 0.7rem; padding: 5px 8px; }
 }
