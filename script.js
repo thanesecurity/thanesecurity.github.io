@@ -22,7 +22,7 @@ window.onload = function() {
     });
     
     const globe = new THREE.Mesh(globeGeometry, globeMaterial);
-    // Globe size set to 1.8 to look prominent
+    // Globe size set to 1.8 for prominence
     globe.scale.set(1.8, 1.8, 1.8); 
     scene.add(globe);
 
@@ -34,7 +34,6 @@ window.onload = function() {
     animate();
 
     window.addEventListener('resize', () => {
-        // Updated to use container dimensions for better mobile responsiveness
         camera.aspect = container.clientWidth / container.clientHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(container.clientWidth, container.clientHeight);
