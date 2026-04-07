@@ -11,13 +11,13 @@ window.onload = function() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    // RESTORED WIREFRAME GLOBE
-    const geometry = new THREE.SphereGeometry(1, 14, 14); // Fewer segments make the wireframe look sharper
+    // Grid-style wireframe
+    const geometry = new THREE.SphereGeometry(1, 15, 15);
     const material = new THREE.MeshBasicMaterial({ 
         color: 0xff9d00, 
         wireframe: true, 
         transparent: true, 
-        opacity: 0.35 
+        opacity: 0.3 
     });
     
     const globe = new THREE.Mesh(geometry, material);
@@ -26,17 +26,14 @@ window.onload = function() {
 
     function animate() {
         requestAnimationFrame(animate);
-        // Only rotating on the Y axis for a cleaner "spinning radar" look
-        globe.rotation.y += 0.002;
+        globe.rotation.y += 0.0018;
         renderer.render(scene, camera);
     }
     animate();
 
     window.addEventListener('resize', () => {
-        const width = container.clientWidth;
-        const height = container.clientHeight;
-        renderer.setSize(width, height);
-        camera.aspect = width / height;
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        camera.aspect = container.clientWidth / container.clientHeight;
         camera.updateProjectionMatrix();
     });
 };
