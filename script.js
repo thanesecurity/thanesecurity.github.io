@@ -11,13 +11,12 @@ window.onload = function() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    // Grid-style wireframe
     const geometry = new THREE.SphereGeometry(1, 15, 15);
     const material = new THREE.MeshBasicMaterial({ 
-        color: 0xff9d00, 
+        color: 0xe68a00, // Matching the Carbon Amber variable
         wireframe: true, 
         transparent: true, 
-        opacity: 0.3 
+        opacity: 0.25 
     });
     
     const globe = new THREE.Mesh(geometry, material);
@@ -26,7 +25,7 @@ window.onload = function() {
 
     function animate() {
         requestAnimationFrame(animate);
-        globe.rotation.y += 0.0018;
+        globe.rotation.y += 0.0015;
         renderer.render(scene, camera);
     }
     animate();
