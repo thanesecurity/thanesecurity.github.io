@@ -37,10 +37,14 @@ body {
 
 /* --- GLOBE & LABELS --- */
 #globe-container {
-    width: 500px;
-    height: 500px;
+    width: 100%;           /* Changed from 500px to 100% */
+    max-width: 500px;      /* Stops it from getting too huge on desktop */
+    aspect-ratio: 1 / 1;   /* Keeps it a perfect square */
     position: relative;
-    margin: 0 auto;
+    margin: 0 auto;        /* Centers it horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .osint-label {
@@ -108,4 +112,39 @@ body {
     font-size: 2.5rem;
     color: #ff6a00;
     margin: 0 0 10px 0;
+}
+
+/* --- THE MOBILE FIX (Add/Replace this at the bottom) --- */
+@media (max-width: 600px) {
+    .tagline {
+        font-size: 1.4rem; /* Makes tagline fit better on small screens */
+        margin: 30px auto;
+    }
+
+    #globe-container {
+        max-width: 320px; /* Shrinks the globe area for phones */
+    }
+
+    /* Pull labels closer to the globe so they don't cut off */
+    .label-1 { left: 2% !important; top: 15% !important; }
+    .label-2 { right: 2% !important; top: 15% !important; }
+    
+    .label-3 { 
+        left: 2% !important; 
+        top: 75% !important; 
+    }
+    .label-4 { 
+        right: 2% !important; 
+        top: 75% !important; 
+    }
+
+    /* Hide the connector lines on mobile to keep it clean */
+    .osint-label::after {
+        display: none !important;
+    }
+
+    .osint-label {
+        font-size: 0.7rem; /* Smaller text for small screens */
+        padding: 5px 8px;
+    }
 }
