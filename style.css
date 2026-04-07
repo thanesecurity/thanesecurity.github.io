@@ -2,8 +2,10 @@
     --cyber-amber: #ff9d00; 
     --terminal-green: #00ff41;
     --status-red: #ff3131;
-    --glow-banner: rgba(255, 157, 0, 0.7); 
+    --glow-amber: rgba(255, 157, 0, 0.8);
 }
+
+* { box-sizing: border-box; }
 
 body {
     margin: 0; padding: 0; background-color: #0d0d0f;
@@ -11,17 +13,36 @@ body {
     overflow-x: hidden; width: 100%;
 }
 
-/* --- BANNER (RE-GLOWED) --- */
-.banner-container { width: 100%; overflow: hidden; }
+/* --- BANNER GLOW FIX --- */
+.banner-container { 
+    width: 100%; 
+    position: relative; 
+    background: #000;
+    display: flex;
+    justify-content: center;
+}
+
 .banner { 
-    width: 100%; height: auto; display: block;
-    box-shadow: 0 10px 30px rgba(0,0,0,1), 0 8px 35px var(--glow-banner); 
+    width: 100%; height: auto; display: block; z-index: 2; position: relative;
+}
+
+/* This creates a dedicated "Light" layer under the banner edge */
+.banner-container::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: radial-gradient(circle, var(--glow-amber) 0%, transparent 70%);
+    filter: blur(15px);
+    z-index: 1;
 }
 
 .tagline { 
-    font-size: clamp(1.4rem, 5vw, 2.4rem); 
-    text-align: center; margin: 30px 20px 0 20px;
-    font-weight: 300; color: #fff;
+    font-size: clamp(1.2rem, 5vw, 2.4rem); 
+    text-align: center; margin: 40px 10px 0 10px;
+    font-weight: 300; color: #fff; width: 100%;
 }
 
 /* --- GLOBE HUD --- */
@@ -29,28 +50,32 @@ body {
 #globe-container { width: 400px; height: 400px; position: relative; }
 
 .osint-label {
-    position: absolute; color: var(--terminal-green); background: rgba(10, 10, 12, 0.98);
-    padding: 8px 14px; border: 1px solid rgba(0, 255, 65, 0.4);
+    position: absolute; color: var(--terminal-green); background: rgba(10, 10, 12, 0.95);
+    padding: 8px 14px; border: 1px solid rgba(0, 255, 65, 0.3);
     font-family: 'Courier New', monospace; font-size: 0.85rem;
     white-space: nowrap; opacity: 0; top: 50%; left: 50%;
     animation: scan-pulse 12s infinite ease-in-out;
-    z-index: 10;
 }
 
-.line { position: absolute; background: rgba(0, 255, 65, 0.5); height: 1px; top: 50%; pointer-events: none; }
-.dot { position: absolute; width: 7px; height: 7px; background: var(--terminal-green); border-radius: 50%; box-shadow: 0 0 12px var(--terminal-green); top: -3px; }
+.line { position: absolute; background: rgba(0, 255, 65, 0.4); height: 1px; top: 50%; }
+.dot { position: absolute; width: 7px; height: 7px; background: var(--terminal-green); border-radius: 50%; top: -3px; }
 
-/* Positions (Label 1 delay: 0s for instant start) */
-.label-1 { transform: translate(-190%, -210%); animation-delay: 0s; }
+/* Status Dots in Labels */
+.dot-red { color: var(--status-red); margin-right: 5px; }
+.dot-green { color: var(--terminal-green); margin-right: 5px; }
+
+/* RE-TETHERED POSITIONS & TIMING */
+/* Label 1 and 4 start early to ensure the globe isn't empty on load */
+.label-1 { transform: translate(-190%, -210%); animation-delay: -1s; } 
 .label-1 .line { width: 70px; right: -70px; transform: rotate(20deg); } .label-1 .dot { right: 0; }
 
 .label-2 { transform: translate(70%, -180%); animation-delay: 2s; }
 .label-2 .line { width: 60px; left: -60px; transform: rotate(-20deg); } .label-2 .dot { left: 0; }
 
-.label-3 { transform: translate(-220%, -10%); animation-delay: 4s; }
-.label-3 .line { width: 50px; right: -50px; transform: rotate(0deg); } .label-3 .dot { right: 0; }
+.label-3 { transform: translate(-220%, -10%); animation-delay: 5s; }
+.label-3 .line { width: 50px; right: -50px; } .label-3 .dot { right: 0; }
 
-.label-4 { transform: translate(110%, 40%); animation-delay: 6s; }
+.label-4 { transform: translate(110%, 40%); animation-delay: 0s; } 
 .label-4 .line { width: 105px; left: -105px; transform: rotate(-10deg); } .label-4 .dot { left: 0; }
 
 .label-5 { transform: translate(-175%, 170%); animation-delay: 8s; }
@@ -60,7 +85,7 @@ body {
 .label-6 .line { width: 70px; left: -70px; transform: rotate(25deg); } .label-6 .dot { left: 0; }
 
 @keyframes scan-pulse {
-    0%, 15%, 85%, 100% { opacity: 0; }
+    0%, 10%, 90%, 100% { opacity: 0; }
     20%, 80% { opacity: 1; }
 }
 
@@ -87,11 +112,7 @@ body {
 .tile { background: #121216; border: 1px solid #2a2a2f; border-radius: 8px; padding: 35px 15px; flex: 1; min-width: 140px; text-align: center; transition: 0.4s; }
 .tile h3 { font-size: 3.5rem; color: var(--cyber-amber) !important; margin: 0; }
 .tile p { font-size: 0.85rem; color: #aaa; margin-top: 10px; }
-.tile:hover { 
-    border-color: var(--cyber-amber); 
-    box-shadow: 0 0 25px rgba(255, 157, 0, 0.4);
-    transform: translateY(-5px);
-}
+.tile:hover { border-color: var(--cyber-amber); box-shadow: 0 0 25px rgba(255, 157, 0, 0.4); transform: translateY(-5px); }
 
 /* --- FAQ --- */
 .faq-section { background: #0d0d0f; padding: 40px 0 80px 0; display: flex; justify-content: center; }
@@ -104,24 +125,32 @@ body {
 
 footer { text-align: center; padding: 40px; color: #444; }
 
-/* --- MOBILE RESPONSIVE --- */
+/* --- MOBILE RESPONSIVE (CENTERING FIXES) --- */
 @media (max-width: 600px) {
-    .hero-right { height: 400px; margin-top: -30px; }
-    #globe-container { width: 220px; height: 220px; }
+    body { overflow-x: hidden; width: 100vw; }
+    .hero-right { height: 400px; margin-top: -30px; width: 100%; }
+    #globe-container { width: 220px; height: 220px; margin: 0 auto; }
 
-    .label-1 { transform: translate(-115%, -220%); } 
-    .label-2 { transform: translate(15%, -180%); } 
-    .label-3 { transform: translate(-130%, -10%); } 
-    .label-4 { transform: translate(25%, 35%); } 
-    .label-5 { transform: translate(-120%, 160%); } 
-    .label-6 { transform: translate(15%, 210%); } 
+    /* Centering and clipping prevention for IP label */
+    .label-1 { transform: translate(-105%, -220%); } 
+    .label-2 { transform: translate(5%, -180%); } 
+    .label-3 { transform: translate(-115%, -10%); } 
+    .label-4 { transform: translate(15%, 35%); } 
+    .label-5 { transform: translate(-90%, 160%); } /* IP label shifted inward to prevent cut-off */
+    .label-6 { transform: translate(5%, 210%); } 
 
     .line { width: 15px !important; }
     .label-1 .line, .label-3 .line, .label-5 .line { right: -15px; }
     .label-2 .line, .label-4 .line, .label-6 .line { left: -15px; }
 
-    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; flex-wrap: wrap; }
+    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 90%; }
     .tile:last-child { grid-column: span 2; }
     
-    .system-bar { flex-direction: column; align-items: flex-start; padding-left: 15%; gap: 12px; }
+    .system-bar { 
+        flex-direction: column; 
+        align-items: center; 
+        padding: 20px 0;
+        text-align: center;
+    }
+    .system-item { justify-content: center; margin-bottom: 5px; }
 }
