@@ -3,27 +3,19 @@ window.onload = function() {
     if (!container) return;
 
     const scene = new THREE.Scene();
-    scene.background = null; 
-
     const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
     camera.position.z = 6;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setClearColor(0x000000, 0); 
     container.appendChild(renderer.domElement);
 
-    const globeGeometry = new THREE.SphereGeometry(1, 15, 15);
-    const globeMaterial = new THREE.MeshBasicMaterial({
-        color: 0xffa500,
-        wireframe: true,
-        opacity: 0.6,
-        transparent: true
-    });
+    const globe = new THREE.Mesh(
+        new THREE.SphereGeometry(1, 15, 15),
+        new THREE.MeshBasicMaterial({ color: 0xffa500, wireframe: true, opacity: 0.6, transparent: true })
+    );
     
-    const globe = new THREE.Mesh(globeGeometry, globeMaterial);
-    // Globe size set to 1.8 for prominence
-    globe.scale.set(1.8, 1.8, 1.8); 
+    globe.scale.set(1.8, 1.8, 1.8);
     scene.add(globe);
 
     function animate() {
