@@ -1,47 +1,173 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Thane Security</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>
-</head>
-<body>
-
-    <section class="hero">
-        <div class="banner-container">
-            <img src="banner.png" alt="Thane Security Banner" class="banner">
-        </div>
-        
-        <h1 class="tagline">Know Your Digital Footprint. Manage Your Personal Risk.</h1>
-
-        <div class="hero-right">
-            <div id="globe-container">
-                <div class="osint-label label-1"><span class="status-red">●</span> PROFILES: 128 [EXPOSED]</div>
-                <div class="osint-label label-2"><span class="status-red">●</span> EMAILS: 54 [EXPOSED]</div>
-                <div class="osint-label label-3"><span class="status-green">●</span> DB LEAKS: 3 [DETECTED]</div>
-                <div class="osint-label label-4"><span class="status-red">●</span> WEAK PASSWORDS: 12</div>
-                <div class="osint-label label-5"><span class="status-green">●</span> IP ADDRESS: MAPPED</div>
-                <div class="osint-label label-6"><span class="status-red">●</span> LINKED ACCOUNTS: 23</div>
+<section class="faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">What is a Digital Footprint?</button>
+                <div class="faq-answer"><p>Placeholder text: Your digital footprint is the trail of data you leave behind while using the internet...</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How does SLADE Intelligence work?</button>
+                <div class="faq-answer"><p>Placeholder text: SLADE uses advanced OSINT (Open Source Intelligence) techniques to map data points...</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Is my data stored during a scan?</button>
+                <div class="faq-answer"><p>Placeholder text: We prioritize privacy. Data retrieved during a scan is handled according to our protocols...</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How can I secure my exposed accounts?</button>
+                <div class="faq-answer"><p>Placeholder text: Once threats are identified, we provide a step-by-step disclosure report to secure your identity...</p></div>
             </div>
         </div>
-
-        <a href="https://forms.google.com" target="_blank" class="cta-button">JOIN EARLY ACCESS</a>
     </section>
 
     <h2 class="section-title">Powered by SLADE Intelligence</h2>
+    ```
 
-    <div class="tile-container">
-        <div class="tile"><h3>S</h3><p>Surface Web Search</p></div>
-        <div class="tile"><h3>L</h3><p>Link Data Points</p></div>
-        <div class="tile"><h3>A</h3><p>Analyze Findings</p></div>
-        <div class="tile"><h3>D</h3><p>Disclose Report</p></div>
-        <div class="tile"><h3>E</h3><p>Educate</p></div>
-    </div>
+---
 
-    <footer>&copy; 2026 Thane Security. All Rights Reserved.</footer>
+### 2. The CSS Update (`style.css`)
+**Key Fixes:** * **Tagline & SLADE Title:** Now a consistent, "Soft Off-White" (#e0e0e0) to be easy on the eyes.
+* **Label Positions:** Shifted Emails, IP, and Linked Accounts for a tighter "Orbit."
+* **Tiles:** Increased size and font for readability.
+* **Footer:** Restored the horizontal line and increased font size.
 
-</body>
-</html>
+```css
+/* --- GLOBAL LOCK --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* 5. SOFT OFF-WHITE TAGLINE & TITLES */
+.tagline, .section-title {
+    color: #e0e0e0; 
+    text-align: center;
+}
+
+.tagline {
+    font-size: clamp(1.2rem, 3vw, 2.2rem); /* Increased size */
+    margin: 40px auto;
+    padding: 0 20px;
+    font-weight: 300;
+}
+
+.section-title {
+    font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+    margin: 80px 0 30px 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* --- GLOBE & ORBITING LABELS --- */
+.hero-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-height: 500px;
+}
+
+#globe-container {
+    width: 500px;
+    height: 500px;
+    position: relative;
+}
+
+.osint-label {
+    position: absolute;
+    z-index: 10;
+    color: #00ff41; 
+    background: rgba(10, 10, 10, 0.9);
+    padding: 8px 14px;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    /* 4. INCREASED LABEL FONT */
+    font-size: 0.95rem; 
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+}
+
+/* 1, 2, 3. TWEAKED BROWSER POSITIONS */
+.label-1 { top: 8%; left: 2%; }    /* Profiles */
+.label-2 { top: 22%; right: -5%; }  /* 1. Emails - Moved down/closer */
+.label-3 { top: 48%; left: -15%; }  /* DB Leaks */
+.label-4 { top: 52%; right: -5%; }  /* Weak Passwords */
+.label-5 { bottom: 22%; left: 5%; } /* 2. IP Address - Moved up/closer */
+.label-6 { bottom: 12%; right: 8%; }/* 3. Linked Accounts - Moved up/in */
+
+.status-red { color: #ff3e3e; margin-right: 5px; }
+.status-green { color: #00ff41; margin-right: 5px; }
+
+/* --- 7. SLADE TILES (INCREASED SIZE) --- */
+.tile-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding-bottom: 60px;
+}
+
+.tile {
+    background: #111;
+    border: 1px solid rgba(255, 106, 0, 0.2);
+    border-radius: 10px;
+    padding: 30px;
+    width: 180px; /* Increased size */
+    text-align: center;
+}
+
+.tile h3 { font-size: 3rem; color: #ff6a00; margin: 0 0 10px 0; }
+.tile p { font-size: 1rem; color: #ccc; }
+
+/* --- 8. FAQ STYLES --- */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto 100px auto;
+    padding: 0 20px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #333;
+    padding: 15px 0;
+}
+
+.faq-question {
+    background: none;
+    border: none;
+    color: #ff6a00;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+}
+
+.faq-answer { color: #aaa; padding-top: 10px; font-size: 0.95rem; }
+
+/* --- FOOTER & LINE --- */
+footer {
+    text-align: center;
+    padding: 60px 20px;
+    color: #888;
+    /* 6. STANDARD FOOTER SIZE & LINE */
+    font-size: 1rem; 
+    border-top: 1px solid #333; 
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* --- MOBILE COMPACT VIEW --- */
+@media (max-width: 600px) {
+    #globe-container { width: 300px; height: 300px; }
+    .osint-label { font-size: 0.7rem; padding: 5px 8px; }
+    
+    .label-1 { top: 0%; left: 0%; }
+    .label-2 { top: 18%; right: -5%; }
+    .label-3 { top: 40%; left: -10%; }
+    .label-4 { top: 58%; right: -10%; }
+    .label-5 { bottom: 15%; left: -5%; }
+    .label-6 { bottom: 2%; right: 0%; }
+}
