@@ -13,7 +13,7 @@ window.onload = function() {
 
     const geometry = new THREE.SphereGeometry(1, 14, 14);
     const material = new THREE.MeshBasicMaterial({ 
-        color: 0xff9d00, // BRAND AMBER YELLOW
+        color: 0xff9d00, 
         wireframe: true, 
         transparent: true, 
         opacity: 0.35 
