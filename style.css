@@ -2,7 +2,7 @@
     --cyber-amber: #ff9d00; 
     --terminal-green: #00ff41;
     --status-red: #ff3131;
-    --glow-intense: rgba(255, 157, 0, 0.6); /* More pop, less subtle */
+    --glow-banner: rgba(255, 157, 0, 0.7); 
 }
 
 body {
@@ -11,17 +11,16 @@ body {
     overflow-x: hidden; width: 100%;
 }
 
-/* --- BANNER (FULL WIDTH & POLISHED GLOW) --- */
+/* --- BANNER --- */
 .banner-container { width: 100%; overflow: hidden; }
 .banner { 
     width: 100%; height: auto; display: block;
-    /* Tighter, more vibrant glow to provide that "pop" of separation */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.8), 0 10px 40px var(--glow-intense); 
+    box-shadow: 0 10px 30px rgba(0,0,0,1), 0 8px 35px var(--glow-banner); 
 }
 
 .tagline { 
     font-size: clamp(1.4rem, 5vw, 2.4rem); 
-    text-align: center; margin: 25px 20px 0 20px;
+    text-align: center; margin: 30px 20px 0 20px;
     font-weight: 300; color: #fff;
 }
 
@@ -30,7 +29,7 @@ body {
 #globe-container { width: 400px; height: 400px; position: relative; }
 
 .osint-label {
-    position: absolute; color: var(--terminal-green); background: rgba(10, 10, 12, 0.95);
+    position: absolute; color: var(--terminal-green); background: rgba(10, 10, 12, 0.98);
     padding: 8px 14px; border: 1px solid rgba(0, 255, 65, 0.4);
     font-family: 'Courier New', monospace; font-size: 0.85rem;
     white-space: nowrap; opacity: 0; top: 50%; left: 50%;
@@ -38,10 +37,10 @@ body {
     z-index: 10;
 }
 
-.line { position: absolute; background: rgba(0, 255, 65, 0.4); height: 1px; top: 50%; pointer-events: none; }
-.dot { position: absolute; width: 7px; height: 7px; background: var(--terminal-green); border-radius: 50%; box-shadow: 0 0 10px var(--terminal-green); top: -3px; }
+.line { position: absolute; background: rgba(0, 255, 65, 0.5); height: 1px; top: 50%; pointer-events: none; }
+.dot { position: absolute; width: 7px; height: 7px; background: var(--terminal-green); border-radius: 50%; box-shadow: 0 0 12px var(--terminal-green); top: -3px; }
 
-/* Coordinates */
+/* Desktop Positions (Label 1 starts at 0s for instant load) */
 .label-1 { transform: translate(-190%, -210%); animation-delay: 0s; }
 .label-1 .line { width: 70px; right: -70px; transform: rotate(20deg); } .label-1 .dot { right: 0; }
 
@@ -62,11 +61,8 @@ body {
 
 @keyframes scan-pulse {
     0%, 15%, 85%, 100% { opacity: 0; }
-    25%, 75% { opacity: 1; }
+    20%, 80% { opacity: 1; }
 }
-
-.status-red { color: var(--status-red); margin-right: 6px; }
-.status-green { color: var(--terminal-green); margin-right: 6px; }
 
 /* --- SYSTEM BAR --- */
 .system-bar {
@@ -85,24 +81,22 @@ body {
 }
 .cta-button:hover { box-shadow: 0 0 30px var(--cyber-amber); transform: translateY(-2px); }
 
-/* --- SLADE TILES (GLOW RESTORED) --- */
+/* --- SLADE TILES --- */
 .slade-section { padding: 40px 0; display: flex; flex-direction: column; align-items: center; }
 .tile-container { display: flex; justify-content: center; flex-wrap: nowrap; gap: 20px; width: 95%; max-width: 1100px; }
-.tile { background: #121216; border: 1px solid #2a2a2f; border-radius: 8px; padding: 35px 15px; flex: 1; min-width: 140px; text-align: center; transition: 0.4s; position: relative; }
+.tile { background: #121216; border: 1px solid #2a2a2f; border-radius: 8px; padding: 35px 15px; flex: 1; min-width: 140px; text-align: center; transition: 0.4s; }
 .tile h3 { font-size: 3.5rem; color: var(--cyber-amber) !important; margin: 0; }
 .tile p { font-size: 0.85rem; color: #aaa; margin-top: 10px; }
-
-/* FIX: Ensure glow works on hover */
 .tile:hover { 
     border-color: var(--cyber-amber); 
-    box-shadow: 0 0 25px var(--glow-intense);
+    box-shadow: 0 0 25px rgba(255, 157, 0, 0.4);
     transform: translateY(-5px);
 }
 
 /* --- FAQ --- */
 .faq-section { background: #0d0d0f; padding: 40px 0 80px 0; display: flex; justify-content: center; }
 .faq-inner { width: 100%; max-width: 800px; text-align: center; }
-.faq-main-title { text-align: center; width: 100%; display: block; margin-bottom: 40px; }
+.faq-main-title { margin-bottom: 40px; }
 .faq-container { text-align: left; }
 .faq-item { margin-bottom: 30px; border-left: 3px solid var(--cyber-amber); padding-left: 25px; }
 .faq-question { color: var(--cyber-amber) !important; font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
@@ -118,34 +112,29 @@ footer { text-align: center; padding: 40px; color: #444; }
 }
 
 @media (max-width: 600px) {
-    body { width: 100vw; }
-    .banner-container { width: 100%; margin: 0; padding: 0; }
-    .banner { width: 100%; border-radius: 0; }
-
-    .hero-right { height: 350px; margin-top: -20px; overflow: hidden; }
+    .hero-right { height: 400px; margin-top: -30px; }
     #globe-container { width: 220px; height: 220px; }
-    
-    /* Adjusted mobile positions to keep labels inside the screen width */
-    .label-1 { transform: translate(-105%, -240%); }
-    .label-3 { transform: translate(-105%, -15%); }
-    .label-5 { transform: translate(-105%, 185%); }
-    
-    .label-2 { transform: translate(5%, -220%); }
-    .label-4 { transform: translate(5%, 30%); }
-    .label-6 { transform: translate(5%, 205%); }
 
-    .line { width: 20px !important; }
-    .label-4 .line { width: 35px !important; left: -35px !important; }
+    /* Mobile Scatter Fix: Labels pushed out to edges */
+    .label-1 { transform: translate(-115%, -220%); } 
+    .label-2 { transform: translate(15%, -180%); } 
+    .label-3 { transform: translate(-130%, -10%); } 
+    .label-4 { transform: translate(25%, 35%); } 
+    .label-5 { transform: translate(-120%, 160%); } 
+    .label-6 { transform: translate(15%, 210%); } 
 
-    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; flex-wrap: wrap; }
-    .tile { width: auto; min-width: 0; padding: 20px 10px; }
+    /* Short tether lines to prevent middle-clumping */
+    .line { width: 15px !important; }
+    .label-1 .line, .label-3 .line, .label-5 .line { right: -15px; }
+    .label-2 .line, .label-4 .line, .label-6 .line { left: -15px; }
+
+    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 15px; }
     .tile:last-child { grid-column: span 2; }
     
-    /* Align blinking dots like a bulleted list on mobile */
     .system-bar { 
         flex-direction: column; 
-        align-items: flex-start; /* Aligns to left */
-        padding: 20px 0 20px 25%; /* Pushes text to the middle while keeping bullets aligned */
+        align-items: flex-start; 
+        padding-left: 15%; 
         gap: 12px; 
     }
 }
