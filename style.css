@@ -10,10 +10,11 @@ html, body {
 }
 
 :root {
-    --cyber-gold: #ffb84d; 
+    /* DEEPER BURNISHED GOLD */
+    --cyber-gold: #e6a53d; 
     --terminal-green: #00ff41;
-    --border-amber: rgba(255, 140, 0, 0.4);
-    --system-muted: #5e6473; /* Muted slate-blue for status bar */
+    --border-amber: rgba(230, 165, 61, 0.3);
+    --system-muted: #5e6473;
 }
 
 .hero {
@@ -27,7 +28,7 @@ html, body {
     width: 100%;
     height: auto;
     display: block;
-    box-shadow: 0 8px 25px 2px var(--border-amber);
+    box-shadow: 0 8px 25px 2px rgba(255, 140, 0, 0.4);
 }
 
 .tagline {
@@ -37,13 +38,13 @@ html, body {
     font-weight: 300;
 }
 
-/* --- GLOBE & REPOSITIONED TIGHT LABELS --- */
+/* --- GLOBE & REPOSITIONED LABELS --- */
 .hero-right {
     width: 100%;
     display: flex;
     justify-content: center;
     position: relative;
-    min-height: 460px;
+    min-height: 480px; /* Locked height to prevent mobile stretching */
 }
 
 #globe-container {
@@ -64,27 +65,26 @@ html, body {
     white-space: nowrap;
 }
 
-/* DESKTOP LABEL POSITIONS */
-.label-1 { top: 12%; left: 5%; }
+/* DESKTOP COORDINATES */
+.label-1 { top: 10%; left: 5%; }
 .label-2 { top: 25%; right: 0%; }
 .label-3 { top: 40%; left: -5%; }
-.label-4 { top: 48%; right: -2%; }
-.label-5 { bottom: 25%; left: 8%; }
-.label-6 { bottom: 15%; right: 10%; }
+.label-4 { top: 50%; right: -2%; }
+.label-5 { bottom: 22%; left: 8%; }
+.label-6 { bottom: 12%; right: 10%; }
 
 .status-red { color: #ff4d4d; margin-right: 5px; }
-.status-green { color: var(--terminal-green); margin-right: 5px; }
 
-/* 3. CTA AREA */
+/* DEEPER GOLD BUTTON */
 .cta-area {
     text-align: center;
-    margin: -10px 0 40px 0;
+    margin: 0px 0 40px 0;
     z-index: 20;
 }
 
 .cta-button {
     display: inline-block;
-    padding: 14px 35px;
+    padding: 15px 40px;
     background: var(--cyber-gold);
     color: #000;
     text-decoration: none;
@@ -95,7 +95,7 @@ html, body {
 }
 
 .cta-button:hover {
-    box-shadow: 0 0 20px var(--border-amber);
+    box-shadow: 0 0 25px var(--border-amber);
     transform: scale(1.02);
 }
 
@@ -106,7 +106,7 @@ html, body {
     margin-bottom: 25px;
 }
 
-/* --- 2. MODIFIED SYSTEM STATUS BAR --- */
+/* SYSTEM BAR */
 .system-bar {
     width: 100%;
     background: #141417;
@@ -119,9 +119,8 @@ html, body {
 
 .system-item {
     font-family: 'Courier New', monospace;
-    font-size: 0.85rem; /* Slightly larger */
-    color: var(--system-muted); /* New slate-blue shade */
-    letter-spacing: 1px;
+    font-size: 0.85rem;
+    color: var(--system-muted);
 }
 
 .blink {
@@ -132,7 +131,7 @@ html, body {
 
 @keyframes blink-animation { to { visibility: hidden; } }
 
-/* --- 4. REDUCED SPACE BEFORE FAQ --- */
+/* SECTION TITLES */
 .section-title {
     text-align: center;
     margin: 60px 0 30px 0;
@@ -146,10 +145,10 @@ html, body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    padding-bottom: 40px; /* Reduced from 60px */
+    padding-bottom: 40px;
 }
 
-/* --- 3. SLIGHTLY LARGER TILE TEXT --- */
+/* DEEPER GOLD TILES */
 .tile {
     background: #16161a;
     border: 1px solid #2a2a2f;
@@ -160,13 +159,8 @@ html, body {
     transition: 0.3s ease;
 }
 
-.tile h3 { font-size: 2.5rem; color: var(--cyber-gold); margin: 0 0 5px 0; }
-.tile p { 
-    font-size: 0.95rem; /* Larger font */
-    color: #aaa; 
-    margin: 0; 
-    line-height: 1.3; 
-}
+.tile h3 { font-size: 2.8rem; color: var(--cyber-gold); margin: 0 0 5px 0; }
+.tile p { font-size: 0.95rem; color: #aaa; margin: 0; line-height: 1.3; }
 
 .tile:hover {
     border-color: var(--cyber-gold);
@@ -174,12 +168,8 @@ html, body {
     transform: translateY(-5px);
 }
 
-/* --- FAQ --- */
-.faq-section { 
-    background: #0f0f12; 
-    padding: 20px 0 80px 0; /* Reduced top padding to kill space after tiles */
-}
-
+/* FAQ */
+.faq-section { background: #0f0f12; padding: 20px 0 80px 0; }
 .faq-container { max-width: 750px; margin: 0 auto; padding: 0 20px; }
 .faq-item { margin-bottom: 25px; border-left: 2px solid var(--cyber-gold); padding-left: 20px; }
 .faq-question { color: #fff; font-size: 1.1rem; font-weight: bold; margin-bottom: 5px; }
@@ -195,19 +185,23 @@ footer {
     margin: 0 auto;
 }
 
-/* --- 1. MOBILE LABEL PUSH-OUT --- */
+/* --- MOBILE LABEL FIX --- */
 @media (max-width: 600px) {
     #globe-container { width: 300px; height: 300px; }
-    .hero-right { min-height: 320px; }
+    .hero-right { 
+        min-height: 380px; /* Prevents vertical stretching */
+        padding-top: 20px; 
+    }
     .system-bar { flex-direction: column; align-items: center; gap: 10px; }
     
-    /* Moved out and away from globe center */
-    .label-1 { top: -5%; left: -5%; }
-    .label-2 { top: 15%; right: -12%; }
-    .label-3 { top: 40%; left: -15%; }
-    .label-4 { top: 62%; right: -12%; }
-    .label-5 { bottom: 10%; left: -8%; }
-    .label-6 { bottom: -5%; right: -5%; }
+    /* Pushed in slightly more than last time to stay inside mobile viewport edges */
+    .label-1 { top: 0%; left: 0%; }
+    .label-2 { top: 18%; right: -5%; }
+    .label-3 { top: 40%; left: -8%; }
+    .label-4 { top: 60%; right: -5%; }
+    .label-5 { bottom: 15%; left: 0%; }
+    .label-6 { bottom: 0%; right: 5%; }
 
-    .osint-label { font-size: 0.72rem; }
+    .osint-label { font-size: 0.75rem; padding: 3px 8px; }
+    .cta-area { margin-top: 10px; } /* Space between globe and button on mobile */
 }
