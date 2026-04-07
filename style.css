@@ -6,33 +6,26 @@ html, body {
 }
 
 :root {
-    --cyber-gold: #ff9d00; 
-    --terminal-green: #00ff41;
+    --cyber-gold: #ff9d00 !important; 
+    --terminal-green: #00ff41 !important;
     --glow-color: rgba(255, 157, 0, 0.45);
 }
 
+/* --- BANNER --- */
 .banner { width: 100%; height: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 25px var(--glow-color); }
 .tagline { font-size: clamp(1.2rem, 4vw, 2.2rem); text-align: center; margin: 40px 20px 0 20px; font-weight: 300; }
 
-/* --- GLOBE & HUD (GAP FIX) --- */
-.hero-right { 
-    width: 100%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 480px; /* Locked height to prevent gaps */
-    position: relative; 
-    margin-top: -20px; 
-}
+/* --- GLOBE HUD (SCATTERED) --- */
+.hero-right { width: 100%; display: flex; justify-content: center; align-items: center; height: 500px; position: relative; margin-top: -10px; }
 #globe-container { width: 400px; height: 400px; position: relative; }
 
 .osint-label {
     position: absolute;
     color: var(--terminal-green); 
     background: rgba(10, 10, 12, 0.95);
-    padding: 8px 14px; /* Increased size */
-    border: 1px solid rgba(0, 255, 65, 0.5);
-    font-size: 0.9rem; /* Bigger labels */
+    padding: 8px 14px;
+    border: 1px solid rgba(0, 255, 65, 0.6);
+    font-size: 0.9rem;
     font-family: 'Courier New', monospace;
     white-space: nowrap;
     opacity: 0;
@@ -40,12 +33,12 @@ html, body {
     animation: scan-pulse 9s infinite ease-in-out;
 }
 
-/* LEADER LINES (Darkened & Thickened) */
+/* LEADER LINES */
 .line {
     position: absolute;
-    background: rgba(0, 255, 65, 0.7); /* Solid, darker green */
-    height: 1.5px; /* Thicker line */
-    width: 60px; top: 50%; pointer-events: none;
+    background: rgba(0, 255, 65, 0.8);
+    height: 2px;
+    top: 50%;
 }
 
 .dot {
@@ -54,61 +47,124 @@ html, body {
     background: var(--terminal-green);
     border-radius: 50%;
     box-shadow: 0 0 12px var(--terminal-green);
-    top: -3.5px;
+    top: -3px;
 }
 
-/* ALIGNMENT LOGIC */
-.label-1, .label-3, .label-5 { }
-.label-1 .line, .label-3 .line, .label-5 .line { right: -60px; }
-.label-1 .dot, .label-3 .dot, .label-5 .dot { right: 0; }
+/* --- SCATTERED POSITIONING --- */
+/* Top Left Outer */
+.label-1 { --tx: -190%; --ty: -240%; animation-delay: 0s; }
+.label-1 .line { width: 80px; right: -80px; transform: rotate(35deg); }
+.label-1 .dot { right: 0; }
 
-.label-2, .label-4, .label-6 { }
-.label-2 .line, .label-4 .line, .label-6 .line { left: -60px; }
-.label-2 .dot, .label-4 .dot, .label-6 .dot { left: 0; }
+/* Top Right Inner */
+.label-2 { --tx: 40%; --ty: -210%; animation-delay: 1.5s; }
+.label-2 .line { width: 50px; left: -50px; transform: rotate(-30deg); }
+.label-2 .dot { left: 0; }
 
-/* SPACING */
-.label-1 { --tx: -175%; --ty: -210%; animation-delay: 0s; }
-.label-2 { --tx: 65%; --ty: -200%; animation-delay: 1.5s; }
-.label-3 { --tx: -210%; --ty: -10%; animation-delay: 3s; }
-.label-4 { --tx: 100%; --ty: 20%; animation-delay: 4.5s; }
-.label-5 { --tx: -175%; --ty: 170%; animation-delay: 6s; }
-.label-6 { --tx: 65%; --ty: 190%; animation-delay: 7.5s; }
+/* Middle Left Wide */
+.label-3 { --tx: -240%; --ty: -30%; animation-delay: 3s; }
+.label-3 .line { width: 60px; right: -60px; transform: rotate(5deg); }
+.label-3 .dot { right: 0; }
+
+/* Middle Right Deep */
+.label-4 { --tx: 130%; --ty: 80%; animation-delay: 4.5s; }
+.label-4 .line { width: 90px; left: -90px; transform: rotate(-10deg); }
+.label-4 .dot { left: 0; }
+
+/* Bottom Left Mid */
+.label-5 { --tx: -150%; --ty: 210%; animation-delay: 6s; }
+.label-5 .line { width: 50px; right: -50px; transform: rotate(-40deg); }
+.label-5 .dot { right: 0; }
+
+/* Bottom Right Outer */
+.label-6 { --tx: 90%; --ty: 230%; animation-delay: 7.5s; }
+.label-6 .line { width: 80px; left: -80px; transform: rotate(35deg); }
+.label-6 .dot { left: 0; }
 
 @keyframes scan-pulse {
     0%, 100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0.95); }
     15%, 85% { opacity: 1; transform: translate(var(--tx), var(--ty)) scale(1); }
 }
 
-/* --- CTA AREA (GAP FIX) --- */
-.cta-area { text-align: center; margin-top: -30px; margin-bottom: 50px; }
+/* --- SYSTEM BAR --- */
+.system-bar {
+    width: 100%;
+    background: #141417;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    border-top: 1px solid #222;
+    margin-bottom: 40px;
+}
+.system-item { font-family: 'Courier New', monospace; font-size: 0.85rem; color: #7a828e; }
+.blink { color: var(--terminal-green) !important; animation: blink-key 1.5s infinite; margin-right: 5px; }
+@keyframes blink-key { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* --- SLADE TILES (FIXED ALIGNMENT) --- */
+.slade-section { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.tile-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 20px 60px 20px;
+}
+.tile {
+    background: #121216;
+    border: 1px solid #2a2a2f;
+    border-radius: 8px;
+    padding: 30px 20px;
+    width: 140px; 
+    text-align: center;
+}
+.tile h3 { 
+    font-size: 3rem; 
+    color: var(--cyber-gold) !important; 
+    margin: 0; 
+    text-shadow: 0 0 10px var(--glow-color); 
+}
+.tile p { font-size: 0.9rem; color: #aaa; margin-top: 10px; line-height: 1.3; }
+
+/* --- FAQ --- */
+.faq-section { width: 100%; display: flex; justify-content: center; padding: 60px 0; }
+.faq-inner { width: 100%; max-width: 800px; }
+.faq-item { margin-bottom: 30px; border-left: 3px solid var(--cyber-gold); padding-left: 25px; }
+
+/* --- BUTTON --- */
+.cta-area { text-align: center; margin-top: -20px; margin-bottom: 50px; }
 .cta-button {
-    display: inline-block; padding: 16px 45px; background: var(--cyber-gold); color: #000;
-    text-decoration: none; font-weight: 800; letter-spacing: 1.5px; border-radius: 4px;
+    display: inline-block; padding: 16px 45px; background: var(--cyber-gold) !important;
+    color: #000 !important; text-decoration: none; font-weight: 800; border-radius: 4px;
     box-shadow: 0 0 20px var(--glow-color);
 }
 
-.system-bar { width: 100%; background: #141417; display: flex; justify-content: space-around; padding: 20px 0; border-top: 1px solid #222; }
-
-/* --- FAQ CENTERING FIX --- */
-.faq-section { width: 100%; display: flex; justify-content: center; background: #0d0d0f; padding: 60px 0; }
-.faq-inner { width: 100%; max-width: 800px; margin: 0 auto; text-align: center; }
-.faq-container { text-align: left; padding: 0 20px; }
-.faq-item { margin-bottom: 30px; border-left: 3px solid var(--cyber-gold); padding-left: 25px; }
-.faq-question { color: #fff; font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
-.faq-answer { color: #aaa; line-height: 1.6; }
-
-footer { text-align: center; padding: 60px; color: #444; border-top: 1px solid #222; width: 80%; margin: 0 auto; }
-
 /* --- MOBILE --- */
 @media (max-width: 600px) {
-    .hero-right { height: 420px; margin-top: 0; }
-    #globe-container { width: 260px; height: 260px; }
+    .hero-right { height: 450px; }
+    #globe-container { width: 250px; height: 250px; }
     .osint-label { font-size: 0.7rem; padding: 6px 10px; }
-    .line { width: 35px !important; }
-    .label-1 { --tx: -120%; --ty: -230%; }
-    .label-2 { --tx: 20%; --ty: -220%; }
-    .label-3 { --tx: -130%; --ty: -20%; }
-    .label-4 { --tx: 30%; --ty: 10%; }
-    .label-5 { --tx: -120%; --ty: 190%; }
-    .label-6 { --tx: 20%; --ty: 200%; }
+    
+    /* Pushing dots away from text in mobile */
+    .label-1 { --tx: -125%; --ty: -250%; }
+    .label-1 .line { width: 30px; right: -30px; }
+
+    .label-2 { --tx: 20%; --ty: -230%; }
+    .label-2 .line { width: 30px; left: -30px; }
+
+    .label-3 { --tx: -135%; --ty: -10%; }
+    .label-3 .line { width: 30px; right: -30px; }
+
+    .label-4 { --tx: 35%; --ty: 20%; }
+    .label-4 .line { width: 30px; left: -30px; }
+
+    .label-5 { --tx: -125%; --ty: 190%; }
+    .label-5 .line { width: 30px; right: -30px; }
+
+    .label-6 { --tx: 20%; --ty: 220%; }
+    .label-6 .line { width: 30px; left: -30px; }
+
+    .tile { width: 130px; }
+    .system-bar { flex-direction: column; align-items: center; gap: 10px; }
 }
