@@ -7,16 +7,16 @@ window.onload = function() {
     camera.position.z = 5.5;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    const geometry = new THREE.SphereGeometry(1, 15, 15);
+    const geometry = new THREE.SphereGeometry(1, 14, 14);
     const material = new THREE.MeshBasicMaterial({ 
-        color: 0xe68a00, 
+        color: 0xff9d00, // BRAND AMBER YELLOW
         wireframe: true, 
         transparent: true, 
-        opacity: 0.2 
+        opacity: 0.35 
     });
     
     const globe = new THREE.Mesh(geometry, material);
