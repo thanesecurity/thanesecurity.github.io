@@ -106,27 +106,23 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
 
 /* --- MOBILE RESPONSIVE (CLEAN HUD) --- */
 @media (max-width: 600px) {
-    body { width: 100%; overflow-x: hidden; } /* body { width: 100vw; } */
-    .hero-right { height: 380px; margin-top: -20px; width: 100%; }
-    #globe-container { width: 220px; height: 220px; margin: 0 auto; }
+    body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+    .banner-container { width: 100%; justify-content: center; left: 0; }
+    .hero-right { height: 380px; margin-top: -20px; width: 100%; display: flex; justify-content: center; }
+    #globe-container { width: 240px; height: 240px; margin: 0 auto; position: relative; left: 0; }
+    
+    /* Re-enabling all labels but scaling them for mobile */
+    .osint-label { font-size: 0.7rem; padding: 5px 10px; }
+    .label-1 { transform: translate(-110%, -180%); } .label-2 { transform: translate(10%, -180%); }
+    .label-3 { transform: translate(-120%, -10%); }  .label-4 { transform: translate(20%, -10%); }
+    .label-5 { transform: translate(-110%, 160%); }  .label-6 { transform: translate(10%, 160%); }
+    .line { width: 15px !important; }
 
-    /* Fix: Only show 3 labels on mobile to prevent overlapping */
-    .label-2, .label-4, .label-6 { display: none !important; }
-
-    /* Reposition remaining labels for maximum space */
-    .label-1 { transform: translate(-105%, -220%); } /* Top Left */
-    .label-3 { transform: translate(5%, -20%); }    /* Middle Right */
-    .label-5 { transform: translate(-105%, 170%); } /* Bottom Left */
-
-    .line { width: 20px !important; }
-    .label-1 .line, .label-5 .line { right: -20px; }
-    .label-3 .line { left: -20px; } /* Swapped to face globe */
-
-    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 92%; }
+    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 94%; margin: 0 auto; }
     .tile:last-child { grid-column: span 2; }
     .tile h3 { font-size: 3rem; }
     .tile p { font-size: 0.95rem; margin-top: 8px; }
     
-    .system-bar { flex-direction: column !important; align-items: center !important; padding: 15px 0; width: 100%; box-sizing: border-box; margin: -20px 0 0 0; gap: 8px; border-top: 1px solid #2a2a2f; border-bottom: 1px solid #2a2a2f; background: #141417; }
+    .system-bar { flex-direction: column !important; align-items: center !important; padding: 15px 0; width: 100%; box-sizing: border-box; margin: -20px 0 0 0; gap: 8px; border-top: 1px solid #2a2a2f !important; border-bottom: 1px solid #2a2a2f !important; background: #141417; }
     .system-item { display: flex !important; flex-direction: row !important; justify-content: flex-start !important; width: 280px !important; margin: 0 auto !important; white-space: nowrap !important; }
 }
