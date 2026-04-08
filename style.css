@@ -106,34 +106,29 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
 
 /* --- MOBILE RESPONSIVE (CLEAN HUD) --- */
 @media (max-width: 600px) {
-    /* 1. Kill the Scroll & Reset Margins */
-    html, body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; position: relative; }
+    /* Force absolute center and kill all horizontal scroll */
+    html, body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
     
-    .banner-container { width: 100%; display: flex; justify-content: center; margin: 0; }
-    .hero-right { height: 350px; width: 100%; display: flex; justify-content: center; align-items: center; margin: 0 auto; position: relative; }
-    #globe-container { width: 220px; height: 220px; position: relative; margin: 0 auto; }
+    .banner-container { width: 100%; display: flex; justify-content: center; left: 0; transform: none; }
+    .hero-right { height: 380px; width: 100%; display: flex; justify-content: center; align-items: center; margin: 0; position: relative; left: 0; transform: none; }
+    #globe-container { width: 220px; height: 220px; position: relative; margin: 0 auto; left: 0; }
     
-    /* 2. Label Rotation Logic (Maximum 3 at once) */
+    /* Label Styling */
     .osint-label { font-size: 0.7rem; padding: 4px 8px; animation: scan-pulse 9s infinite ease-in-out !important; opacity: 0; }
     .line { width: 15px !important; }
 
-    /* Group 1 (Starts immediately) */
-    .label-1 { transform: translate(-115%, -180%); animation-delay: 0s !important; }
-    .label-2 { transform: translate(15%, -180%); animation-delay: 0.5s !important; }
+    /* STAGGERED ROTATION: Each label starts 1.5s after the previous one */
+    .label-1 { transform: translate(-110%, -190%); animation-delay: 0s !important; }   /* Top Left */
+    .label-2 { transform: translate(10%, -190%); animation-delay: 1.5s !important; }  /* Top Right */
+    .label-3 { transform: translate(-120%, -10%); animation-delay: 3s !important; }   /* Mid Left */
+    .label-4 { transform: translate(20%, -10%); animation-delay: 4.5s !important; }   /* Mid Right */
+    .label-5 { transform: translate(-110%, 170%); animation-delay: 6s !important; }   /* Bottom Left */
+    .label-6 { transform: translate(10%, 170%); animation-delay: 7.5s !important; }  /* Bottom Right */
 
-    /* Group 2 (Starts 3 seconds in - Group 1 starts fading) */
-    .label-3 { transform: translate(-125%, -10%); animation-delay: 3s !important; }
-    .label-4 { transform: translate(25%, -10%); animation-delay: 3.5s !important; }
-
-    /* Group 3 (Starts 6 seconds in - Group 2 starts fading) */
-    .label-5 { transform: translate(-115%, 160%); animation-delay: 6s !important; }
-    .label-6 { transform: translate(15%, 160%); animation-delay: 6.5s !important; }
-
-    /* 3. Layout Fixes */
+    /* Layout Reset */
     .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 92%; margin: 20px auto; }
     .tile:last-child { grid-column: span 2; }
     .tile h3 { font-size: 3rem; }
-    .tile p { font-size: 0.95rem; margin-top: 8px; }
     
     .system-bar { flex-direction: column !important; align-items: center !important; padding: 15px 0; width: 100%; box-sizing: border-box; margin: -20px 0 0 0; gap: 8px; border-top: 1px solid #2a2a2f !important; border-bottom: 1px solid #2a2a2f !important; background: #141417; }
     .system-item { display: flex !important; flex-direction: row !important; justify-content: flex-start !important; width: 260px !important; margin: 0 auto !important; white-space: nowrap !important; }
