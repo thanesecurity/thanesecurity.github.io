@@ -105,24 +105,29 @@ body {
 footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
 
 /* --- MOBILE RESPONSIVE (CLEAN HUD) --- */
-@media (max-width: 600px) {
-    body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
-    .banner-container { width: 100%; justify-content: center; left: 0; }
-    .hero-right { height: 380px; margin-top: -20px; width: 100%; display: flex; justify-content: center; }
-    #globe-container { width: 240px; height: 240px; margin: 0 auto; position: relative; left: 0; }
+  @media (max-width: 600px) {
+    body { width: 100%; overflow-x: hidden; margin: 0; padding: 0; position: relative; }
+    .banner-container { width: 100%; display: flex; justify-content: center; align-items: center; left: 0; }
+    .hero-right { height: 380px; margin-top: -20px; width: 100%; display: flex; justify-content: center; align-items: center; position: relative; left: 50%; transform: translateX(-50%); }
+    #globe-container { width: 220px; height: 220px; margin: 0; position: relative; }
     
-    /* Re-enabling all labels but scaling them for mobile */
-    .osint-label { font-size: 0.7rem; padding: 5px 10px; }
-    .label-1 { transform: translate(-110%, -180%); } .label-2 { transform: translate(10%, -180%); }
-    .label-3 { transform: translate(-120%, -10%); }  .label-4 { transform: translate(20%, -10%); }
-    .label-5 { transform: translate(-110%, 160%); }  .label-6 { transform: translate(10%, 160%); }
+    /* 1. Animation Logic: Faster pulse (8s) + Staggered delays = 2-3 visible at once */
+    .osint-label { font-size: 0.7rem; padding: 4px 8px; animation: scan-pulse 8s infinite ease-in-out !important; }
     .line { width: 15px !important; }
 
-    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 94%; margin: 0 auto; }
+    .label-1 { transform: translate(-115%, -180%); animation-delay: 0s !important; }
+    .label-2 { transform: translate(15%, -180%); animation-delay: 4s !important; }
+    .label-3 { transform: translate(-125%, -10%); animation-delay: 1.5s !important; }
+    .label-4 { transform: translate(25%, -10%); animation-delay: 5.5s !important; }
+    .label-5 { transform: translate(-115%, 160%); animation-delay: 3s !important; }
+    .label-6 { transform: translate(15%, 160%); animation-delay: 7s !important; }
+
+    /* 2. Centering Fix for Horizontal/Vertical */
+    .tile-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 94%; margin: 0 auto; position: relative; left: 0; }
     .tile:last-child { grid-column: span 2; }
     .tile h3 { font-size: 3rem; }
     .tile p { font-size: 0.95rem; margin-top: 8px; }
     
-    .system-bar { flex-direction: column !important; align-items: center !important; padding: 15px 0; width: 100%; box-sizing: border-box; margin: -20px 0 0 0; gap: 8px; border-top: 1px solid #2a2a2f !important; border-bottom: 1px solid #2a2a2f !important; background: #141417; }
+    .system-bar { flex-direction: column !important; align-items: center !important; padding: 15px 0; width: 100%; box-sizing: border-box; margin: -20px 0 0 0; gap: 8px; border-top: 1px solid #2a2a2f !important; border-bottom: 1px solid #2a2a2f !important; background: #141417; position: relative; left: 0; }
     .system-item { display: flex !important; flex-direction: row !important; justify-content: flex-start !important; width: 280px !important; margin: 0 auto !important; white-space: nowrap !important; }
 }
