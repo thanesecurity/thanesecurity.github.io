@@ -85,6 +85,7 @@ body {
 
 /* --- CTA --- */
 .cta-area { 
+        text-align: center;
         margin-top: 40px !important;    /* Pushes button down away from status bar */
         margin-bottom: 20px !important; /* Keeps it tight to the Slade section below */
     }
