@@ -84,8 +84,10 @@ body {
 @keyframes blink-eye { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 /* --- CTA --- */
-.cta-area { text-align: center; margin: 20px 0 50px 0; }
-
+.cta-area { 
+        margin-top: 40px !important;    /* Pushes button down away from status bar */
+        margin-bottom: 20px !important; /* Keeps it tight to the Slade section below */
+    }
 /* ADD THIS NEW CLASS HERE */
 .bottom-cta {
     margin-top: 60px;    /* Adds space after the FAQ section */
