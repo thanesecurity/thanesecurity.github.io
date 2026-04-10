@@ -129,26 +129,27 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
         margin: 0 auto !important;
     }
 
-    /* 2. CLOSE VERTICAL GAPS */
+    /* 2. TIGHT VERTICAL SPACING */
     .tagline {
-        margin: 40px auto 5px auto !important; /* Tightened bottom margin */
+        margin: 40px auto 5px auto !important; 
         font-size: 1.1rem !important;
     }
     .hero-right { 
-        height: 280px !important; /* Pulled globe area tighter */
+        height: 280px !important; 
         margin-top: -5px !important; 
     }
 
-    /* 3. ASYMMETRIC HUD LOGIC */
+    /* 3. STAIRCASE HUD LOGIC (One-at-a-time, Max 3) */
     #globe-container { 
         width: 200px !important; 
         height: 200px !important; 
     }
 
     .osint-label { 
+        position: absolute !important;
         font-size: 0.65rem !important; 
         padding: 5px 10px !important;
-        /* Cycle duration is 12s total */
+        /* 12s total cycle. Visible for 5s (approx 40% of cycle) */
         animation: mobile-scan 12s infinite ease-in-out !important; 
         left: 50% !important;
         top: 50% !important;
@@ -157,23 +158,22 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
     
     .line, .dot { display: none !important; }
 
-    /* NEW KEYFRAMES: Label is only visible for 1/3 of the 12s cycle (4 seconds) */
     @keyframes mobile-scan {
-        0%, 35%, 100% { opacity: 0; transform: translate(var(--tw), var(--th)) scale(0.9); }
-        5%, 30% { opacity: 1; transform: translate(var(--tw), var(--th)) scale(1); }
+        0%, 45%, 100% { opacity: 0; transform: translate(var(--tw), var(--th)) scale(0.9); }
+        10%, 35% { opacity: 1; transform: translate(var(--tw), var(--th)) scale(1); }
     }
 
-    /* Group A: 0s Delay (Labels 1, 3, 5) - Spread across globe */
-    .label-1 { --tw: -130%; --th: -180%; animation-delay: 0s !important; } 
-    .label-3 { --tw: 35%;  --th: -50%;  animation-delay: 0s !important; } 
-    .label-5 { --tw: -120%; --th: 120%;  animation-delay: 0s !important; } 
+    /* DELAYS: Each starts 2 seconds after the previous one */
+    /* This creates a constant rolling stream where labels fade in/out individually */
+    
+    .label-1 { --tw: -130%; --th: -180%; animation-delay: 0s !important; }   /* Start 0s */
+    .label-2 { --tw: 25%;   --th: -150%; animation-delay: 2s !important; }   /* Start 2s */
+    .label-3 { --tw: -140%; --th: -10%;  animation-delay: 4s !important; }   /* Start 4s */
+    .label-4 { --tw: 35%;   --th: 40%;   animation-delay: 6s !important; }   /* Start 6s */
+    .label-5 { --tw: -120%; --th: 130%;  animation-delay: 8s !important; }   /* Start 8s */
+    .label-6 { --tw: 15%;   --th: 160%;  animation-delay: 10s !important; }  /* Start 10s */
 
-    /* Group B: 4s Delay (Labels 2, 4, 6) - Spread across globe */
-    .label-2 { --tw: 25%;   --th: -150%; animation-delay: 4s !important; } 
-    .label-4 { --tw: -140%; --th: 30%;   animation-delay: 4s !important; }  
-    .label-6 { --tw: 10%;   --th: 140%;  animation-delay: 4s !important; }
-
-    /* 4. SYSTEM BAR - Pulled up tighter to globe */
+    /* 4. SYSTEM BAR - Tightened to globe */
     .system-bar { 
         flex-direction: column !important; 
         padding: 8px 0 !important;
