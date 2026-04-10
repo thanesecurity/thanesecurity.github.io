@@ -84,7 +84,7 @@ body {
 @keyframes blink-eye { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 /* --- CTA --- */
-.cta-area { text-align: center; margin: 30px 0 50px 0; }
+.cta-area { text-align: center; margin: 20px 0 50px 0; }
 .cta-button {
     display: inline-block; padding: 18px 50px; background: var(--cyber-amber);
     color: #000; text-decoration: none; font-weight: 800; border-radius: 4px; transition: 0.4s ease;
@@ -188,7 +188,23 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
     }
     .blink { margin-right: 10px !important; }
 
-    /* 5. TILES */
+   /* 5. CTA AREA - Closing gap below button */
+    .cta-area { 
+        margin: 15px 0 20px 0 !important; 
+    }
+
+    /* 6. SLADE SECTION - Pulling the section up */
+    .slade-section { 
+        padding-top: 5px !important; 
+        padding-bottom: 20px !important;
+    }
+
+    .section-title {
+        margin-top: 10px !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* 7. TILES - KEEP THIS BLOCK */
     .tile-container { 
         display: grid !important; 
         grid-template-columns: 1fr 1fr !important; 
