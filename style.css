@@ -129,17 +129,17 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
         margin: 0 auto !important;
     }
 
-    /* 2. CLOSE THE GAP - Pushing globe up toward tagline */
+    /* 2. CLOSE VERTICAL GAPS */
     .tagline {
-        margin: 45px auto 10px auto !important; /* Reduced bottom margin */
+        margin: 40px auto 5px auto !important; /* Tightened bottom margin */
         font-size: 1.1rem !important;
     }
     .hero-right { 
-        height: 300px !important; /* Shorter height to pull everything up */
-        margin-top: -10px !important; 
+        height: 280px !important; /* Pulled globe area tighter */
+        margin-top: -5px !important; 
     }
 
-    /* 3. RANDOMIZED HUD LOGIC */
+    /* 3. ASYMMETRIC HUD LOGIC */
     #globe-container { 
         width: 200px !important; 
         height: 200px !important; 
@@ -148,34 +148,42 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
     .osint-label { 
         font-size: 0.65rem !important; 
         padding: 5px 10px !important;
-        animation: scan-pulse 10s infinite ease-in-out !important; 
+        /* Cycle duration is 12s total */
+        animation: mobile-scan 12s infinite ease-in-out !important; 
         left: 50% !important;
         top: 50% !important;
+        opacity: 0;
     }
     
     .line, .dot { display: none !important; }
 
-    /* RANDOMIZED STAGGER & ASYMMETRIC PLACEMENT */
-    /* No two labels share the same animation delay */
-    
-    .label-1 { transform: translate(-125%, -170%) !important; animation-delay: 0.2s !important; } 
-    .label-2 { transform: translate(30%, -140%) !important; animation-delay: 3.5s !important; } 
-    .label-3 { transform: translate(-140%, -10%) !important; animation-delay: 1.8s !important; } 
-    .label-4 { transform: translate(45%, 40%) !important; animation-delay: 6.2s !important; }  
-    .label-5 { transform: translate(-115%, 150%) !important; animation-delay: 8.1s !important; } 
-    .label-6 { transform: translate(15%, 130%) !important; animation-delay: 4.9s !important; }
+    /* NEW KEYFRAMES: Label is only visible for 1/3 of the 12s cycle (4 seconds) */
+    @keyframes mobile-scan {
+        0%, 35%, 100% { opacity: 0; transform: translate(var(--tw), var(--th)) scale(0.9); }
+        5%, 30% { opacity: 1; transform: translate(var(--tw), var(--th)) scale(1); }
+    }
 
-    /* 4. SYSTEM BAR - Pushed up further */
+    /* Group A: 0s Delay (Labels 1, 3, 5) - Spread across globe */
+    .label-1 { --tw: -130%; --th: -180%; animation-delay: 0s !important; } 
+    .label-3 { --tw: 35%;  --th: -50%;  animation-delay: 0s !important; } 
+    .label-5 { --tw: -120%; --th: 120%;  animation-delay: 0s !important; } 
+
+    /* Group B: 4s Delay (Labels 2, 4, 6) - Spread across globe */
+    .label-2 { --tw: 25%;   --th: -150%; animation-delay: 4s !important; } 
+    .label-4 { --tw: -140%; --th: 30%;   animation-delay: 4s !important; }  
+    .label-6 { --tw: 10%;   --th: 140%;  animation-delay: 4s !important; }
+
+    /* 4. SYSTEM BAR - Pulled up tighter to globe */
     .system-bar { 
         flex-direction: column !important; 
         padding: 8px 0 !important;
         gap: 5px !important;
-        margin-top: -25px !important; /* Pulls bar up closer to globe */
+        margin-top: -35px !important; 
     }
     .system-item { 
         width: 100% !important; 
         justify-content: flex-start !important; 
-        padding-left: 22% !important; /* Aligns dots vertically */
+        padding-left: 22% !important; 
         font-size: 0.7rem !important; 
     }
     .blink { margin-right: 10px !important; }
