@@ -26,8 +26,15 @@ body {
 }
 
 .tagline { 
-    font-size: clamp(1.2rem, 5vw, 2.4rem); text-align: center; 
-    margin: 40px 10px 0 10px; font-weight: 300; color: #fff; width: 100%;
+    font-size: clamp(1.2rem, 5vw, 2.4rem); 
+    text-align: center; 
+    /* margin: auto centers the block; 40px top space kept */
+    margin: 40px auto 20px auto; 
+    font-weight: 300; 
+    color: #fff; 
+    width: 100%;
+    display: block; /* Ensures centering works */
+    line-height: 1.4; /* Gives the two lines breathing room */
 }
 
 /* --- GLOBE HUD --- */
