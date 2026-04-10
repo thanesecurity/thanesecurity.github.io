@@ -113,7 +113,7 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
 
 /* --- MOBILE RESPONSIVE (CLEAN HUD) --- */
 @media only screen and (max-width: 600px) {
-    /* 1. RESTORE SCROLLING & FIX HORIZONTAL SHIFT */
+    /* 1. SCROLLING & ALIGNMENT */
     html, body { 
         overflow-x: hidden !important; 
         overflow-y: auto !important;   
@@ -121,7 +121,6 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
         height: auto !important;
     }
 
-    /* 2. CENTER CONTAINERS */
     .hero, .hero-right, .system-bar, .slade-section, .faq-section {
         width: 100% !important;
         display: flex !important;
@@ -130,62 +129,58 @@ footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
         margin: 0 auto !important;
     }
 
-    /* 3. TAGLINE SPACING - Moving down slightly */
+    /* 2. CLOSE THE GAP - Pushing globe up toward tagline */
     .tagline {
-        margin: 60px auto 30px auto !important; /* Increased top margin to clear glow */
+        margin: 45px auto 10px auto !important; /* Reduced bottom margin */
         font-size: 1.1rem !important;
     }
+    .hero-right { 
+        height: 300px !important; /* Shorter height to pull everything up */
+        margin-top: -10px !important; 
+    }
 
-    /* 4. MOBILE HUD (3 labels at a time, slower fade) */
-    .hero-right { height: 350px !important; }
+    /* 3. RANDOMIZED HUD LOGIC */
     #globe-container { 
-        width: 220px !important; 
-        height: 220px !important; 
-        margin: 0 auto !important;
+        width: 200px !important; 
+        height: 200px !important; 
     }
 
     .osint-label { 
         font-size: 0.65rem !important; 
         padding: 5px 10px !important;
-        /* Slowed to 12s for a gentler fade in/out */
-        animation: scan-pulse 12s infinite ease-in-out !important; 
+        animation: scan-pulse 10s infinite ease-in-out !important; 
         left: 50% !important;
         top: 50% !important;
     }
     
     .line, .dot { display: none !important; }
 
-    /* Group 1 (Visible First) */
-    .label-1 { transform: translate(-120%, -180%) !important; animation-delay: 0s !important; } /* Profiles */
-    .label-2 { transform: translate(20%, -160%) !important; animation-delay: 0s !important; }  /* Emails */
+    /* RANDOMIZED STAGGER & ASYMMETRIC PLACEMENT */
+    /* No two labels share the same animation delay */
+    
+    .label-1 { transform: translate(-125%, -170%) !important; animation-delay: 0.2s !important; } 
+    .label-2 { transform: translate(30%, -140%) !important; animation-delay: 3.5s !important; } 
+    .label-3 { transform: translate(-140%, -10%) !important; animation-delay: 1.8s !important; } 
+    .label-4 { transform: translate(45%, 40%) !important; animation-delay: 6.2s !important; }  
+    .label-5 { transform: translate(-115%, 150%) !important; animation-delay: 8.1s !important; } 
+    .label-6 { transform: translate(15%, 130%) !important; animation-delay: 4.9s !important; }
 
-    /* Group 2 (Visible Second - Spaced out more) */
-    .label-3 { transform: translate(-125%, -20%) !important; animation-delay: 4s !important; } /* DB Leaks */
-    .label-4 { transform: translate(25%, 30%) !important; animation-delay: 4s !important; }   /* Weak Passwords */
-
-    /* Group 3 (Visible Third) */
-    .label-5 { transform: translate(-115%, 140%) !important; animation-delay: 8s !important; } /* IP Address */
-    .label-6 { transform: translate(10%, 150%) !important; animation-delay: 8s !important; }  /* Linked Accounts */
-
-    /* 5. SYSTEM BAR (Aligned Dots & Closed Gap) */
+    /* 4. SYSTEM BAR - Pushed up further */
     .system-bar { 
         flex-direction: column !important; 
-        padding: 10px 0 !important;
-        gap: 6px !important;
-        margin-top: -10px !important; /* Moves bar UP to close the gap */
+        padding: 8px 0 !important;
+        gap: 5px !important;
+        margin-top: -25px !important; /* Pulls bar up closer to globe */
     }
     .system-item { 
         width: 100% !important; 
-        justify-content: flex-start !important; /* Keeps dots aligned left-of-center */
-        padding-left: 20% !important; /* Centers the whole block of text */
-        font-size: 0.72rem !important; 
-        margin: 0 !important;
+        justify-content: flex-start !important; 
+        padding-left: 22% !important; /* Aligns dots vertically */
+        font-size: 0.7rem !important; 
     }
-    .blink {
-        margin-right: 8px !important; /* Uniform spacing for dots */
-    }
+    .blink { margin-right: 10px !important; }
 
-    /* 6. TILE FIX */
+    /* 5. TILES */
     .tile-container { 
         display: grid !important; 
         grid-template-columns: 1fr 1fr !important; 
